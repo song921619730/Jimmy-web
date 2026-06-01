@@ -1,8 +1,27 @@
 import { Image as ImageIcon, X } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { GeneratedMediaItem } from "../data/generatedMedia";
 import type { Project } from "../data/projects";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const STACK_STEP_VH = 0.58;
+
+function getStackStep(item: GeneratedMediaItem) {
+  if (item.ratio >= 1.45) return 0.48;
+  if (item.ratio >= 1.05) return 0.56;
+  if (item.ratio >= 0.72) return 0.68;
+  return 0.82;
+}
+
+function getStackFit(item: GeneratedMediaItem) {
+  if (item.ratio < 0.58) return "tall";
+  if (item.ratio < 0.92) return "portrait";
+  return "landscape";
+}
 
 type WorkModalProps = {
   project: Project | null;
@@ -13,28 +32,33 @@ type WorkModalProps = {
 
 export function WorkModal({ project, media, initialMediaId, onClose }: WorkModalProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const rootRef = useRef<HTMLElement | null>(null);
   const viewerRef = useRef<HTMLDivElement | null>(null);
-  const itemRefs = useRef<Record<string, HTMLElement | null>>({});
+  const trackRef = useRef<HTMLDivElement | null>(null);
 
   const startIndex = useMemo(() => {
     const index = media.findIndex((item) => item.id === initialMediaId);
     return index >= 0 ? index : 0;
   }, [initialMediaId, media]);
 
-  const scrollToIndex = (index: number, behavior: ScrollBehavior = "smooth") => {
-    const nextIndex = Math.max(0, Math.min(media.length - 1, index));
-    const nextItem = media[nextIndex];
-    if (!nextItem) return;
+  const orderedMedia = useMemo(() => {
+    if (!media.length) return [];
+    return [...media.slice(startIndex), ...media.slice(0, startIndex)];
+  }, [media, startIndex]);
 
-    setActiveIndex(nextIndex);
-    itemRefs.current[nextItem.id]?.scrollIntoView({ block: "center", behavior });
-  };
+  const transitionSteps = useMemo(() => orderedMedia.slice(0, -1).map((item) => getStackStep(item)), [orderedMedia]);
+
+  const stackScroll = useMemo(
+    () => 1 + transitionSteps.reduce((total, step) => total + step, 0),
+    [transitionSteps],
+  );
 
   useEffect(() => {
     if (!project) return undefined;
 
-    setActiveIndex(startIndex);
+    setActiveIndex(0);
     document.body.classList.add("modal-open");
+    viewerRef.current?.scrollTo({ top: 0 });
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -42,14 +66,14 @@ export function WorkModal({ project, media, initialMediaId, onClose }: WorkModal
         return;
       }
 
-      if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+      if (event.key === "ArrowDown" || event.key === "ArrowRight" || event.key === " ") {
         event.preventDefault();
-        scrollToIndex(activeIndex + 1);
+        viewerRef.current?.scrollBy({ top: window.innerHeight * STACK_STEP_VH, behavior: "smooth" });
       }
 
       if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
         event.preventDefault();
-        scrollToIndex(activeIndex - 1);
+        viewerRef.current?.scrollBy({ top: -window.innerHeight * STACK_STEP_VH, behavior: "smooth" });
       }
     };
 
@@ -58,43 +82,66 @@ export function WorkModal({ project, media, initialMediaId, onClose }: WorkModal
       document.body.classList.remove("modal-open");
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [activeIndex, onClose, project, startIndex]);
+  }, [onClose, project, startIndex]);
 
   useEffect(() => {
-    if (!project) return undefined;
+    const root = rootRef.current;
+    const scroller = viewerRef.current;
+    const track = trackRef.current;
+    if (!project || !root || !scroller || !track || orderedMedia.length === 0) return undefined;
 
-    const target = media[startIndex];
-    const frame = window.requestAnimationFrame(() => {
-      itemRefs.current[target?.id]?.scrollIntoView({ block: "center" });
-    });
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const context = gsap.context(() => {
+      const cards = gsap.utils.toArray<HTMLElement>(".stack-card", root);
+      gsap.set(cards, {
+        y: (index) => (index === 0 || reduceMotion ? 0 : window.innerHeight),
+        zIndex: (index) => index + 1,
+        autoAlpha: 1,
+        force3D: true,
+      });
 
-    return () => window.cancelAnimationFrame(frame);
-  }, [media, project, startIndex]);
+      if (reduceMotion || cards.length <= 1) return;
+
+      const totalSteps = transitionSteps.reduce((total, step) => total + step, 0);
+      const timeline = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: track,
+          scroller,
+          start: "top top",
+          end: () => `+=${totalSteps * window.innerHeight}`,
+          scrub: 0.45,
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const currentStep = self.progress * totalSteps;
+            let nextIndex = 0;
+            let cursor = 0;
+            transitionSteps.forEach((step, index) => {
+              if (currentStep >= cursor + step * 0.5) nextIndex = index + 1;
+              cursor += step;
+            });
+            setActiveIndex(nextIndex);
+          },
+        },
+      });
+
+      let cursor = 0;
+      cards.slice(1).forEach((card, index) => {
+        const duration = transitionSteps[index] ?? STACK_STEP_VH;
+        timeline.to(card, { y: 0, duration }, cursor);
+        cursor += duration;
+      });
+    }, root);
+
+    const refreshFrame = window.requestAnimationFrame(() => ScrollTrigger.refresh());
+
+    return () => {
+      window.cancelAnimationFrame(refreshFrame);
+      context.revert();
+    };
+  }, [orderedMedia, project, transitionSteps]);
 
   if (!project) return null;
-
-  const handleViewerScroll = () => {
-    const viewer = viewerRef.current;
-    if (!viewer) return;
-
-    const center = viewer.getBoundingClientRect().top + viewer.clientHeight / 2;
-    let closestIndex = activeIndex;
-    let closestDistance = Number.POSITIVE_INFINITY;
-
-    media.forEach((item, index) => {
-      const element = itemRefs.current[item.id];
-      if (!element) return;
-
-      const rect = element.getBoundingClientRect();
-      const distance = Math.abs(rect.top + rect.height / 2 - center);
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestIndex = index;
-      }
-    });
-
-    if (closestIndex !== activeIndex) setActiveIndex(closestIndex);
-  };
 
   return createPortal(
     <div className="modal-backdrop" role="presentation" onMouseDown={onClose}>
@@ -103,6 +150,7 @@ export function WorkModal({ project, media, initialMediaId, onClose }: WorkModal
         role="dialog"
         aria-modal="true"
         aria-labelledby="work-modal-title"
+        ref={rootRef}
         onMouseDown={(event) => event.stopPropagation()}
       >
         <h2 className="sr-only" id="work-modal-title">
@@ -117,24 +165,24 @@ export function WorkModal({ project, media, initialMediaId, onClose }: WorkModal
           </button>
         </div>
 
-        <div className="image-mode-viewer" ref={viewerRef} onScroll={handleViewerScroll}>
-          <div className="image-mode-spacer" />
-          {media.map((item, index) => (
-            <figure
-              className="image-slide"
-              key={item.id}
-              ref={(element) => {
-                itemRefs.current[item.id] = element;
-              }}
-            >
-              {item.type === "video" ? (
-                <video src={item.src} controls playsInline preload="metadata" />
-              ) : (
-                <img src={item.src} alt={item.alt} loading={Math.abs(index - activeIndex) <= 1 ? "eager" : "lazy"} />
-              )}
-            </figure>
-          ))}
-          <div className="image-mode-spacer" />
+        <div className="stack-viewer" ref={viewerRef}>
+          <div className="stack-track" ref={trackRef} style={{ "--stack-scroll": stackScroll } as CSSProperties}>
+            <div className="stack-stage" aria-label={`${project.title} image stack`}>
+              {orderedMedia.map((item, index) => (
+                <figure
+                  className={`stack-card stack-card-${getStackFit(item)}`}
+                  key={`${item.id}-${index}`}
+                  data-active={index === activeIndex ? "true" : "false"}
+                >
+                  {item.type === "video" ? (
+                    <video src={item.src} controls playsInline preload="metadata" />
+                  ) : (
+                    <img src={item.src} alt={item.alt} loading={index <= activeIndex + 1 ? "eager" : "lazy"} />
+                  )}
+                </figure>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </div>,
