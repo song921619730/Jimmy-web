@@ -1,18 +1,23 @@
 import { Maximize2 } from "lucide-react";
 import type { CSSProperties } from "react";
 import { useMemo, useState } from "react";
-import { projects, type Project } from "../data/projects";
+import type { Language } from "../data/i18n";
+import { uiCopy } from "../data/i18n";
+import type { Project } from "../data/projects";
 import type { GeneratedMediaItem } from "../data/generatedMedia";
 import { useGsapReveal } from "../hooks/useGsapReveal";
 
 type GalleryProps = {
+  language: Language;
+  projects: Project[];
   media: GeneratedMediaItem[];
   onOpenProject: (project: Project, mediaId?: string) => void;
 };
 
-export function Gallery({ media, onOpenProject }: GalleryProps) {
+export function Gallery({ language, projects, media, onOpenProject }: GalleryProps) {
   const [activeProject, setActiveProject] = useState("all");
   const scopeRef = useGsapReveal<HTMLElement>();
+  const copy = uiCopy[language].gallery;
 
   const filtered = useMemo(() => {
     const images = media.filter((item) => item.type === "image");
@@ -24,14 +29,14 @@ export function Gallery({ media, onOpenProject }: GalleryProps) {
     <section className="section gallery-section" id="gallery" ref={scopeRef}>
       <div className="section-heading gallery-heading" data-reveal>
         <div>
-          <p>Gallery</p>
-          <h2>One archive, fit-width masonry.</h2>
+          <p>{copy.label}</p>
+          {copy.heading ? <h2>{copy.heading}</h2> : null}
         </div>
       </div>
 
-      <div className="project-filter" data-reveal aria-label="Project filter">
+      <div className="project-filter" data-reveal aria-label={copy.filterLabel}>
         <button className={activeProject === "all" ? "active" : ""} type="button" onClick={() => setActiveProject("all")}>
-          All
+          {copy.all}
         </button>
         {projects.map((project) => (
           <button
@@ -55,7 +60,7 @@ export function Gallery({ media, onOpenProject }: GalleryProps) {
               type="button"
               key={item.id}
               onClick={() => project && onOpenProject(project, item.id)}
-              aria-label={`Open ${project?.title ?? item.project}`}
+              aria-label={`${copy.open} ${project?.title ?? item.project}`}
             >
               <img src={item.thumb || item.src} alt={item.alt} loading="lazy" />
               <span>

@@ -1,6 +1,6 @@
-# Jimmy Song AI + 3D Portfolio
+# GangJin Song AI + 3D Portfolio
 
-Static H5 portfolio for Jimmy Song / 宋港进, built with Vite, React, TypeScript, Framer Motion and optimized local media.
+Static H5 portfolio for GangJin Song / 宋港进, built with Vite, React, TypeScript, Framer Motion and optimized local media.
 
 ## Commands
 

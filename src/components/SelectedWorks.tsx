@@ -3,20 +3,25 @@ import type { CSSProperties } from "react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { projects, type Project } from "../data/projects";
+import type { Language } from "../data/i18n";
+import { uiCopy } from "../data/i18n";
+import type { Project } from "../data/projects";
 import type { GeneratedMediaItem } from "../data/generatedMedia";
 import { useGsapReveal } from "../hooks/useGsapReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
 type SelectedWorksProps = {
+  language: Language;
+  projects: Project[];
   mediaByProject: Record<string, GeneratedMediaItem[]>;
   onOpenProject: (project: Project, mediaId?: string) => void;
 };
 
-export function SelectedWorks({ mediaByProject, onOpenProject }: SelectedWorksProps) {
+export function SelectedWorks({ language, projects, mediaByProject, onOpenProject }: SelectedWorksProps) {
   const scopeRef = useGsapReveal<HTMLElement>();
   const showcaseRef = useRef<HTMLDivElement | null>(null);
+  const copy = uiCopy[language].selectedWorks;
   const preparedProjects = projects.map((project) => {
     const projectMedia = mediaByProject[project.slug] ?? [];
     const cover = projectMedia.find((item) => item.id === project.coverHint) ?? projectMedia[0];
@@ -96,8 +101,8 @@ export function SelectedWorks({ mediaByProject, onOpenProject }: SelectedWorksPr
       steps.forEach((step, index) => {
         ScrollTrigger.create({
           trigger: step,
-          start: "top center",
-          end: "bottom center",
+          start: "top 70%",
+          end: "bottom 70%",
           onEnter: () => activate(index),
           onEnterBack: () => activate(index),
         });
@@ -110,12 +115,12 @@ export function SelectedWorks({ mediaByProject, onOpenProject }: SelectedWorksPr
   return (
     <section className="section selected-works" id="works" ref={scopeRef}>
       <div className="section-heading" data-reveal>
-        <p>Selected Works</p>
-        <h2>Roll through the archive. Each work rises into place.</h2>
+        <p>{copy.label}</p>
+        <h2>{copy.heading}</h2>
       </div>
 
       <div className="switch-showcase" ref={showcaseRef} data-active="0" data-reveal>
-        <div className="switch-stage" aria-label="Scroll controlled selected works">
+        <div className="switch-stage" aria-label={copy.scrollLabel}>
           <div className="switch-copy-stack">
             {preparedProjects.map(({ project, cover, count }, index) => (
               <article
@@ -130,7 +135,7 @@ export function SelectedWorks({ mediaByProject, onOpenProject }: SelectedWorksPr
                 <div className="switch-meta">
                   <span>{project.year}</span>
                   <span>{project.category}</span>
-                  <span>{count} assets</span>
+                  <span>{count} {copy.assets}</span>
                 </div>
                 <div className="tag-row">
                   {project.tags.map((tag) => (
@@ -138,7 +143,7 @@ export function SelectedWorks({ mediaByProject, onOpenProject }: SelectedWorksPr
                   ))}
                 </div>
                 <button className="text-command" type="button" onClick={() => onOpenProject(project, cover?.id)}>
-                  <Images size={18} /> Open project archive <ArrowUpRight size={18} />
+                  <Images size={18} /> {copy.open} <ArrowUpRight size={18} />
                 </button>
               </article>
             ))}

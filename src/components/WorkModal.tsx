@@ -1,9 +1,11 @@
-import { Image as ImageIcon, X } from "lucide-react";
+﻿import { Image as ImageIcon, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { GeneratedMediaItem } from "../data/generatedMedia";
+import type { Language } from "../data/i18n";
+import { uiCopy } from "../data/i18n";
 import type { Project } from "../data/projects";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -24,17 +26,19 @@ function getStackFit(item: GeneratedMediaItem) {
 }
 
 type WorkModalProps = {
+  language: Language;
   project: Project | null;
   media: GeneratedMediaItem[];
   initialMediaId: string | null;
   onClose: () => void;
 };
 
-export function WorkModal({ project, media, initialMediaId, onClose }: WorkModalProps) {
+export function WorkModal({ language, project, media, initialMediaId, onClose }: WorkModalProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const rootRef = useRef<HTMLElement | null>(null);
   const viewerRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
+  const copy = uiCopy[language].modal;
 
   const startIndex = useMemo(() => {
     const index = media.findIndex((item) => item.id === initialMediaId);
@@ -157,17 +161,17 @@ export function WorkModal({ project, media, initialMediaId, onClose }: WorkModal
           {project.title}
         </h2>
         <div className="modal-toolbar">
-          <div className="viewer-mode-label" aria-label="图像模式">
-            <ImageIcon size={17} /> 图像模式
+          <div className="viewer-mode-label" aria-label={copy.imageModeLabel}>
+            <ImageIcon size={17} /> {copy.imageMode}
           </div>
-          <button className="icon-button modal-close" type="button" aria-label="关闭作品浏览" onClick={onClose}>
+          <button className="icon-button modal-close" type="button" aria-label={copy.close} onClick={onClose}>
             <X size={22} />
           </button>
         </div>
 
         <div className="stack-viewer" ref={viewerRef}>
           <div className="stack-track" ref={trackRef} style={{ "--stack-scroll": stackScroll } as CSSProperties}>
-            <div className="stack-stage" aria-label={`${project.title} image stack`}>
+            <div className="stack-stage" aria-label={`${project.title} ${copy.stackLabel}`}>
               {orderedMedia.map((item, index) => (
                 <figure
                   className={`stack-card stack-card-${getStackFit(item)}`}

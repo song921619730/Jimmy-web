@@ -1,52 +1,63 @@
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { profile } from "../data/profile";
+import type { Language } from "../data/i18n";
+import { uiCopy } from "../data/i18n";
+import { profileContent, profileLinks } from "../data/profile";
 
-const navItems = [
-  { href: "#works", label: "作品" },
-  { href: "#process", label: "流程" },
-  { href: "#gallery", label: "图库" },
-  { href: "#contact", label: "联系" },
-];
+type HeaderProps = {
+  language: Language;
+  onLanguageChange: (language: Language) => void;
+};
 
-export function Header() {
+export function Header({ language, onLanguageChange }: HeaderProps) {
   const [open, setOpen] = useState(false);
+  const copy = uiCopy[language];
+  const profile = profileContent[language];
+  const nextLanguage: Language = language === "zh" ? "en" : "zh";
+
+  const switchLanguage = () => {
+    setOpen(false);
+    onLanguageChange(nextLanguage);
+  };
 
   return (
     <header className="site-header">
-      <a className="brand" href="#top" aria-label="Jimmy Song home">
-        <span>Jimmy Song</span>
-        <small>{profile.chineseName}</small>
+      <a className="brand" href="#top" aria-label={`${profileLinks.name} home`}>
+        <span>{profileLinks.name}</span>
+        <small>{profile.brandMeta}</small>
       </a>
-      <nav className="desktop-nav" aria-label="Primary navigation">
-        {navItems.map((item) => (
+      <nav className="desktop-nav" aria-label={copy.primaryNavigation}>
+        {copy.nav.map((item) => (
           <a key={item.href} href={item.href}>
             {item.label}
           </a>
         ))}
       </nav>
-      <a className="header-cta" href={profile.resumePdf} download>
-        下载简历 ↗
-      </a>
+      <div className="header-actions">
+        <button className="language-toggle" type="button" aria-label={copy.languageToggleLabel} onClick={switchLanguage}>
+          <span>{copy.languageName}</span>
+          <strong>{copy.alternateLanguageName}</strong>
+        </button>
+      </div>
       <button
         className="icon-button mobile-toggle"
         type="button"
-        aria-label={open ? "Close menu" : "Open menu"}
+        aria-label={open ? copy.menuClose : copy.menuOpen}
         aria-expanded={open}
         onClick={() => setOpen((value) => !value)}
       >
         {open ? <X size={20} /> : <Menu size={20} />}
       </button>
       {open ? (
-        <nav className="mobile-nav" aria-label="Mobile navigation">
-          {navItems.map((item) => (
+        <nav className="mobile-nav" aria-label={copy.mobileNavigation}>
+          {copy.nav.map((item) => (
             <a key={item.href} href={item.href} onClick={() => setOpen(false)}>
               {item.label}
             </a>
           ))}
-          <a href={profile.resumePdf} download onClick={() => setOpen(false)}>
-            Resume PDF
-          </a>
+          <button className="mobile-language-toggle" type="button" onClick={switchLanguage}>
+            {copy.languageToggleLabel}
+          </button>
         </nav>
       ) : null}
     </header>
