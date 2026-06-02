@@ -50,13 +50,13 @@ body.modal-open {
   position: fixed;
   inset: 0;
   z-index: 0;
-  opacity: 0.48;
+  opacity: 0.78;
   overflow: hidden;
   pointer-events: none;
   background:
-    radial-gradient(circle at 14% 18%, rgba(169, 190, 198, 0.1), transparent 34%),
-    radial-gradient(circle at 86% 18%, rgba(182, 195, 122, 0.055), transparent 36%),
-    radial-gradient(circle at 52% 82%, rgba(199, 68, 61, 0.045), transparent 42%);
+    radial-gradient(circle at 14% 18%, rgba(169, 190, 198, 0.16), transparent 34%),
+    radial-gradient(circle at 86% 18%, rgba(182, 195, 122, 0.08), transparent 36%),
+    radial-gradient(circle at 52% 82%, rgba(199, 68, 61, 0.065), transparent 42%);
 }
 
 .particle-background::before,
@@ -72,12 +72,12 @@ body.modal-open {
   background:
     linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.96) 0%,
-      rgba(0, 0, 0, 0.72) 9%,
+      rgba(0, 0, 0, 0.68) 0%,
+      rgba(0, 0, 0, 0.34) 9%,
       transparent 28%,
       transparent 72%,
-      rgba(0, 0, 0, 0.72) 91%,
-      rgba(0, 0, 0, 0.96) 100%
+      rgba(0, 0, 0, 0.34) 91%,
+      rgba(0, 0, 0, 0.68) 100%
     );
 }
 
@@ -85,9 +85,9 @@ body.modal-open {
   background:
     radial-gradient(
       ellipse at center,
-      rgba(0, 0, 0, 0.86) 0%,
-      rgba(0, 0, 0, 0.68) 34%,
-      rgba(0, 0, 0, 0.28) 58%,
+      rgba(0, 0, 0, 0.22) 0%,
+      rgba(0, 0, 0, 0.16) 34%,
+      rgba(0, 0, 0, 0.08) 58%,
       transparent 78%
     );
 }

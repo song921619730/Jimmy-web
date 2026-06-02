@@ -115,16 +115,16 @@ export function ParticleBackground() {
       const area = width * height;
       const isMobile = width < 760;
       const count = reduceMotion
-        ? clamp(Math.floor(area / 42000), 18, 54)
-        : clamp(Math.floor(area / (isMobile ? 36000 : 27000)), isMobile ? 20 : 34, isMobile ? 48 : 92);
+        ? clamp(Math.floor(area / 26000), 32, 96)
+        : clamp(Math.floor(area / (isMobile ? 15000 : 6000)), isMobile ? 56 : 130, isMobile ? 150 : 360);
 
       return Array.from({ length: count }, () =>
         createParticle(
           "ambient",
           Math.random() * width,
           Math.random() * height,
-          Math.random() * 1.35 + 0.35,
-          Math.random() * 0.075 + 0.045,
+          Math.random() * 1.8 + 0.55,
+          Math.random() * 0.22 + 0.12,
         ),
       );
     };
