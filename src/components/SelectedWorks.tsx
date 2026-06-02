@@ -150,28 +150,33 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
           </div>
 
           <div className="switch-visual-stack">
-            {preparedProjects.map(({ project, cover, support }) => (
-              <div className="switch-visual-panel" key={project.slug} style={{ "--accent": project.accent } as CSSProperties}>
-                <button className="switch-cover" type="button" onClick={() => onOpenProject(project, cover?.id)}>
-                  {cover?.type === "video" ? (
-                    <video src={cover.src} muted playsInline loop autoPlay />
-                  ) : cover ? (
-                    <img src={cover.src} alt={cover.alt} loading="lazy" />
-                  ) : null}
-                </button>
-                <div className="switch-thumbs">
-                  {support.map((item) => (
-                    <button key={item.id} type="button" onClick={() => onOpenProject(project, item.id)}>
+            {preparedProjects.map(({ project, cover, support }) => {
+              const visualItems = [cover, ...support].filter((item): item is GeneratedMediaItem => Boolean(item));
+
+              return (
+                <div
+                  className="switch-visual-panel"
+                  key={project.slug}
+                  style={{ "--accent": project.accent } as CSSProperties}
+                >
+                  {visualItems.map((item, itemIndex) => (
+                    <button
+                      className={itemIndex === 0 ? "switch-media-item featured" : "switch-media-item"}
+                      style={{ "--media-ratio": item.ratio || 1 } as CSSProperties}
+                      type="button"
+                      key={item.id}
+                      onClick={() => onOpenProject(project, item.id)}
+                    >
                       {item.type === "video" ? (
-                        <video src={item.src} muted playsInline loop />
+                        <video src={item.src} muted playsInline loop autoPlay={itemIndex === 0} />
                       ) : (
-                        <img src={item.thumb || item.src} alt={item.alt} loading="lazy" />
+                        <img src={itemIndex === 0 ? item.src : item.thumb || item.src} alt={item.alt} loading="lazy" />
                       )}
                     </button>
                   ))}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="switch-progress" aria-hidden="true">

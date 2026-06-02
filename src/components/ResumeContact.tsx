@@ -40,19 +40,19 @@ export function ResumeContact({ language }: ResumeContactProps) {
         </div>
         <div className="contact-panel" data-reveal>
           <a className="contact-action primary" href={profileLinks.resumePdf} download>
-            <Download size={20} /> {copy.contact.download}
+            <Download size={20} /> <span>{copy.contact.download}</span>
           </a>
           <a className="contact-action" href={`mailto:${profile.email}`}>
-            <Mail size={20} /> {profile.email}
+            <Mail size={20} /> <span>{profile.email}</span>
           </a>
           <a className="contact-action" href={`tel:${profileLinks.phone.replace(/\s/g, "")}`}>
-            <Phone size={20} /> {profileLinks.phone}
+            <Phone size={20} /> <span>{profileLinks.phone}</span>
           </a>
           <a className="contact-action" href={profileLinks.artstation} target="_blank" rel="noreferrer">
-            ArtStation <ExternalLink size={18} />
+            <span>ArtStation</span> <ExternalLink size={18} />
           </a>
           <a className="contact-action" href={profileLinks.linkedin} target="_blank" rel="noreferrer">
-            LinkedIn <ExternalLink size={18} />
+            <span>LinkedIn</span> <ExternalLink size={18} />
           </a>
         </div>
       </section>
