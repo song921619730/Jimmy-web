@@ -57,20 +57,6 @@ export function WorkModal({ language, project, media, initialMediaId, onClose }:
     [transitionSteps],
   );
 
-  const snapPoints = useMemo(() => {
-    const totalSteps = transitionSteps.reduce((total, step) => total + step, 0);
-    if (totalSteps === 0) return [0];
-
-    let cursor = 0;
-    return [
-      0,
-      ...transitionSteps.map((step) => {
-        cursor += step;
-        return cursor / totalSteps;
-      }),
-    ];
-  }, [transitionSteps]);
-
   useEffect(() => {
     if (!project) return undefined;
 
@@ -139,7 +125,7 @@ export function WorkModal({ language, project, media, initialMediaId, onClose }:
         cards.forEach((card, index) => {
           const isVisible = index === currentIndex || index === enteringIndex;
           gsap.set(card, {
-            autoAlpha: isVisible ? 1 : 0,
+            visibility: isVisible ? "visible" : "hidden",
             pointerEvents: index === currentIndex ? "auto" : "none",
           });
         });
@@ -152,13 +138,7 @@ export function WorkModal({ language, project, media, initialMediaId, onClose }:
           scroller,
           start: "top top",
           end: () => `+=${totalSteps * window.innerHeight}`,
-          scrub: 0.45,
-          snap: {
-            snapTo: snapPoints,
-            duration: { min: 0.18, max: 0.36 },
-            delay: 0.05,
-            ease: "power2.out",
-          },
+          scrub: 0.22,
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             const currentStep = self.progress * totalSteps;
@@ -176,8 +156,23 @@ export function WorkModal({ language, project, media, initialMediaId, onClose }:
 
       let cursor = 0;
       cards.slice(1).forEach((card, index) => {
+        const currentCard = cards[index];
         const duration = transitionSteps[index] ?? STACK_STEP_VH;
+        const fadeStart = cursor + duration * 0.64;
+        const fadeDuration = duration * 0.34;
+
+        timeline.set(card, { autoAlpha: 1 }, cursor);
         timeline.to(card, { y: 0, duration }, cursor);
+        timeline.to(
+          currentCard,
+          {
+            autoAlpha: 0,
+            duration: fadeDuration,
+          },
+          fadeStart,
+        );
+        timeline.set(currentCard, { pointerEvents: "none" }, cursor + duration);
+        timeline.set(card, { pointerEvents: "auto" }, cursor + duration);
         cursor += duration;
       });
     }, root);
@@ -188,7 +183,7 @@ export function WorkModal({ language, project, media, initialMediaId, onClose }:
       window.cancelAnimationFrame(refreshFrame);
       context.revert();
     };
-  }, [orderedMedia, project, snapPoints, transitionSteps]);
+  }, [orderedMedia, project, transitionSteps]);
 
   if (!project) return null;
 

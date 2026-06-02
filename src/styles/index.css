@@ -1154,7 +1154,7 @@ video {
   --stack-fit-height: calc(100vh - var(--stack-card-pad) * 2);
   margin: 0;
   padding: var(--stack-card-pad) 0;
-  will-change: transform;
+  will-change: transform, opacity;
 }
 
 .stack-card img,
