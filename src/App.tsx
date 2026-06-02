@@ -3,6 +3,7 @@ import { flushSync } from "react-dom";
 import { Gallery } from "./components/Gallery";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
+import { ParticleBackground } from "./components/ParticleBackground";
 import { ResumeContact } from "./components/ResumeContact";
 import { SelectedWorks } from "./components/SelectedWorks";
 import { WorkModal } from "./components/WorkModal";
@@ -113,6 +114,7 @@ export default function App() {
 
   return (
     <>
+      <ParticleBackground />
       <Header language={language} onLanguageChange={changeLanguage} />
       <main>
         <Hero language={language} />
