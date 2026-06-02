@@ -87,27 +87,36 @@ export function Hero({ language }: HeroProps) {
                 <div>
                   <h3>{item.title}</h3>
                   <p>{item.role}</p>
+                  {"details" in item && item.details ? (
+                    <ul className="timeline-details">
+                      {item.details.map((detail) => (
+                        <li key={detail}>{detail}</li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </div>
               </article>
             ))}
           </div>
         </section>
-        <section className="resume-panel">
-          <p className="panel-label">{copy.hero.awards}</p>
-          <ul className="award-list">
-            {profile.awards.map((award) => (
-              <li key={award}>{award}</li>
+        <section className="resume-panel resume-side-panel">
+          <div className="resume-side-block resume-skills">
+            <p className="panel-label">{copy.hero.skills}</p>
+            {profile.skillGroups.map((group) => (
+              <div className="skill-group" key={group.label}>
+                <h3>{group.label}</h3>
+                <p>{group.tools.join(" / ")}</p>
+              </div>
             ))}
-          </ul>
-        </section>
-        <section className="resume-panel resume-skills">
-          <p className="panel-label">{copy.hero.skills}</p>
-          {profile.skillGroups.map((group) => (
-            <div className="skill-group" key={group.label}>
-              <h3>{group.label}</h3>
-              <p>{group.tools.join(" / ")}</p>
-            </div>
-          ))}
+          </div>
+          <div className="resume-side-block">
+            <p className="panel-label">{copy.hero.awards}</p>
+            <ul className="award-list">
+              {profile.awards.map((award) => (
+                <li key={award}>{award}</li>
+              ))}
+            </ul>
+          </div>
         </section>
       </div>
 

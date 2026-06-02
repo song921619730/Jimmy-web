@@ -366,7 +366,7 @@ video {
 
 .hero-details-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(0, 0.85fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1.65fr) minmax(300px, 0.85fr);
   gap: 1px;
   width: min(1120px, 100%);
   margin: 1px auto 0;
@@ -384,13 +384,13 @@ video {
 
 .timeline-list {
   display: grid;
-  gap: 18px;
+  gap: 20px;
 }
 
 .timeline-list article {
   display: grid;
   grid-template-columns: 132px minmax(0, 1fr);
-  gap: 18px;
+  gap: 20px;
 }
 
 .timeline-list time {
@@ -414,6 +414,32 @@ video {
   line-height: 1.45;
 }
 
+.timeline-details {
+  display: grid;
+  gap: 6px;
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.timeline-details li {
+  position: relative;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 13px;
+  line-height: 1.45;
+  padding-left: 14px;
+}
+
+.timeline-details li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 5px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
 .award-list {
   display: grid;
   gap: 14px;
@@ -432,6 +458,16 @@ video {
   margin-top: 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
   padding-top: 18px;
+}
+
+.resume-side-panel {
+  display: grid;
+  gap: 28px;
+}
+
+.resume-side-block + .resume-side-block {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 24px;
 }
 
 .stats-strip {
@@ -1123,9 +1159,9 @@ video {
 
 .stack-card img,
 .stack-card video {
-  width: auto;
+  width: min(calc(100vw - 48px), 1920px);
   height: auto;
-  max-width: min(86vw, 1280px);
+  max-width: calc(100vw - 48px);
   max-height: var(--stack-fit-height);
   object-fit: contain;
   border-radius: 6px;
@@ -1135,21 +1171,24 @@ video {
 
 .stack-card-landscape img,
 .stack-card-landscape video {
-  width: min(74vw, 1120px);
+  width: calc(100vw - 48px);
+  max-width: 1920px;
   max-height: var(--stack-fit-height);
 }
 
 .stack-card-portrait img,
 .stack-card-portrait video {
   width: auto;
-  max-width: min(74vw, 860px);
+  height: var(--stack-fit-height);
+  max-width: calc(100vw - 64px);
   max-height: var(--stack-fit-height);
 }
 
 .stack-card-tall img,
 .stack-card-tall video {
   width: auto;
-  max-width: min(62vw, 760px);
+  height: var(--stack-fit-height);
+  max-width: calc(100vw - 96px);
   max-height: var(--stack-fit-height);
 }
 
@@ -1545,6 +1584,7 @@ html[lang="en"] .hero-title {
 
   .stack-card img,
   .stack-card video {
+    width: calc(100vw - 24px);
     max-width: calc(100vw - 24px);
     max-height: var(--stack-fit-height);
   }
@@ -1552,6 +1592,7 @@ html[lang="en"] .hero-title {
   .stack-card-landscape img,
   .stack-card-landscape video {
     width: calc(100vw - 24px);
+    max-width: calc(100vw - 24px);
   }
 
   .stack-card-portrait img,
@@ -1559,6 +1600,7 @@ html[lang="en"] .hero-title {
   .stack-card-tall img,
   .stack-card-tall video {
     width: auto;
+    height: var(--stack-fit-height);
     max-width: calc(100vw - 48px);
   }
 }

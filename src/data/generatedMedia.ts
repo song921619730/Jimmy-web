@@ -17,7 +17,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 00.png",
     "thumb": "/media/thumbs/spacesuit-000.webp",
-    "src": "/media/large/spacesuit-000.webp",
+    "src": "/media/originals/spacesuit-000.png",
     "width": 3851,
     "height": 2111,
     "ratio": 1.8242539081004263
@@ -28,7 +28,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 000.png",
     "thumb": "/media/thumbs/spacesuit-001.webp",
-    "src": "/media/large/spacesuit-001.webp",
+    "src": "/media/originals/spacesuit-001.png",
     "width": 3851,
     "height": 2111,
     "ratio": 1.8242539081004263
@@ -39,7 +39,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 1.jpg",
     "thumb": "/media/thumbs/spacesuit-002.webp",
-    "src": "/media/large/spacesuit-002.webp",
+    "src": "/media/originals/spacesuit-002.jpg",
     "width": 7120,
     "height": 3360,
     "ratio": 2.119047619047619
@@ -50,7 +50,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 2.jpg",
     "thumb": "/media/thumbs/spacesuit-003.webp",
-    "src": "/media/large/spacesuit-003.webp",
+    "src": "/media/originals/spacesuit-003.jpg",
     "width": 7120,
     "height": 3360,
     "ratio": 2.119047619047619
@@ -61,7 +61,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 3.jpg",
     "thumb": "/media/thumbs/spacesuit-004.webp",
-    "src": "/media/large/spacesuit-004.webp",
+    "src": "/media/originals/spacesuit-004.jpg",
     "width": 7120,
     "height": 3360,
     "ratio": 2.119047619047619
@@ -72,7 +72,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 4.jpg",
     "thumb": "/media/thumbs/spacesuit-005.webp",
-    "src": "/media/large/spacesuit-005.webp",
+    "src": "/media/originals/spacesuit-005.jpg",
     "width": 7200,
     "height": 4000,
     "ratio": 1.8
@@ -83,7 +83,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 5.jpg",
     "thumb": "/media/thumbs/spacesuit-006.webp",
-    "src": "/media/large/spacesuit-006.webp",
+    "src": "/media/originals/spacesuit-006.jpg",
     "width": 7200,
     "height": 4000,
     "ratio": 1.8
@@ -94,7 +94,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 6.jpg",
     "thumb": "/media/thumbs/spacesuit-007.webp",
-    "src": "/media/large/spacesuit-007.webp",
+    "src": "/media/originals/spacesuit-007.jpg",
     "width": 7200,
     "height": 4000,
     "ratio": 1.8
@@ -105,7 +105,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 8.jpg",
     "thumb": "/media/thumbs/spacesuit-008.webp",
-    "src": "/media/large/spacesuit-008.webp",
+    "src": "/media/originals/spacesuit-008.jpg",
     "width": 7200,
     "height": 4000,
     "ratio": 1.8
@@ -116,7 +116,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 9.jpg",
     "thumb": "/media/thumbs/spacesuit-009.webp",
-    "src": "/media/large/spacesuit-009.webp",
+    "src": "/media/originals/spacesuit-009.jpg",
     "width": 7200,
     "height": 4000,
     "ratio": 1.8
@@ -127,7 +127,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 10.jpg",
     "thumb": "/media/thumbs/spacesuit-010.webp",
-    "src": "/media/large/spacesuit-010.webp",
+    "src": "/media/originals/spacesuit-010.jpg",
     "width": 7200,
     "height": 4000,
     "ratio": 1.8
@@ -138,7 +138,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 11.jpg",
     "thumb": "/media/thumbs/spacesuit-011.webp",
-    "src": "/media/large/spacesuit-011.webp",
+    "src": "/media/originals/spacesuit-011.jpg",
     "width": 7200,
     "height": 4000,
     "ratio": 1.8
@@ -149,7 +149,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 12.jpg",
     "thumb": "/media/thumbs/spacesuit-012.webp",
-    "src": "/media/large/spacesuit-012.webp",
+    "src": "/media/originals/spacesuit-012.jpg",
     "width": 7200,
     "height": 4000,
     "ratio": 1.8
@@ -160,7 +160,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 14.jpg",
     "thumb": "/media/thumbs/spacesuit-013.webp",
-    "src": "/media/large/spacesuit-013.webp",
+    "src": "/media/originals/spacesuit-013.jpg",
     "width": 7200,
     "height": 5000,
     "ratio": 1.44
@@ -171,7 +171,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 16.jpg",
     "thumb": "/media/thumbs/spacesuit-014.webp",
-    "src": "/media/large/spacesuit-014.webp",
+    "src": "/media/originals/spacesuit-014.jpg",
     "width": 7380,
     "height": 4020,
     "ratio": 1.835820895522388
@@ -182,7 +182,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 17.jpg",
     "thumb": "/media/thumbs/spacesuit-015.webp",
-    "src": "/media/large/spacesuit-015.webp",
+    "src": "/media/originals/spacesuit-015.jpg",
     "width": 7380,
     "height": 4020,
     "ratio": 1.835820895522388
@@ -193,7 +193,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 18.jpg",
     "thumb": "/media/thumbs/spacesuit-016.webp",
-    "src": "/media/large/spacesuit-016.webp",
+    "src": "/media/originals/spacesuit-016.jpg",
     "width": 7380,
     "height": 4020,
     "ratio": 1.835820895522388
@@ -204,7 +204,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 19.jpg",
     "thumb": "/media/thumbs/spacesuit-017.webp",
-    "src": "/media/large/spacesuit-017.webp",
+    "src": "/media/originals/spacesuit-017.jpg",
     "width": 7380,
     "height": 4020,
     "ratio": 1.835820895522388
@@ -215,7 +215,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 20.jpg",
     "thumb": "/media/thumbs/spacesuit-018.webp",
-    "src": "/media/large/spacesuit-018.webp",
+    "src": "/media/originals/spacesuit-018.jpg",
     "width": 7380,
     "height": 4020,
     "ratio": 1.835820895522388
@@ -226,7 +226,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 21.1.jpg",
     "thumb": "/media/thumbs/spacesuit-019.webp",
-    "src": "/media/large/spacesuit-019.webp",
+    "src": "/media/originals/spacesuit-019.jpg",
     "width": 6822,
     "height": 4020,
     "ratio": 1.6970149253731344
@@ -237,7 +237,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 21.2.jpg",
     "thumb": "/media/thumbs/spacesuit-020.webp",
-    "src": "/media/large/spacesuit-020.webp",
+    "src": "/media/originals/spacesuit-020.jpg",
     "width": 4879,
     "height": 4020,
     "ratio": 1.213681592039801
@@ -248,7 +248,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 22.jpg",
     "thumb": "/media/thumbs/spacesuit-021.webp",
-    "src": "/media/large/spacesuit-021.webp",
+    "src": "/media/originals/spacesuit-021.jpg",
     "width": 7380,
     "height": 4020,
     "ratio": 1.835820895522388
@@ -259,7 +259,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 24.jpg",
     "thumb": "/media/thumbs/spacesuit-022.webp",
-    "src": "/media/large/spacesuit-022.webp",
+    "src": "/media/originals/spacesuit-022.jpg",
     "width": 7600,
     "height": 2969,
     "ratio": 2.5597844392051194
@@ -270,7 +270,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 25.jpg",
     "thumb": "/media/thumbs/spacesuit-023.webp",
-    "src": "/media/large/spacesuit-023.webp",
+    "src": "/media/originals/spacesuit-023.jpg",
     "width": 7600,
     "height": 4012,
     "ratio": 1.8943170488534398
@@ -281,7 +281,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 26.jpg",
     "thumb": "/media/thumbs/spacesuit-024.webp",
-    "src": "/media/large/spacesuit-024.webp",
+    "src": "/media/originals/spacesuit-024.jpg",
     "width": 5281,
     "height": 2100,
     "ratio": 2.514761904761905
@@ -292,7 +292,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 27.jpg",
     "thumb": "/media/thumbs/spacesuit-025.webp",
-    "src": "/media/large/spacesuit-025.webp",
+    "src": "/media/originals/spacesuit-025.jpg",
     "width": 7792,
     "height": 7500,
     "ratio": 1.0389333333333333
@@ -303,7 +303,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 28.jpg",
     "thumb": "/media/thumbs/spacesuit-026.webp",
-    "src": "/media/large/spacesuit-026.webp",
+    "src": "/media/originals/spacesuit-026.jpg",
     "width": 3840,
     "height": 2100,
     "ratio": 1.8285714285714285
@@ -314,7 +314,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 29.1.jpg",
     "thumb": "/media/thumbs/spacesuit-027.webp",
-    "src": "/media/large/spacesuit-027.webp",
+    "src": "/media/originals/spacesuit-027.jpg",
     "width": 6109,
     "height": 2719,
     "ratio": 2.2467819051121736
@@ -325,7 +325,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 29.jpg",
     "thumb": "/media/thumbs/spacesuit-028.webp",
-    "src": "/media/large/spacesuit-028.webp",
+    "src": "/media/originals/spacesuit-028.jpg",
     "width": 6109,
     "height": 2100,
     "ratio": 2.909047619047619
@@ -336,7 +336,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit 30.jpg",
     "thumb": "/media/thumbs/spacesuit-029.webp",
-    "src": "/media/large/spacesuit-029.webp",
+    "src": "/media/originals/spacesuit-029.jpg",
     "width": 2048,
     "height": 2048,
     "ratio": 1
@@ -347,7 +347,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit SP_02.png",
     "thumb": "/media/thumbs/spacesuit-030.webp",
-    "src": "/media/large/spacesuit-030.webp",
+    "src": "/media/originals/spacesuit-030.png",
     "width": 4938,
     "height": 2110,
     "ratio": 2.3402843601895733
@@ -358,7 +358,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit Style_3d_01.png",
     "thumb": "/media/thumbs/spacesuit-031.webp",
-    "src": "/media/large/spacesuit-031.webp",
+    "src": "/media/originals/spacesuit-031.png",
     "width": 5173,
     "height": 2099,
     "ratio": 2.4645069080514532
@@ -369,7 +369,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "spacesuit Style_3d_02.png",
     "thumb": "/media/thumbs/spacesuit-032.webp",
-    "src": "/media/large/spacesuit-032.webp",
+    "src": "/media/originals/spacesuit-032.png",
     "width": 3840,
     "height": 2100,
     "ratio": 1.8285714285714285
@@ -391,7 +391,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 0.1.jpg",
     "thumb": "/media/thumbs/cloth-000.webp",
-    "src": "/media/large/cloth-000.webp",
+    "src": "/media/originals/cloth-000.jpg",
     "width": 2008,
     "height": 10000,
     "ratio": 0.2008
@@ -402,7 +402,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 0.jpg",
     "thumb": "/media/thumbs/cloth-001.webp",
-    "src": "/media/large/cloth-001.webp",
+    "src": "/media/originals/cloth-001.jpg",
     "width": 2008,
     "height": 10000,
     "ratio": 0.2008
@@ -413,7 +413,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 0.png",
     "thumb": "/media/thumbs/cloth-002.webp",
-    "src": "/media/large/cloth-002.webp",
+    "src": "/media/originals/cloth-002.png",
     "width": 5327,
     "height": 1841,
     "ratio": 2.893536121673004
@@ -424,7 +424,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 0Suit_02.png",
     "thumb": "/media/thumbs/cloth-003.webp",
-    "src": "/media/large/cloth-003.webp",
+    "src": "/media/originals/cloth-003.png",
     "width": 8697,
     "height": 1834,
     "ratio": 4.742093784078517
@@ -435,7 +435,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 0Suit_03.png",
     "thumb": "/media/thumbs/cloth-004.webp",
-    "src": "/media/large/cloth-004.webp",
+    "src": "/media/originals/cloth-004.png",
     "width": 16855,
     "height": 5500,
     "ratio": 3.0645454545454545
@@ -446,7 +446,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 1.jpg",
     "thumb": "/media/thumbs/cloth-005.webp",
-    "src": "/media/large/cloth-005.webp",
+    "src": "/media/originals/cloth-005.jpg",
     "width": 9248,
     "height": 3000,
     "ratio": 3.082666666666667
@@ -457,7 +457,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 2.jpg",
     "thumb": "/media/thumbs/cloth-006.webp",
-    "src": "/media/large/cloth-006.webp",
+    "src": "/media/originals/cloth-006.jpg",
     "width": 9248,
     "height": 3000,
     "ratio": 3.082666666666667
@@ -468,7 +468,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 3.1.png",
     "thumb": "/media/thumbs/cloth-007.webp",
-    "src": "/media/large/cloth-007.webp",
+    "src": "/media/originals/cloth-007.png",
     "width": 2503,
     "height": 1371,
     "ratio": 1.825674690007294
@@ -479,7 +479,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 3.2.png",
     "thumb": "/media/thumbs/cloth-008.webp",
-    "src": "/media/large/cloth-008.webp",
+    "src": "/media/originals/cloth-008.png",
     "width": 5167,
     "height": 2048,
     "ratio": 2.52294921875
@@ -490,7 +490,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 3.png",
     "thumb": "/media/thumbs/cloth-009.webp",
-    "src": "/media/large/cloth-009.webp",
+    "src": "/media/originals/cloth-009.png",
     "width": 5167,
     "height": 2048,
     "ratio": 2.52294921875
@@ -501,7 +501,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 3b.jpg",
     "thumb": "/media/thumbs/cloth-010.webp",
-    "src": "/media/large/cloth-010.webp",
+    "src": "/media/originals/cloth-010.jpg",
     "width": 7170,
     "height": 2302,
     "ratio": 3.114682884448306
@@ -512,7 +512,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 3C.jpg",
     "thumb": "/media/thumbs/cloth-011.webp",
-    "src": "/media/large/cloth-011.webp",
+    "src": "/media/originals/cloth-011.jpg",
     "width": 7170,
     "height": 2302,
     "ratio": 3.114682884448306
@@ -523,7 +523,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 3D.jpg",
     "thumb": "/media/thumbs/cloth-012.webp",
-    "src": "/media/large/cloth-012.webp",
+    "src": "/media/originals/cloth-012.jpg",
     "width": 7170,
     "height": 2302,
     "ratio": 3.114682884448306
@@ -534,7 +534,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.1.jpg",
     "thumb": "/media/thumbs/cloth-013.webp",
-    "src": "/media/large/cloth-013.webp",
+    "src": "/media/originals/cloth-013.jpg",
     "width": 4000,
     "height": 2000,
     "ratio": 2
@@ -545,7 +545,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.2.jpg",
     "thumb": "/media/thumbs/cloth-014.webp",
-    "src": "/media/large/cloth-014.webp",
+    "src": "/media/originals/cloth-014.jpg",
     "width": 4000,
     "height": 1467,
     "ratio": 2.7266530334014996
@@ -556,7 +556,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.3.jpg",
     "thumb": "/media/thumbs/cloth-015.webp",
-    "src": "/media/large/cloth-015.webp",
+    "src": "/media/originals/cloth-015.jpg",
     "width": 4000,
     "height": 1494,
     "ratio": 2.677376171352075
@@ -567,7 +567,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.4.png",
     "thumb": "/media/thumbs/cloth-016.webp",
-    "src": "/media/large/cloth-016.webp",
+    "src": "/media/originals/cloth-016.png",
     "width": 4000,
     "height": 4000,
     "ratio": 1
@@ -578,7 +578,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.5.png",
     "thumb": "/media/thumbs/cloth-017.webp",
-    "src": "/media/large/cloth-017.webp",
+    "src": "/media/originals/cloth-017.png",
     "width": 4000,
     "height": 4000,
     "ratio": 1
@@ -589,7 +589,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.6.png",
     "thumb": "/media/thumbs/cloth-018.webp",
-    "src": "/media/large/cloth-018.webp",
+    "src": "/media/originals/cloth-018.png",
     "width": 4000,
     "height": 4000,
     "ratio": 1
@@ -600,7 +600,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.7.png",
     "thumb": "/media/thumbs/cloth-019.webp",
-    "src": "/media/large/cloth-019.webp",
+    "src": "/media/originals/cloth-019.png",
     "width": 4000,
     "height": 4000,
     "ratio": 1
@@ -611,7 +611,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.8.png",
     "thumb": "/media/thumbs/cloth-020.webp",
-    "src": "/media/large/cloth-020.webp",
+    "src": "/media/originals/cloth-020.png",
     "width": 4000,
     "height": 4000,
     "ratio": 1
@@ -622,7 +622,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.9.png",
     "thumb": "/media/thumbs/cloth-021.webp",
-    "src": "/media/large/cloth-021.webp",
+    "src": "/media/originals/cloth-021.png",
     "width": 4000,
     "height": 4000,
     "ratio": 1
@@ -633,7 +633,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.91.png",
     "thumb": "/media/thumbs/cloth-022.webp",
-    "src": "/media/large/cloth-022.webp",
+    "src": "/media/originals/cloth-022.png",
     "width": 4000,
     "height": 4000,
     "ratio": 1
@@ -644,7 +644,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.92.jpg",
     "thumb": "/media/thumbs/cloth-023.webp",
-    "src": "/media/large/cloth-023.webp",
+    "src": "/media/originals/cloth-023.jpg",
     "width": 4000,
     "height": 4000,
     "ratio": 1
@@ -655,7 +655,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.93.png",
     "thumb": "/media/thumbs/cloth-024.webp",
-    "src": "/media/large/cloth-024.webp",
+    "src": "/media/originals/cloth-024.png",
     "width": 4000,
     "height": 4000,
     "ratio": 1
@@ -666,7 +666,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.94.png",
     "thumb": "/media/thumbs/cloth-025.webp",
-    "src": "/media/large/cloth-025.webp",
+    "src": "/media/originals/cloth-025.png",
     "width": 4000,
     "height": 4000,
     "ratio": 1
@@ -677,7 +677,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.95.png",
     "thumb": "/media/thumbs/cloth-026.webp",
-    "src": "/media/large/cloth-026.webp",
+    "src": "/media/originals/cloth-026.png",
     "width": 4000,
     "height": 4000,
     "ratio": 1
@@ -688,7 +688,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 4.jpg",
     "thumb": "/media/thumbs/cloth-027.webp",
-    "src": "/media/large/cloth-027.webp",
+    "src": "/media/originals/cloth-027.jpg",
     "width": 4000,
     "height": 1334,
     "ratio": 2.998500749625187
@@ -699,7 +699,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 6.png",
     "thumb": "/media/thumbs/cloth-028.webp",
-    "src": "/media/large/cloth-028.webp",
+    "src": "/media/originals/cloth-028.png",
     "width": 4000,
     "height": 2000,
     "ratio": 2
@@ -710,7 +710,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 7.jpg",
     "thumb": "/media/thumbs/cloth-029.webp",
-    "src": "/media/large/cloth-029.webp",
+    "src": "/media/originals/cloth-029.jpg",
     "width": 4000,
     "height": 1782,
     "ratio": 2.244668911335578
@@ -721,7 +721,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 8.jpg",
     "thumb": "/media/thumbs/cloth-030.webp",
-    "src": "/media/large/cloth-030.webp",
+    "src": "/media/originals/cloth-030.jpg",
     "width": 5382,
     "height": 4620,
     "ratio": 1.164935064935065
@@ -732,7 +732,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 9.jpg",
     "thumb": "/media/thumbs/cloth-031.webp",
-    "src": "/media/large/cloth-031.webp",
+    "src": "/media/originals/cloth-031.jpg",
     "width": 4000,
     "height": 1782,
     "ratio": 2.244668911335578
@@ -743,7 +743,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 10.jpg",
     "thumb": "/media/thumbs/cloth-032.webp",
-    "src": "/media/large/cloth-032.webp",
+    "src": "/media/originals/cloth-032.jpg",
     "width": 4000,
     "height": 1782,
     "ratio": 2.244668911335578
@@ -754,7 +754,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 11.jpg",
     "thumb": "/media/thumbs/cloth-033.webp",
-    "src": "/media/large/cloth-033.webp",
+    "src": "/media/originals/cloth-033.jpg",
     "width": 4000,
     "height": 1782,
     "ratio": 2.244668911335578
@@ -765,7 +765,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 12.jpg",
     "thumb": "/media/thumbs/cloth-034.webp",
-    "src": "/media/large/cloth-034.webp",
+    "src": "/media/originals/cloth-034.jpg",
     "width": 4000,
     "height": 1782,
     "ratio": 2.244668911335578
@@ -776,7 +776,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 13.jpg",
     "thumb": "/media/thumbs/cloth-035.webp",
-    "src": "/media/large/cloth-035.webp",
+    "src": "/media/originals/cloth-035.jpg",
     "width": 4000,
     "height": 1782,
     "ratio": 2.244668911335578
@@ -787,7 +787,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 14.jpg",
     "thumb": "/media/thumbs/cloth-036.webp",
-    "src": "/media/large/cloth-036.webp",
+    "src": "/media/originals/cloth-036.jpg",
     "width": 4000,
     "height": 1782,
     "ratio": 2.244668911335578
@@ -798,7 +798,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 15.jpg",
     "thumb": "/media/thumbs/cloth-037.webp",
-    "src": "/media/large/cloth-037.webp",
+    "src": "/media/originals/cloth-037.jpg",
     "width": 4000,
     "height": 1782,
     "ratio": 2.244668911335578
@@ -809,7 +809,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 16.jpg",
     "thumb": "/media/thumbs/cloth-038.webp",
-    "src": "/media/large/cloth-038.webp",
+    "src": "/media/originals/cloth-038.jpg",
     "width": 4000,
     "height": 1984,
     "ratio": 2.0161290322580645
@@ -820,7 +820,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 17_01.png",
     "thumb": "/media/thumbs/cloth-039.webp",
-    "src": "/media/large/cloth-039.webp",
+    "src": "/media/originals/cloth-039.png",
     "width": 2048,
     "height": 2048,
     "ratio": 1
@@ -831,7 +831,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 17_02.png",
     "thumb": "/media/thumbs/cloth-040.webp",
-    "src": "/media/large/cloth-040.webp",
+    "src": "/media/originals/cloth-040.png",
     "width": 3715,
     "height": 1981,
     "ratio": 1.8753154972236243
@@ -842,7 +842,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 17_03.png",
     "thumb": "/media/thumbs/cloth-041.webp",
-    "src": "/media/large/cloth-041.webp",
+    "src": "/media/originals/cloth-041.png",
     "width": 3715,
     "height": 1981,
     "ratio": 1.8753154972236243
@@ -853,7 +853,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 17_04.jpg",
     "thumb": "/media/thumbs/cloth-042.webp",
-    "src": "/media/large/cloth-042.webp",
+    "src": "/media/originals/cloth-042.jpg",
     "width": 2514,
     "height": 1501,
     "ratio": 1.6748834110592938
@@ -864,7 +864,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 17.jpg",
     "thumb": "/media/thumbs/cloth-043.webp",
-    "src": "/media/large/cloth-043.webp",
+    "src": "/media/originals/cloth-043.jpg",
     "width": 8000,
     "height": 3969,
     "ratio": 2.015621063240111
@@ -875,7 +875,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 17.png",
     "thumb": "/media/thumbs/cloth-044.webp",
-    "src": "/media/large/cloth-044.webp",
+    "src": "/media/originals/cloth-044.png",
     "width": 11573,
     "height": 4000,
     "ratio": 2.89325
@@ -886,7 +886,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 18.1.png",
     "thumb": "/media/thumbs/cloth-045.webp",
-    "src": "/media/large/cloth-045.webp",
+    "src": "/media/originals/cloth-045.png",
     "width": 15000,
     "height": 7000,
     "ratio": 2.142857142857143
@@ -897,7 +897,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 18.2.png",
     "thumb": "/media/thumbs/cloth-046.webp",
-    "src": "/media/large/cloth-046.webp",
+    "src": "/media/originals/cloth-046.png",
     "width": 15000,
     "height": 7000,
     "ratio": 2.142857142857143
@@ -908,7 +908,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 18.3.png",
     "thumb": "/media/thumbs/cloth-047.webp",
-    "src": "/media/large/cloth-047.webp",
+    "src": "/media/originals/cloth-047.png",
     "width": 15000,
     "height": 7000,
     "ratio": 2.142857142857143
@@ -919,7 +919,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 18.4.png",
     "thumb": "/media/thumbs/cloth-048.webp",
-    "src": "/media/large/cloth-048.webp",
+    "src": "/media/originals/cloth-048.png",
     "width": 15000,
     "height": 7000,
     "ratio": 2.142857142857143
@@ -930,7 +930,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 18.5.png",
     "thumb": "/media/thumbs/cloth-049.webp",
-    "src": "/media/large/cloth-049.webp",
+    "src": "/media/originals/cloth-049.png",
     "width": 15000,
     "height": 7000,
     "ratio": 2.142857142857143
@@ -941,7 +941,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 18.6.png",
     "thumb": "/media/thumbs/cloth-050.webp",
-    "src": "/media/large/cloth-050.webp",
+    "src": "/media/originals/cloth-050.png",
     "width": 15000,
     "height": 7000,
     "ratio": 2.142857142857143
@@ -952,7 +952,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 18.6qipao_01.png",
     "thumb": "/media/thumbs/cloth-051.webp",
-    "src": "/media/large/cloth-051.webp",
+    "src": "/media/originals/cloth-051.png",
     "width": 871,
     "height": 1576,
     "ratio": 0.5526649746192893
@@ -963,7 +963,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 18.6qipao_02.png",
     "thumb": "/media/thumbs/cloth-052.webp",
-    "src": "/media/large/cloth-052.webp",
+    "src": "/media/originals/cloth-052.png",
     "width": 727,
     "height": 1587,
     "ratio": 0.4580970384373031
@@ -974,7 +974,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 18.7.png",
     "thumb": "/media/thumbs/cloth-053.webp",
-    "src": "/media/large/cloth-053.webp",
+    "src": "/media/originals/cloth-053.png",
     "width": 15000,
     "height": 7000,
     "ratio": 2.142857142857143
@@ -985,7 +985,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 18.8.png",
     "thumb": "/media/thumbs/cloth-054.webp",
-    "src": "/media/large/cloth-054.webp",
+    "src": "/media/originals/cloth-054.png",
     "width": 20000,
     "height": 7000,
     "ratio": 2.857142857142857
@@ -996,7 +996,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 18.9.jpg",
     "thumb": "/media/thumbs/cloth-055.webp",
-    "src": "/media/large/cloth-055.webp",
+    "src": "/media/originals/cloth-055.jpg",
     "width": 15000,
     "height": 5500,
     "ratio": 2.727272727272727
@@ -1007,7 +1007,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 18.55.png",
     "thumb": "/media/thumbs/cloth-056.webp",
-    "src": "/media/large/cloth-056.webp",
+    "src": "/media/originals/cloth-056.png",
     "width": 4000,
     "height": 2000,
     "ratio": 2
@@ -1018,7 +1018,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 18.png",
     "thumb": "/media/thumbs/cloth-057.webp",
-    "src": "/media/large/cloth-057.webp",
+    "src": "/media/originals/cloth-057.png",
     "width": 11573,
     "height": 4000,
     "ratio": 2.89325
@@ -1029,7 +1029,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 19_01.png",
     "thumb": "/media/thumbs/cloth-058.webp",
-    "src": "/media/large/cloth-058.webp",
+    "src": "/media/originals/cloth-058.png",
     "width": 4096,
     "height": 4096,
     "ratio": 1
@@ -1040,7 +1040,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 19_02.jpg",
     "thumb": "/media/thumbs/cloth-059.webp",
-    "src": "/media/large/cloth-059.webp",
+    "src": "/media/originals/cloth-059.jpg",
     "width": 7364,
     "height": 4000,
     "ratio": 1.841
@@ -1051,7 +1051,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 19_03.png",
     "thumb": "/media/thumbs/cloth-060.webp",
-    "src": "/media/large/cloth-060.webp",
+    "src": "/media/originals/cloth-060.png",
     "width": 7740,
     "height": 5168,
     "ratio": 1.4976780185758514
@@ -1062,7 +1062,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 19_04.png",
     "thumb": "/media/thumbs/cloth-061.webp",
-    "src": "/media/large/cloth-061.webp",
+    "src": "/media/originals/cloth-061.png",
     "width": 6076,
     "height": 5240,
     "ratio": 1.1595419847328243
@@ -1073,7 +1073,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 19_06.jpg",
     "thumb": "/media/thumbs/cloth-062.webp",
-    "src": "/media/large/cloth-062.webp",
+    "src": "/media/originals/cloth-062.jpg",
     "width": 6717,
     "height": 7576,
     "ratio": 0.8866156282998944
@@ -1084,7 +1084,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 19.png",
     "thumb": "/media/thumbs/cloth-063.webp",
-    "src": "/media/large/cloth-063.webp",
+    "src": "/media/originals/cloth-063.png",
     "width": 11573,
     "height": 4000,
     "ratio": 2.89325
@@ -1095,7 +1095,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 20.png",
     "thumb": "/media/thumbs/cloth-064.webp",
-    "src": "/media/large/cloth-064.webp",
+    "src": "/media/originals/cloth-064.png",
     "width": 11573,
     "height": 4000,
     "ratio": 2.89325
@@ -1106,7 +1106,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 21_01.png",
     "thumb": "/media/thumbs/cloth-065.webp",
-    "src": "/media/large/cloth-065.webp",
+    "src": "/media/originals/cloth-065.png",
     "width": 4810,
     "height": 3735,
     "ratio": 1.287817938420348
@@ -1117,7 +1117,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 21_02.png",
     "thumb": "/media/thumbs/cloth-066.webp",
-    "src": "/media/large/cloth-066.webp",
+    "src": "/media/originals/cloth-066.png",
     "width": 8680,
     "height": 3735,
     "ratio": 2.323962516733601
@@ -1128,7 +1128,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 21_03.png",
     "thumb": "/media/thumbs/cloth-067.webp",
-    "src": "/media/large/cloth-067.webp",
+    "src": "/media/originals/cloth-067.png",
     "width": 8680,
     "height": 7326,
     "ratio": 1.184821184821185
@@ -1139,7 +1139,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 21_04.png",
     "thumb": "/media/thumbs/cloth-068.webp",
-    "src": "/media/large/cloth-068.webp",
+    "src": "/media/originals/cloth-068.png",
     "width": 2459,
     "height": 1611,
     "ratio": 1.5263811297330852
@@ -1150,7 +1150,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 21_05.png",
     "thumb": "/media/thumbs/cloth-069.webp",
-    "src": "/media/large/cloth-069.webp",
+    "src": "/media/originals/cloth-069.png",
     "width": 4096,
     "height": 4096,
     "ratio": 1
@@ -1161,7 +1161,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 21.png",
     "thumb": "/media/thumbs/cloth-070.webp",
-    "src": "/media/large/cloth-070.webp",
+    "src": "/media/originals/cloth-070.png",
     "width": 11573,
     "height": 4000,
     "ratio": 2.89325
@@ -1172,7 +1172,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 22.png",
     "thumb": "/media/thumbs/cloth-071.webp",
-    "src": "/media/large/cloth-071.webp",
+    "src": "/media/originals/cloth-071.png",
     "width": 11573,
     "height": 4000,
     "ratio": 2.89325
@@ -1183,7 +1183,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 23.png",
     "thumb": "/media/thumbs/cloth-072.webp",
-    "src": "/media/large/cloth-072.webp",
+    "src": "/media/originals/cloth-072.png",
     "width": 1500,
     "height": 2000,
     "ratio": 0.75
@@ -1194,7 +1194,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 24.png",
     "thumb": "/media/thumbs/cloth-073.webp",
-    "src": "/media/large/cloth-073.webp",
+    "src": "/media/originals/cloth-073.png",
     "width": 4000,
     "height": 2000,
     "ratio": 2
@@ -1205,7 +1205,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 25.png",
     "thumb": "/media/thumbs/cloth-074.webp",
-    "src": "/media/large/cloth-074.webp",
+    "src": "/media/originals/cloth-074.png",
     "width": 4000,
     "height": 2000,
     "ratio": 2
@@ -1216,7 +1216,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 25(5).png",
     "thumb": "/media/thumbs/cloth-075.webp",
-    "src": "/media/large/cloth-075.webp",
+    "src": "/media/originals/cloth-075.png",
     "width": 4000,
     "height": 2000,
     "ratio": 2
@@ -1227,7 +1227,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 41.png",
     "thumb": "/media/thumbs/cloth-076.webp",
-    "src": "/media/large/cloth-076.webp",
+    "src": "/media/originals/cloth-076.png",
     "width": 4000,
     "height": 2000,
     "ratio": 2
@@ -1238,7 +1238,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 43.png",
     "thumb": "/media/thumbs/cloth-077.webp",
-    "src": "/media/large/cloth-077.webp",
+    "src": "/media/originals/cloth-077.png",
     "width": 3419,
     "height": 2000,
     "ratio": 1.7095
@@ -1249,7 +1249,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 48.jpg",
     "thumb": "/media/thumbs/cloth-078.webp",
-    "src": "/media/large/cloth-078.webp",
+    "src": "/media/originals/cloth-078.jpg",
     "width": 1920,
     "height": 1920,
     "ratio": 1
@@ -1260,7 +1260,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 49.jpg",
     "thumb": "/media/thumbs/cloth-079.webp",
-    "src": "/media/large/cloth-079.webp",
+    "src": "/media/originals/cloth-079.jpg",
     "width": 1920,
     "height": 1920,
     "ratio": 1
@@ -1271,7 +1271,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 50.jpg",
     "thumb": "/media/thumbs/cloth-080.webp",
-    "src": "/media/large/cloth-080.webp",
+    "src": "/media/originals/cloth-080.jpg",
     "width": 1920,
     "height": 1920,
     "ratio": 1
@@ -1282,7 +1282,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 51.jpg",
     "thumb": "/media/thumbs/cloth-081.webp",
-    "src": "/media/large/cloth-081.webp",
+    "src": "/media/originals/cloth-081.jpg",
     "width": 1920,
     "height": 1920,
     "ratio": 1
@@ -1293,7 +1293,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 52.jpg",
     "thumb": "/media/thumbs/cloth-082.webp",
-    "src": "/media/large/cloth-082.webp",
+    "src": "/media/originals/cloth-082.jpg",
     "width": 1920,
     "height": 1920,
     "ratio": 1
@@ -1304,7 +1304,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 53.jpg",
     "thumb": "/media/thumbs/cloth-083.webp",
-    "src": "/media/large/cloth-083.webp",
+    "src": "/media/originals/cloth-083.jpg",
     "width": 1920,
     "height": 1920,
     "ratio": 1
@@ -1315,7 +1315,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 54.png",
     "thumb": "/media/thumbs/cloth-084.webp",
-    "src": "/media/large/cloth-084.webp",
+    "src": "/media/originals/cloth-084.png",
     "width": 4000,
     "height": 2000,
     "ratio": 2
@@ -1326,7 +1326,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 56.png",
     "thumb": "/media/thumbs/cloth-085.webp",
-    "src": "/media/large/cloth-085.webp",
+    "src": "/media/originals/cloth-085.png",
     "width": 1482,
     "height": 916,
     "ratio": 1.6179039301310043
@@ -1337,7 +1337,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 57.png",
     "thumb": "/media/thumbs/cloth-086.webp",
-    "src": "/media/large/cloth-086.webp",
+    "src": "/media/originals/cloth-086.png",
     "width": 4000,
     "height": 2000,
     "ratio": 2
@@ -1348,7 +1348,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 58.png",
     "thumb": "/media/thumbs/cloth-087.webp",
-    "src": "/media/large/cloth-087.webp",
+    "src": "/media/originals/cloth-087.png",
     "width": 2897,
     "height": 4082,
     "ratio": 0.7097011268985791
@@ -1359,7 +1359,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 59.png",
     "thumb": "/media/thumbs/cloth-088.webp",
-    "src": "/media/large/cloth-088.webp",
+    "src": "/media/originals/cloth-088.png",
     "width": 1920,
     "height": 1038,
     "ratio": 1.8497109826589595
@@ -1370,7 +1370,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 60.png",
     "thumb": "/media/thumbs/cloth-089.webp",
-    "src": "/media/large/cloth-089.webp",
+    "src": "/media/originals/cloth-089.png",
     "width": 5461,
     "height": 2000,
     "ratio": 2.7305
@@ -1381,7 +1381,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 61.png",
     "thumb": "/media/thumbs/cloth-090.webp",
-    "src": "/media/large/cloth-090.webp",
+    "src": "/media/originals/cloth-090.png",
     "width": 1500,
     "height": 2000,
     "ratio": 0.75
@@ -1392,7 +1392,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 62.png",
     "thumb": "/media/thumbs/cloth-091.webp",
-    "src": "/media/large/cloth-091.webp",
+    "src": "/media/originals/cloth-091.png",
     "width": 1920,
     "height": 1048,
     "ratio": 1.83206106870229
@@ -1403,7 +1403,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 63.png",
     "thumb": "/media/thumbs/cloth-092.webp",
-    "src": "/media/large/cloth-092.webp",
+    "src": "/media/originals/cloth-092.png",
     "width": 1920,
     "height": 1048,
     "ratio": 1.83206106870229
@@ -1414,7 +1414,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 64.png",
     "thumb": "/media/thumbs/cloth-093.webp",
-    "src": "/media/large/cloth-093.webp",
+    "src": "/media/originals/cloth-093.png",
     "width": 900,
     "height": 900,
     "ratio": 1
@@ -1425,7 +1425,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 65.png",
     "thumb": "/media/thumbs/cloth-094.webp",
-    "src": "/media/large/cloth-094.webp",
+    "src": "/media/originals/cloth-094.png",
     "width": 900,
     "height": 900,
     "ratio": 1
@@ -1436,7 +1436,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 66.png",
     "thumb": "/media/thumbs/cloth-095.webp",
-    "src": "/media/large/cloth-095.webp",
+    "src": "/media/originals/cloth-095.png",
     "width": 4000,
     "height": 2000,
     "ratio": 2
@@ -1447,7 +1447,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 71.png",
     "thumb": "/media/thumbs/cloth-096.webp",
-    "src": "/media/large/cloth-096.webp",
+    "src": "/media/originals/cloth-096.png",
     "width": 4000,
     "height": 2000,
     "ratio": 2
@@ -1458,7 +1458,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 72.png",
     "thumb": "/media/thumbs/cloth-097.webp",
-    "src": "/media/large/cloth-097.webp",
+    "src": "/media/originals/cloth-097.png",
     "width": 4585,
     "height": 2048,
     "ratio": 2.23876953125
@@ -1469,7 +1469,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 74.jpg",
     "thumb": "/media/thumbs/cloth-098.webp",
-    "src": "/media/large/cloth-098.webp",
+    "src": "/media/originals/cloth-098.jpg",
     "width": 3848,
     "height": 2317,
     "ratio": 1.6607682347863617
@@ -1480,7 +1480,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 76.png",
     "thumb": "/media/thumbs/cloth-099.webp",
-    "src": "/media/large/cloth-099.webp",
+    "src": "/media/originals/cloth-099.png",
     "width": 4402,
     "height": 2048,
     "ratio": 2.1494140625
@@ -1491,7 +1491,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 78.jpg",
     "thumb": "/media/thumbs/cloth-100.webp",
-    "src": "/media/large/cloth-100.webp",
+    "src": "/media/originals/cloth-100.jpg",
     "width": 4585,
     "height": 2048,
     "ratio": 2.23876953125
@@ -1502,7 +1502,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 80.png",
     "thumb": "/media/thumbs/cloth-101.webp",
-    "src": "/media/large/cloth-101.webp",
+    "src": "/media/originals/cloth-101.png",
     "width": 4000,
     "height": 2000,
     "ratio": 2
@@ -1513,7 +1513,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 83.png",
     "thumb": "/media/thumbs/cloth-102.webp",
-    "src": "/media/large/cloth-102.webp",
+    "src": "/media/originals/cloth-102.png",
     "width": 4513,
     "height": 2000,
     "ratio": 2.2565
@@ -1524,7 +1524,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 84.jpg",
     "thumb": "/media/thumbs/cloth-103.webp",
-    "src": "/media/large/cloth-103.webp",
+    "src": "/media/originals/cloth-103.jpg",
     "width": 5627,
     "height": 3000,
     "ratio": 1.8756666666666666
@@ -1535,7 +1535,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 85.png",
     "thumb": "/media/thumbs/cloth-104.webp",
-    "src": "/media/large/cloth-104.webp",
+    "src": "/media/originals/cloth-104.png",
     "width": 900,
     "height": 900,
     "ratio": 1
@@ -1546,7 +1546,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 86.jpg",
     "thumb": "/media/thumbs/cloth-105.webp",
-    "src": "/media/large/cloth-105.webp",
+    "src": "/media/originals/cloth-105.jpg",
     "width": 24000,
     "height": 8000,
     "ratio": 3
@@ -1557,7 +1557,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 87.jpg",
     "thumb": "/media/thumbs/cloth-106.webp",
-    "src": "/media/large/cloth-106.webp",
+    "src": "/media/originals/cloth-106.jpg",
     "width": 14458,
     "height": 4000,
     "ratio": 3.6145
@@ -1568,7 +1568,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 88.jpg",
     "thumb": "/media/thumbs/cloth-107.webp",
-    "src": "/media/large/cloth-107.webp",
+    "src": "/media/originals/cloth-107.jpg",
     "width": 15411,
     "height": 4092,
     "ratio": 3.7661290322580645
@@ -1579,7 +1579,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 89.jpg",
     "thumb": "/media/thumbs/cloth-108.webp",
-    "src": "/media/large/cloth-108.webp",
+    "src": "/media/originals/cloth-108.jpg",
     "width": 8619,
     "height": 3001,
     "ratio": 2.8720426524491836
@@ -1590,7 +1590,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 90.png",
     "thumb": "/media/thumbs/cloth-109.webp",
-    "src": "/media/large/cloth-109.webp",
+    "src": "/media/originals/cloth-109.png",
     "width": 5316,
     "height": 3000,
     "ratio": 1.772
@@ -1601,7 +1601,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 91.jpg",
     "thumb": "/media/thumbs/cloth-110.webp",
-    "src": "/media/large/cloth-110.webp",
+    "src": "/media/originals/cloth-110.jpg",
     "width": 10039,
     "height": 4980,
     "ratio": 2.015863453815261
@@ -1612,7 +1612,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 92.jpg",
     "thumb": "/media/thumbs/cloth-111.webp",
-    "src": "/media/large/cloth-111.webp",
+    "src": "/media/originals/cloth-111.jpg",
     "width": 10039,
     "height": 4980,
     "ratio": 2.015863453815261
@@ -1623,7 +1623,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth 93.png",
     "thumb": "/media/thumbs/cloth-112.webp",
-    "src": "/media/large/cloth-112.webp",
+    "src": "/media/originals/cloth-112.png",
     "width": 3840,
     "height": 4662,
     "ratio": 0.8236808236808236
@@ -1634,7 +1634,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth Shoes1.jpg",
     "thumb": "/media/thumbs/cloth-113.webp",
-    "src": "/media/large/cloth-113.webp",
+    "src": "/media/originals/cloth-113.jpg",
     "width": 4000,
     "height": 2500,
     "ratio": 1.6
@@ -1645,7 +1645,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth Shoes2.jpg",
     "thumb": "/media/thumbs/cloth-114.webp",
-    "src": "/media/large/cloth-114.webp",
+    "src": "/media/originals/cloth-114.jpg",
     "width": 1490,
     "height": 1222,
     "ratio": 1.2193126022913257
@@ -1656,7 +1656,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth Shoes3.jpg",
     "thumb": "/media/thumbs/cloth-115.webp",
-    "src": "/media/large/cloth-115.webp",
+    "src": "/media/originals/cloth-115.jpg",
     "width": 1920,
     "height": 1040,
     "ratio": 1.8461538461538463
@@ -1667,7 +1667,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth Shoes4.jpg",
     "thumb": "/media/thumbs/cloth-116.webp",
-    "src": "/media/large/cloth-116.webp",
+    "src": "/media/originals/cloth-116.jpg",
     "width": 3200,
     "height": 2000,
     "ratio": 1.6
@@ -1678,7 +1678,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth Shoes5.jpg",
     "thumb": "/media/thumbs/cloth-117.webp",
-    "src": "/media/large/cloth-117.webp",
+    "src": "/media/originals/cloth-117.jpg",
     "width": 10039,
     "height": 4980,
     "ratio": 2.015863453815261
@@ -1689,7 +1689,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth Shoes6.jpg",
     "thumb": "/media/thumbs/cloth-118.webp",
-    "src": "/media/large/cloth-118.webp",
+    "src": "/media/originals/cloth-118.jpg",
     "width": 10039,
     "height": 4980,
     "ratio": 2.015863453815261
@@ -1700,7 +1700,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth Shoes7.jpg",
     "thumb": "/media/thumbs/cloth-119.webp",
-    "src": "/media/large/cloth-119.webp",
+    "src": "/media/originals/cloth-119.jpg",
     "width": 10039,
     "height": 4980,
     "ratio": 2.015863453815261
@@ -1711,7 +1711,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "cloth Shoes8.jpg",
     "thumb": "/media/thumbs/cloth-120.webp",
-    "src": "/media/large/cloth-120.webp",
+    "src": "/media/originals/cloth-120.jpg",
     "width": 10039,
     "height": 4980,
     "ratio": 2.015863453815261
@@ -1722,7 +1722,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K 组合 33.png",
     "thumb": "/media/thumbs/nba2k-000.webp",
-    "src": "/media/large/nba2k-000.webp",
+    "src": "/media/originals/nba2k-000.png",
     "width": 1266,
     "height": 1623,
     "ratio": 0.7800369685767098
@@ -1733,7 +1733,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K 组合 34.png",
     "thumb": "/media/thumbs/nba2k-001.webp",
-    "src": "/media/large/nba2k-001.webp",
+    "src": "/media/originals/nba2k-001.png",
     "width": 1266,
     "height": 1623,
     "ratio": 0.7800369685767098
@@ -1744,7 +1744,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K 组合 35.png",
     "thumb": "/media/thumbs/nba2k-002.webp",
-    "src": "/media/large/nba2k-002.webp",
+    "src": "/media/originals/nba2k-002.png",
     "width": 1266,
     "height": 1623,
     "ratio": 0.7800369685767098
@@ -1755,7 +1755,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K 组合 37.png",
     "thumb": "/media/thumbs/nba2k-003.webp",
-    "src": "/media/large/nba2k-003.webp",
+    "src": "/media/originals/nba2k-003.png",
     "width": 1266,
     "height": 1623,
     "ratio": 0.7800369685767098
@@ -1766,7 +1766,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K 组合 38.png",
     "thumb": "/media/thumbs/nba2k-004.webp",
-    "src": "/media/large/nba2k-004.webp",
+    "src": "/media/originals/nba2k-004.png",
     "width": 1266,
     "height": 1623,
     "ratio": 0.7800369685767098
@@ -1777,7 +1777,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K 组合 39.png",
     "thumb": "/media/thumbs/nba2k-005.webp",
-    "src": "/media/large/nba2k-005.webp",
+    "src": "/media/originals/nba2k-005.png",
     "width": 1266,
     "height": 1623,
     "ratio": 0.7800369685767098
@@ -1788,7 +1788,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K 组合 40.png",
     "thumb": "/media/thumbs/nba2k-006.webp",
-    "src": "/media/large/nba2k-006.webp",
+    "src": "/media/originals/nba2k-006.png",
     "width": 1266,
     "height": 1623,
     "ratio": 0.7800369685767098
@@ -1799,7 +1799,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K 组合 41.png",
     "thumb": "/media/thumbs/nba2k-007.webp",
-    "src": "/media/large/nba2k-007.webp",
+    "src": "/media/originals/nba2k-007.png",
     "width": 1266,
     "height": 1623,
     "ratio": 0.7800369685767098
@@ -1810,7 +1810,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K 组合 42.png",
     "thumb": "/media/thumbs/nba2k-008.webp",
-    "src": "/media/large/nba2k-008.webp",
+    "src": "/media/originals/nba2k-008.png",
     "width": 1266,
     "height": 1623,
     "ratio": 0.7800369685767098
@@ -1821,7 +1821,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K 组合 43.png",
     "thumb": "/media/thumbs/nba2k-009.webp",
-    "src": "/media/large/nba2k-009.webp",
+    "src": "/media/originals/nba2k-009.png",
     "width": 1266,
     "height": 1623,
     "ratio": 0.7800369685767098
@@ -1832,7 +1832,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K 组合 44.png",
     "thumb": "/media/thumbs/nba2k-010.webp",
-    "src": "/media/large/nba2k-010.webp",
+    "src": "/media/originals/nba2k-010.png",
     "width": 1266,
     "height": 1623,
     "ratio": 0.7800369685767098
@@ -1843,7 +1843,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K 组合 45.png",
     "thumb": "/media/thumbs/nba2k-011.webp",
-    "src": "/media/large/nba2k-011.webp",
+    "src": "/media/originals/nba2k-011.png",
     "width": 1266,
     "height": 1623,
     "ratio": 0.7800369685767098
@@ -1854,7 +1854,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K CC 1.png",
     "thumb": "/media/thumbs/nba2k-012.webp",
-    "src": "/media/large/nba2k-012.webp",
+    "src": "/media/originals/nba2k-012.png",
     "width": 698,
     "height": 392,
     "ratio": 1.780612244897959
@@ -1865,7 +1865,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "NBA2K D 1.png",
     "thumb": "/media/thumbs/nba2k-013.webp",
-    "src": "/media/large/nba2k-013.webp",
+    "src": "/media/originals/nba2k-013.png",
     "width": 698,
     "height": 392,
     "ratio": 1.780612244897959
@@ -1876,7 +1876,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A.jpg",
     "thumb": "/media/thumbs/pubg-mobile-000.webp",
-    "src": "/media/large/pubg-mobile-000.webp",
+    "src": "/media/originals/pubg-mobile-000.jpg",
     "width": 4855,
     "height": 6704,
     "ratio": 0.7241945107398569
@@ -1887,7 +1887,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A1.jpg",
     "thumb": "/media/thumbs/pubg-mobile-001.webp",
-    "src": "/media/large/pubg-mobile-001.webp",
+    "src": "/media/originals/pubg-mobile-001.jpg",
     "width": 33926,
     "height": 6000,
     "ratio": 5.654333333333334
@@ -1898,7 +1898,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A2.jpg",
     "thumb": "/media/thumbs/pubg-mobile-002.webp",
-    "src": "/media/large/pubg-mobile-002.webp",
+    "src": "/media/originals/pubg-mobile-002.jpg",
     "width": 9000,
     "height": 4288,
     "ratio": 2.0988805970149254
@@ -1909,7 +1909,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A3.jpg",
     "thumb": "/media/thumbs/pubg-mobile-003.webp",
-    "src": "/media/large/pubg-mobile-003.webp",
+    "src": "/media/originals/pubg-mobile-003.jpg",
     "width": 4513,
     "height": 3804,
     "ratio": 1.1863827549947423
@@ -1920,7 +1920,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A4.jpg",
     "thumb": "/media/thumbs/pubg-mobile-004.webp",
-    "src": "/media/large/pubg-mobile-004.webp",
+    "src": "/media/originals/pubg-mobile-004.jpg",
     "width": 10448,
     "height": 2000,
     "ratio": 5.224
@@ -1931,7 +1931,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A5.jpg",
     "thumb": "/media/thumbs/pubg-mobile-005.webp",
-    "src": "/media/large/pubg-mobile-005.webp",
+    "src": "/media/originals/pubg-mobile-005.jpg",
     "width": 3840,
     "height": 2100,
     "ratio": 1.8285714285714285
@@ -1942,7 +1942,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A6.jpg",
     "thumb": "/media/thumbs/pubg-mobile-006.webp",
-    "src": "/media/large/pubg-mobile-006.webp",
+    "src": "/media/originals/pubg-mobile-006.jpg",
     "width": 3840,
     "height": 2100,
     "ratio": 1.8285714285714285
@@ -1964,7 +1964,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A14.JPG",
     "thumb": "/media/thumbs/pubg-mobile-008.webp",
-    "src": "/media/large/pubg-mobile-008.webp",
+    "src": "/media/originals/pubg-mobile-008.jpg",
     "width": 1080,
     "height": 1466,
     "ratio": 0.7366984993178718
@@ -1975,7 +1975,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A15.JPG",
     "thumb": "/media/thumbs/pubg-mobile-009.webp",
-    "src": "/media/large/pubg-mobile-009.webp",
+    "src": "/media/originals/pubg-mobile-009.jpg",
     "width": 1591,
     "height": 1080,
     "ratio": 1.473148148148148
@@ -1986,7 +1986,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A16.JPG",
     "thumb": "/media/thumbs/pubg-mobile-010.webp",
-    "src": "/media/large/pubg-mobile-010.webp",
+    "src": "/media/originals/pubg-mobile-010.jpg",
     "width": 1592,
     "height": 1080,
     "ratio": 1.474074074074074
@@ -1997,7 +1997,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A17.JPG",
     "thumb": "/media/thumbs/pubg-mobile-011.webp",
-    "src": "/media/large/pubg-mobile-011.webp",
+    "src": "/media/originals/pubg-mobile-011.jpg",
     "width": 1591,
     "height": 1080,
     "ratio": 1.473148148148148
@@ -2008,7 +2008,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A21.JPG",
     "thumb": "/media/thumbs/pubg-mobile-012.webp",
-    "src": "/media/large/pubg-mobile-012.webp",
+    "src": "/media/originals/pubg-mobile-012.jpg",
     "width": 1080,
     "height": 1466,
     "ratio": 0.7366984993178718
@@ -2019,7 +2019,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A22.JPG",
     "thumb": "/media/thumbs/pubg-mobile-013.webp",
-    "src": "/media/large/pubg-mobile-013.webp",
+    "src": "/media/originals/pubg-mobile-013.jpg",
     "width": 1080,
     "height": 1466,
     "ratio": 0.7366984993178718
@@ -2030,7 +2030,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A23.JPG",
     "thumb": "/media/thumbs/pubg-mobile-014.webp",
-    "src": "/media/large/pubg-mobile-014.webp",
+    "src": "/media/originals/pubg-mobile-014.jpg",
     "width": 1080,
     "height": 1466,
     "ratio": 0.7366984993178718
@@ -2041,7 +2041,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A24.JPG",
     "thumb": "/media/thumbs/pubg-mobile-015.webp",
-    "src": "/media/large/pubg-mobile-015.webp",
+    "src": "/media/originals/pubg-mobile-015.jpg",
     "width": 1591,
     "height": 1080,
     "ratio": 1.473148148148148
@@ -2052,7 +2052,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A25.JPG",
     "thumb": "/media/thumbs/pubg-mobile-016.webp",
-    "src": "/media/large/pubg-mobile-016.webp",
+    "src": "/media/originals/pubg-mobile-016.jpg",
     "width": 1920,
     "height": 1080,
     "ratio": 1.7777777777777777
@@ -2063,7 +2063,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A26.JPG",
     "thumb": "/media/thumbs/pubg-mobile-017.webp",
-    "src": "/media/large/pubg-mobile-017.webp",
+    "src": "/media/originals/pubg-mobile-017.jpg",
     "width": 1920,
     "height": 1080,
     "ratio": 1.7777777777777777
@@ -2074,7 +2074,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A27.JPG",
     "thumb": "/media/thumbs/pubg-mobile-018.webp",
-    "src": "/media/large/pubg-mobile-018.webp",
+    "src": "/media/originals/pubg-mobile-018.jpg",
     "width": 1920,
     "height": 1080,
     "ratio": 1.7777777777777777
@@ -2085,7 +2085,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "PUBG mobile A28.JPG",
     "thumb": "/media/thumbs/pubg-mobile-019.webp",
-    "src": "/media/large/pubg-mobile-019.webp",
+    "src": "/media/originals/pubg-mobile-019.jpg",
     "width": 1920,
     "height": 1080,
     "ratio": 1.7777777777777777
@@ -2096,7 +2096,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "substance designer 0Owl_00.jpg",
     "thumb": "/media/thumbs/substance-designer-000.webp",
-    "src": "/media/large/substance-designer-000.webp",
+    "src": "/media/originals/substance-designer-000.jpg",
     "width": 4000,
     "height": 4000,
     "ratio": 1
@@ -2107,7 +2107,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "substance designer 0Owl_01.jpg",
     "thumb": "/media/thumbs/substance-designer-001.webp",
-    "src": "/media/large/substance-designer-001.webp",
+    "src": "/media/originals/substance-designer-001.jpg",
     "width": 7149,
     "height": 4753,
     "ratio": 1.5041026719966337
@@ -2118,7 +2118,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "substance designer 0Owl_02.jpg",
     "thumb": "/media/thumbs/substance-designer-002.webp",
-    "src": "/media/large/substance-designer-002.webp",
+    "src": "/media/originals/substance-designer-002.jpg",
     "width": 4096,
     "height": 4786,
     "ratio": 0.8558295027162558
@@ -2129,7 +2129,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "substance designer 0Owl_03.jpg",
     "thumb": "/media/thumbs/substance-designer-003.webp",
-    "src": "/media/large/substance-designer-003.webp",
+    "src": "/media/originals/substance-designer-003.jpg",
     "width": 2620,
     "height": 4096,
     "ratio": 0.6396484375
@@ -2140,7 +2140,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "substance designer 0Owl_04.jpg",
     "thumb": "/media/thumbs/substance-designer-004.webp",
-    "src": "/media/large/substance-designer-004.webp",
+    "src": "/media/originals/substance-designer-004.jpg",
     "width": 4096,
     "height": 4096,
     "ratio": 1
@@ -2151,7 +2151,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "substance designer 0Owl_05.jpg",
     "thumb": "/media/thumbs/substance-designer-005.webp",
-    "src": "/media/large/substance-designer-005.webp",
+    "src": "/media/originals/substance-designer-005.jpg",
     "width": 5625,
     "height": 7111,
     "ratio": 0.7910279848122627
@@ -2162,7 +2162,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "substance designer 0Owl_06.png",
     "thumb": "/media/thumbs/substance-designer-006.webp",
-    "src": "/media/large/substance-designer-006.webp",
+    "src": "/media/originals/substance-designer-006.png",
     "width": 3840,
     "height": 2100,
     "ratio": 1.8285714285714285
@@ -2217,7 +2217,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "props 0.png",
     "thumb": "/media/thumbs/props-000.webp",
-    "src": "/media/large/props-000.webp",
+    "src": "/media/originals/props-000.png",
     "width": 3099,
     "height": 1837,
     "ratio": 1.6869896570495373
@@ -2228,7 +2228,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "props 1.png",
     "thumb": "/media/thumbs/props-001.webp",
-    "src": "/media/large/props-001.webp",
+    "src": "/media/originals/props-001.png",
     "width": 2741,
     "height": 1589,
     "ratio": 1.724984266834487
@@ -2239,7 +2239,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "props 2.png",
     "thumb": "/media/thumbs/props-002.webp",
-    "src": "/media/large/props-002.webp",
+    "src": "/media/originals/props-002.png",
     "width": 2340,
     "height": 1710,
     "ratio": 1.368421052631579
@@ -2250,7 +2250,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "props 3.png",
     "thumb": "/media/thumbs/props-003.webp",
-    "src": "/media/large/props-003.webp",
+    "src": "/media/originals/props-003.png",
     "width": 2415,
     "height": 1797,
     "ratio": 1.343906510851419
@@ -2261,7 +2261,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "props 5.png",
     "thumb": "/media/thumbs/props-004.webp",
-    "src": "/media/large/props-004.webp",
+    "src": "/media/originals/props-004.png",
     "width": 2541,
     "height": 1683,
     "ratio": 1.5098039215686274
@@ -2272,7 +2272,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "props 6.png",
     "thumb": "/media/thumbs/props-005.webp",
-    "src": "/media/large/props-005.webp",
+    "src": "/media/originals/props-005.png",
     "width": 3633,
     "height": 1034,
     "ratio": 3.513539651837524
@@ -2283,7 +2283,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "props 7.png",
     "thumb": "/media/thumbs/props-006.webp",
-    "src": "/media/large/props-006.webp",
+    "src": "/media/originals/props-006.png",
     "width": 3412,
     "height": 797,
     "ratio": 4.281053952321204
@@ -2294,7 +2294,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "props 8.png",
     "thumb": "/media/thumbs/props-007.webp",
-    "src": "/media/large/props-007.webp",
+    "src": "/media/originals/props-007.png",
     "width": 1180,
     "height": 921,
     "ratio": 1.281216069489685
@@ -2305,7 +2305,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "soldier 0b.jpg",
     "thumb": "/media/thumbs/soldier-000.webp",
-    "src": "/media/large/soldier-000.webp",
+    "src": "/media/originals/soldier-000.jpg",
     "width": 9845,
     "height": 2258,
     "ratio": 4.360053144375554
@@ -2316,7 +2316,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "soldier 0c.jpg",
     "thumb": "/media/thumbs/soldier-001.webp",
-    "src": "/media/large/soldier-001.webp",
+    "src": "/media/originals/soldier-001.jpg",
     "width": 6383,
     "height": 1477,
     "ratio": 4.321597833446175
@@ -2327,7 +2327,7 @@ export const generatedMedia = [
     "type": "image",
     "alt": "soldier 0e.jpg",
     "thumb": "/media/thumbs/soldier-002.webp",
-    "src": "/media/large/soldier-002.webp",
+    "src": "/media/originals/soldier-002.jpg",
     "width": 5964,
     "height": 3455,
     "ratio": 1.7261939218523878

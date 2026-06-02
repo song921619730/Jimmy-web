@@ -57,6 +57,20 @@ export function WorkModal({ language, project, media, initialMediaId, onClose }:
     [transitionSteps],
   );
 
+  const snapPoints = useMemo(() => {
+    const totalSteps = transitionSteps.reduce((total, step) => total + step, 0);
+    if (totalSteps === 0) return [0];
+
+    let cursor = 0;
+    return [
+      0,
+      ...transitionSteps.map((step) => {
+        cursor += step;
+        return cursor / totalSteps;
+      }),
+    ];
+  }, [transitionSteps]);
+
   useEffect(() => {
     if (!project) return undefined;
 
@@ -100,13 +114,37 @@ export function WorkModal({ language, project, media, initialMediaId, onClose }:
       gsap.set(cards, {
         y: (index) => (index === 0 || reduceMotion ? 0 : window.innerHeight),
         zIndex: (index) => index + 1,
-        autoAlpha: 1,
+        autoAlpha: (index) => (index <= 1 || reduceMotion ? 1 : 0),
         force3D: true,
       });
 
       if (reduceMotion || cards.length <= 1) return;
 
       const totalSteps = transitionSteps.reduce((total, step) => total + step, 0);
+      const setVisibleCards = (currentStep: number) => {
+        let cursor = 0;
+        let currentIndex = cards.length - 1;
+        let enteringIndex = -1;
+
+        for (let index = 0; index < transitionSteps.length; index += 1) {
+          const step = transitionSteps[index];
+          if (currentStep < cursor + step) {
+            currentIndex = index;
+            enteringIndex = index + 1;
+            break;
+          }
+          cursor += step;
+        }
+
+        cards.forEach((card, index) => {
+          const isVisible = index === currentIndex || index === enteringIndex;
+          gsap.set(card, {
+            autoAlpha: isVisible ? 1 : 0,
+            pointerEvents: index === currentIndex ? "auto" : "none",
+          });
+        });
+      };
+
       const timeline = gsap.timeline({
         defaults: { ease: "none" },
         scrollTrigger: {
@@ -115,9 +153,16 @@ export function WorkModal({ language, project, media, initialMediaId, onClose }:
           start: "top top",
           end: () => `+=${totalSteps * window.innerHeight}`,
           scrub: 0.45,
+          snap: {
+            snapTo: snapPoints,
+            duration: { min: 0.18, max: 0.36 },
+            delay: 0.05,
+            ease: "power2.out",
+          },
           invalidateOnRefresh: true,
           onUpdate: (self) => {
             const currentStep = self.progress * totalSteps;
+            setVisibleCards(currentStep);
             let nextIndex = 0;
             let cursor = 0;
             transitionSteps.forEach((step, index) => {
@@ -143,7 +188,7 @@ export function WorkModal({ language, project, media, initialMediaId, onClose }:
       window.cancelAnimationFrame(refreshFrame);
       context.revert();
     };
-  }, [orderedMedia, project, transitionSteps]);
+  }, [orderedMedia, project, snapPoints, transitionSteps]);
 
   if (!project) return null;
 

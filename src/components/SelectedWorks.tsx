@@ -1,6 +1,6 @@
 import { ArrowUpRight, Images } from "lucide-react";
 import type { CSSProperties } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { Language } from "../data/i18n";
@@ -21,6 +21,9 @@ type SelectedWorksProps = {
 export function SelectedWorks({ language, projects, mediaByProject, onOpenProject }: SelectedWorksProps) {
   const scopeRef = useGsapReveal<HTMLElement>();
   const showcaseRef = useRef<HTMLDivElement | null>(null);
+  const activeIndexRef = useRef(0);
+  const suppressActivationRef = useRef(false);
+  const previousLanguageRef = useRef(language);
   const copy = uiCopy[language].selectedWorks;
   const preparedProjects = projects.map((project) => {
     const projectMedia = mediaByProject[project.slug] ?? [];
@@ -41,7 +44,6 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
       const copyPanels = gsap.utils.toArray<HTMLElement>(".switch-copy-panel");
       const steps = gsap.utils.toArray<HTMLElement>(".switch-step");
       const progressBars = gsap.utils.toArray<HTMLElement>(".switch-progress span");
-      let activeIndex = 0;
 
       gsap.set(visualPanels, { yPercent: 112, autoAlpha: 0, scale: 0.965 });
       gsap.set(copyPanels, { y: 32, autoAlpha: 0 });
@@ -51,10 +53,11 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
       gsap.set(progressBars[0], { backgroundColor: "#fff" });
 
       const activate = (nextIndex: number) => {
-        if (nextIndex === activeIndex || !visualPanels[nextIndex] || !copyPanels[nextIndex]) return;
-        const currentIndex = activeIndex;
+        if (suppressActivationRef.current) return;
+        if (nextIndex === activeIndexRef.current || !visualPanels[nextIndex] || !copyPanels[nextIndex]) return;
+        const currentIndex = activeIndexRef.current;
         const direction = nextIndex > currentIndex ? 1 : -1;
-        activeIndex = nextIndex;
+        activeIndexRef.current = nextIndex;
         showcase.dataset.active = String(nextIndex);
 
         gsap.killTweensOf([...visualPanels, ...copyPanels, ...progressBars]);
@@ -111,6 +114,54 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
 
     return () => context.revert();
   }, []);
+
+  useLayoutEffect(() => {
+    const showcase = showcaseRef.current;
+    if (!showcase) return undefined;
+    if (previousLanguageRef.current === language) return undefined;
+    previousLanguageRef.current = language;
+
+    const activeIndex = activeIndexRef.current;
+    suppressActivationRef.current = true;
+    const restoreFrame = window.requestAnimationFrame(() => {
+      const visualPanels = gsap.utils.toArray<HTMLElement>(".switch-visual-panel", showcase);
+      const copyPanels = gsap.utils.toArray<HTMLElement>(".switch-copy-panel", showcase);
+      const progressBars = gsap.utils.toArray<HTMLElement>(".switch-progress span", showcase);
+
+      if (!visualPanels[activeIndex] || !copyPanels[activeIndex]) return;
+
+      showcase.dataset.active = String(activeIndex);
+      gsap.killTweensOf([...visualPanels, ...copyPanels, ...progressBars]);
+
+      visualPanels.forEach((panel, index) => {
+        gsap.set(panel, {
+          yPercent: index === activeIndex ? 0 : 112,
+          autoAlpha: index === activeIndex ? 1 : 0,
+          scale: index === activeIndex ? 1 : 0.965,
+        });
+      });
+
+      copyPanels.forEach((panel, index) => {
+        gsap.set(panel, {
+          y: index === activeIndex ? 0 : 32,
+          autoAlpha: index === activeIndex ? 1 : 0,
+        });
+      });
+
+      gsap.set(progressBars, { backgroundColor: "rgba(255, 255, 255, 0.18)", scaleX: 1 });
+      gsap.set(progressBars[activeIndex], { backgroundColor: "#fff" });
+      ScrollTrigger.refresh();
+
+      window.setTimeout(() => {
+        suppressActivationRef.current = false;
+      }, 240);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(restoreFrame);
+      suppressActivationRef.current = false;
+    };
+  }, [language]);
 
   return (
     <section className="section selected-works" id="works" ref={scopeRef}>

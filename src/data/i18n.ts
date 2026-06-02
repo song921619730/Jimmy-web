@@ -22,7 +22,7 @@ export const uiCopy = {
     hero: {
       ageSuffix: "岁",
       title: ["3D Artist"],
-      primaryAction: "查看精选作品",
+      primaryAction: "查看精选项目",
       currentRole: "当前职位",
       resumeSummaryLabel: "简历概览",
       detailsLabel: "经历与技能",
@@ -33,18 +33,18 @@ export const uiCopy = {
     },
     selectedWorks: {
       label: "精选作品",
-      heading: "向下滚动浏览作品",
-      assets: "个资源",
-      open: "打开项目档案",
-      scrollLabel: "滚动控制的精选作品",
+      heading: "向下滚动查看精选项目",
+      assets: "项素材",
+      open: "查看项目详情",
+      scrollLabel: "滚动查看精选项目",
     },
     process: {
       label: "流程",
-      heading: "为需要视觉质量和生产可靠性的团队而构建。",
+      heading: "围绕角色服装、PBR 材质与 AI 辅助流程，完成从概念参考到实时资产交付的制作链路。",
     },
     contact: {
       label: "简历 / 联系",
-      heading: "可胜任游戏美术、3D 服装、材质与 AI 辅助流程相关岗位。",
+      heading: "期待参与游戏角色服装、PBR 材质、实时资产制作与 AI 辅助美术流程相关岗位或项目合作。",
       download: "下载简历 PDF",
     },
     gallery: {
@@ -55,10 +55,10 @@ export const uiCopy = {
       open: "打开",
     },
     modal: {
-      imageMode: "图像模式",
-      imageModeLabel: "图像模式",
+      imageMode: "向下滚动查看更多作品",
+      imageModeLabel: "向下滚动查看更多作品",
       close: "关闭作品浏览",
-      stackLabel: "图像堆栈",
+      stackLabel: "作品图片",
     },
   },
   en: {
@@ -80,7 +80,7 @@ export const uiCopy = {
     hero: {
       ageSuffix: "years old",
       title: ["3D Artist"],
-      primaryAction: "View selected works",
+      primaryAction: "View selected projects",
       currentRole: "Current Role",
       resumeSummaryLabel: "Resume summary",
       detailsLabel: "Experience and skills",
@@ -91,18 +91,18 @@ export const uiCopy = {
     },
     selectedWorks: {
       label: "Selected Works",
-      heading: "Scroll down to browse works",
-      assets: "assets",
-      open: "Open project archive",
-      scrollLabel: "Scroll controlled selected works",
+      heading: "Scroll down to view selected projects",
+      assets: "media items",
+      open: "View project details",
+      scrollLabel: "Scroll through selected projects",
     },
     process: {
       label: "Process",
-      heading: "Built for teams that need visual quality and production reliability.",
+      heading: "A production workflow for character clothing, PBR materials, and AI-assisted game art, from concept references to realtime asset delivery.",
     },
     contact: {
       label: "Resume / Contact",
-      heading: "Available for game art, 3D costume, material, and AI-assisted workflow roles.",
+      heading: "Available for game character clothing, PBR material, realtime asset, and AI-assisted game art workflow roles or collaborations.",
       download: "Download resume PDF",
     },
     gallery: {
@@ -113,10 +113,10 @@ export const uiCopy = {
       open: "Open",
     },
     modal: {
-      imageMode: "Image mode",
-      imageModeLabel: "Image mode",
+      imageMode: "Scroll down to view more works",
+      imageModeLabel: "Scroll down to view more works",
       close: "Close work browser",
-      stackLabel: "image stack",
+      stackLabel: "project images",
     },
   },
 } as const;

@@ -38,6 +38,7 @@ async function ensureOutputDirs() {
   await Promise.all([
     mkdir(path.join(mediaDir, "thumbs"), { recursive: true }),
     mkdir(path.join(mediaDir, "large"), { recursive: true }),
+    mkdir(path.join(mediaDir, "originals"), { recursive: true }),
     mkdir(path.join(mediaDir, "posters"), { recursive: true }),
     mkdir(path.join(mediaDir, "videos"), { recursive: true }),
     mkdir(path.dirname(dataFile), { recursive: true }),
@@ -61,7 +62,8 @@ async function makeImage(projectName, fileName, index) {
   const stem = `${projectSlug}-${String(index).padStart(3, "0")}`;
   const source = path.join(resourceDir, projectName, fileName);
   const thumbFile = path.join(mediaDir, "thumbs", `${stem}.webp`);
-  const largeFile = path.join(mediaDir, "large", `${stem}.webp`);
+  const originalName = `${stem}${ext}`;
+  const originalFile = path.join(mediaDir, "originals", originalName);
 
   const image = sharp(source).rotate();
   const metadata = await image.metadata();
@@ -75,11 +77,7 @@ async function makeImage(projectName, fileName, index) {
       .resize({ width: 720, height: 720, fit: "inside", withoutEnlargement: true })
       .webp({ quality: 76 })
       .toFile(thumbFile),
-    sharp(source)
-      .rotate()
-      .resize({ width: 1920, height: 1920, fit: "inside", withoutEnlargement: true })
-      .webp({ quality: 84 })
-      .toFile(largeFile),
+    copyFile(source, originalFile),
   ]);
 
   return {
@@ -88,7 +86,7 @@ async function makeImage(projectName, fileName, index) {
     type: "image",
     alt: `${projectName} ${fileName}`,
     thumb: publicPath("media", "thumbs", `${stem}.webp`),
-    src: publicPath("media", "large", `${stem}.webp`),
+    src: publicPath("media", "originals", originalName),
     width,
     height,
     ratio,
