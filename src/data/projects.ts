@@ -27,7 +27,7 @@ type ProjectCopy = Omit<Project, "slug" | "year" | "accent" | "coverHint">;
 const projectCopy: Record<Language, ProjectCopy[]> = {
   zh: [
     {
-      title: "宇航服系统",
+      title: "宇航服",
       eyebrow: "实时电影感服装",
       category: "Unreal / 服装",
       summary: "硬表面宇航服展示，结合电影感 Unreal 灯光与材质验证。",
@@ -51,7 +51,7 @@ const projectCopy: Record<Language, ProjectCopy[]> = {
       tags: ["2K", "游戏美术", "LOD", "角色资产"],
     },
     {
-      title: "移动端角色服装",
+      title: "PUBG 手游角色套装",
       eyebrow: "自由职业 / 移动游戏项目",
       category: "移动游戏服装",
       summary: "面向移动游戏的风格化与半写实服装，注重小屏幕下的材质清晰度。",
@@ -59,7 +59,7 @@ const projectCopy: Record<Language, ProjectCopy[]> = {
       tags: ["移动端", "服装", "优化", "角色"],
     },
     {
-      title: "猫头鹰高脚杯材质研究",
+      title: "猫头鹰高脚杯",
       eyebrow: "程序化材质工艺",
       category: "Substance Designer",
       summary: "程序化装饰高脚杯研究，探索浮雕细节、旧金属、划痕和纹样节奏。",
@@ -67,17 +67,17 @@ const projectCopy: Record<Language, ProjectCopy[]> = {
       tags: ["Designer", "Painter", "程序化", "材质"],
     },
     {
-      title: "道具与生产资产",
+      title: "道具",
       eyebrow: "游戏就绪物件制作",
       category: "道具",
-      summary: "面向可读形体、干净表面和高效实时呈现制作的道具与辅助资产。",
+      summary: "",
       detail: "紧凑的物件研究档案，以材质、道具建模和展示完成度补足作品集结构。",
       tags: ["道具", "建模", "贴图", "实时"],
     },
   ],
   en: [
     {
-      title: "Astronaut Suit System",
+      title: "Astronaut Suit",
       eyebrow: "Realtime cinematic costume",
       category: "Unreal / Costume",
       summary: "Hard-surface suit presentation with cinematic Unreal lighting and material validation.",
@@ -101,7 +101,7 @@ const projectCopy: Record<Language, ProjectCopy[]> = {
       tags: ["2K", "Game art", "LOD", "Character assets"],
     },
     {
-      title: "Mobile Character Costumes",
+      title: "PUBG Mobile Character Outfit Set",
       eyebrow: "Freelance / mobile game work",
       category: "Mobile game costume",
       summary: "Stylized and semi-realistic costume work for mobile games, with attention to material clarity at small screen sizes.",
@@ -109,7 +109,7 @@ const projectCopy: Record<Language, ProjectCopy[]> = {
       tags: ["Mobile", "Costume", "Optimization", "Character"],
     },
     {
-      title: "Owl Goblet Material Study",
+      title: "Owl Goblet",
       eyebrow: "Procedural material craft",
       category: "Substance Designer",
       summary: "A procedural decorative goblet study exploring relief detail, aged metal, scratches, and ornament rhythm.",
@@ -117,10 +117,10 @@ const projectCopy: Record<Language, ProjectCopy[]> = {
       tags: ["Designer", "Painter", "Procedural", "Material"],
     },
     {
-      title: "Props and Production Assets",
+      title: "Props",
       eyebrow: "Game-ready object work",
       category: "Props",
-      summary: "Props and support assets built for readable shape, clean surfaces, and efficient real-time presentation.",
+      summary: "",
       detail: "A compact archive of object studies that round out the portfolio with material work, prop modeling, and presentation polish.",
       tags: ["Props", "Modeling", "Texturing", "Realtime"],
     },

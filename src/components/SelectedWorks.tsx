@@ -131,7 +131,7 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
                 <p className="switch-count">{String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}</p>
                 <p className="eyebrow">{project.eyebrow}</p>
                 <h3>{project.title}</h3>
-                <p>{project.summary}</p>
+                {project.summary ? <p>{project.summary}</p> : null}
                 <div className="switch-meta">
                   <span>{project.year}</span>
                   <span>{project.category}</span>

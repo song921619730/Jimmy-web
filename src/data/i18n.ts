@@ -21,7 +21,7 @@ export const uiCopy = {
     mobileNavigation: "移动端导航",
     hero: {
       ageSuffix: "岁",
-      title: ["3D Artist", "角色服装与实时材质"],
+      title: ["3D Artist"],
       primaryAction: "查看精选作品",
       currentRole: "当前职位",
       resumeSummaryLabel: "简历概览",
@@ -33,7 +33,7 @@ export const uiCopy = {
     },
     selectedWorks: {
       label: "精选作品",
-      heading: "滚动浏览作品档案，每个项目依次进入画面。",
+      heading: "向下滚动浏览作品",
       assets: "个资源",
       open: "打开项目档案",
       scrollLabel: "滚动控制的精选作品",
@@ -79,7 +79,7 @@ export const uiCopy = {
     mobileNavigation: "Mobile navigation",
     hero: {
       ageSuffix: "years old",
-      title: ["3D Artist", "Character Clothing / Realtime Materials"],
+      title: ["3D Artist"],
       primaryAction: "View selected works",
       currentRole: "Current Role",
       resumeSummaryLabel: "Resume summary",
@@ -91,7 +91,7 @@ export const uiCopy = {
     },
     selectedWorks: {
       label: "Selected Works",
-      heading: "Roll through the archive. Each work rises into place.",
+      heading: "Scroll down to browse works",
       assets: "assets",
       open: "Open project archive",
       scrollLabel: "Scroll controlled selected works",

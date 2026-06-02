@@ -15,7 +15,7 @@ export const profileContent = {
     email: "921619730@qq.com",
     age: "28",
     role: "3D Artist / 数字服装专家",
-    location: "上海 / 贵州",
+    location: "上海",
     currentCompany: "2K Games | Visual Concepts Studio 上海工作室",
     currentPeriod: "2022.06 - 至今",
     intro:
@@ -25,7 +25,7 @@ export const profileContent = {
     stats: [
       { label: "游戏美术与 3D 制作经验", value: "6+" },
       { label: "当前职位", value: "2K Games / 3D Artist" },
-      { label: "核心管线", value: "MD + CLO + Substance" },
+      { label: "核心管线", value: "PBR 全流程" },
     ],
     resumeHighlights: [
       {
@@ -41,10 +41,16 @@ export const profileContent = {
         detail: "负责角色与服装资产制作、LOD 优化、版片设计、布料模拟、拓扑优化和贴图绘制。",
       },
       {
-        label: "材质",
-        title: "PBR 材质与实时呈现",
-        meta: "Substance Painter / Designer / Unreal",
-        detail: "制作并优化 PBR 材质节点、布料纹理、场景资产贴图和实时引擎表现。",
+        label: "ComfyUI",
+        title: "AI 生成模型与概念流程",
+        meta: "ComfyUI / SD / 生成模型工作流",
+        detail: "熟悉 AI 生成模型在游戏美术前期流程中的应用，能够搭建 ComfyUI 工作流，用于角色服装、道具、场景、材质方向的参考图生成、概念探索、风格测试和批量迭代。",
+      },
+      {
+        label: "Vibe Coding",
+        title: "流程工具与脚本开发",
+        meta: "Pipeline Tools / Scripts / Custom Nodes",
+        detail: "基于具体生产流程快速制作配套小工具、批处理脚本和自动化方案，并能开发自定义 ComfyUI 节点，提升参考生成、资产整理和流程衔接效率。",
       },
     ],
     resumeTimeline: [
@@ -72,7 +78,6 @@ export const profileContent = {
     awards: [
       "GGAC 全球游戏美术大赛 2024 年 Style3D 特别奖 精选作品",
       "GGAC 全球游戏美术大赛 2019 年 校园组 3D 角色优秀奖",
-      "贵州省 2017 年观云识天摄影大赛特等奖",
     ],
     skillGroups: [
       { label: "建模", tools: ["Maya", "3D Max", "ZBrush", "Plasticity"] },
@@ -105,7 +110,7 @@ export const profileContent = {
     email: "song921619730@gmail.com",
     age: "28",
     role: "3D Artist / Digital Clothing Specialist",
-    location: "Shanghai / Guizhou",
+    location: "Shanghai",
     currentCompany: "2K Games | Visual Concepts Studio Shanghai",
     currentPeriod: "2022.06 - Present",
     intro:
@@ -115,7 +120,7 @@ export const profileContent = {
     stats: [
       { label: "Game art and 3D production", value: "6+" },
       { label: "Current role", value: "2K Games / 3D Artist" },
-      { label: "Core pipeline", value: "MD + CLO + Substance" },
+      { label: "Core pipeline", value: "Full PBR Pipeline" },
     ],
     resumeHighlights: [
       {
@@ -131,10 +136,16 @@ export const profileContent = {
         detail: "Owns character and garment asset production, LOD optimization, pattern design, cloth simulation, retopology, and texture painting.",
       },
       {
-        label: "Material",
-        title: "PBR materials and realtime presentation",
-        meta: "Substance Painter / Designer / Unreal",
-        detail: "Builds and optimizes PBR material nodes, fabric textures, scene asset maps, and realtime engine presentation quality.",
+        label: "ComfyUI",
+        title: "AI generation models and concept workflows",
+        meta: "ComfyUI / SD / generation model workflows",
+        detail: "Experienced in applying AI generation models to early-stage game art workflows, building ComfyUI pipelines for character costumes, props, environments, material direction references, concept exploration, style testing, and batch iteration.",
+      },
+      {
+        label: "Vibe Coding",
+        title: "Pipeline tools and script development",
+        meta: "Pipeline tools / scripts / custom nodes",
+        detail: "Rapidly builds small tools, batch scripts, and automation around production needs, including custom ComfyUI nodes that improve reference generation, asset organization, and workflow handoff.",
       },
     ],
     resumeTimeline: [
@@ -162,7 +173,6 @@ export const profileContent = {
     awards: [
       "GGAC Global Game Art Contest 2024, Style3D Special Award, selected work",
       "GGAC Global Game Art Contest 2019, Campus Group, 3D Character Excellence Award",
-      "Guizhou Province 2017 Guanyun Shitian Photography Contest, Grand Prize",
     ],
     skillGroups: [
       { label: "Modeling", tools: ["Maya", "3D Max", "ZBrush", "Plasticity"] },

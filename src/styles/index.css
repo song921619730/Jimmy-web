@@ -288,7 +288,7 @@ video {
 
 .hero-resume-grid {
   display: grid;
-  grid-template-columns: 1.4fr repeat(3, 1fr);
+  grid-template-columns: minmax(300px, 1.35fr) repeat(4, minmax(0, 1fr));
   gap: 1px;
   width: min(1120px, 100%);
   margin: clamp(42px, 6vw, 72px) auto 0;
@@ -1233,6 +1233,37 @@ html[lang="en"] .hero-title {
 .project-filter button {
   min-width: 118px;
 }
+
+.hero-title {
+  min-height: 1.1em;
+}
+
+.selected-works .section-heading {
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
+  min-height: 66px;
+  margin-bottom: clamp(28px, 4vw, 52px);
+  text-align: center;
+}
+
+.selected-works .section-heading h2 {
+  display: block;
+  justify-self: center;
+  max-width: none;
+  min-height: 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(24px, 2.4vw, 38px);
+  line-height: 1.15;
+  text-align: center;
+}
+
+.selected-works .section-heading p {
+  margin: 0 0 12px;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+}
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation-duration: 180ms;
@@ -1732,6 +1763,10 @@ html[lang="en"] .hero-title {
 
   .project-filter {
     min-height: 148px;
+  }
+
+  .hero-title {
+    min-height: 1.1em;
   }
 }
 
