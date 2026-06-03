@@ -61,7 +61,29 @@ float starSample(vec2 uv, float scale, float threshold) {
   float size = mix(0.05, 0.22, hash12(cell + 3.19));
   float d = length(local - offset * 0.62);
   float star = smoothstep(size, 0.0, d);
-  return star * step(threshold, seed) * mix(0.45, 1.0, hash12(cell + 8.8));
+  float presence = smoothstep(threshold, min(threshold + 0.024, 0.999), seed);
+  return star * presence * mix(0.42, 0.92, hash12(cell + 8.8));
+}
+
+float orbitalStreakSample(vec2 uv, vec2 center, float aspect, float scale, float threshold) {
+  vec2 grid = uv * scale;
+  vec2 cell = floor(grid);
+  vec2 offset = vec2(hash12(cell + 17.13), hash12(cell + 41.71)) - 0.5;
+  vec2 local = fract(grid) - 0.5 - offset * 0.56;
+  float seed = hash12(cell + 91.27);
+  vec2 cellUv = (cell + 0.5 + offset * 0.56) / scale;
+  vec2 cellP = vec2((cellUv.x - center.x) * aspect, cellUv.y - center.y);
+  vec2 cellRadial = normalize(cellP + vec2(0.0001));
+  vec2 cellTangent = normalize(vec2(-cellRadial.y / max(aspect, 0.001), cellRadial.x));
+  vec2 cellNormal = vec2(-cellTangent.y, cellTangent.x);
+  float streakLength = mix(0.12, 0.32, hash12(cell + 7.49));
+  float width = mix(0.018, 0.038, hash12(cell + 29.84));
+  float along = dot(local, cellTangent);
+  float across = dot(local, cellNormal);
+  float d = length(vec2(max(abs(along) - streakLength, 0.0), across));
+  float streak = smoothstep(width + 0.014, 0.0, d);
+  float presence = smoothstep(threshold, min(threshold + 0.045, 0.999), seed);
+  return streak * presence * mix(0.32, 0.82, hash12(cell + 13.61));
 }
 
 vec3 diskPalette(float radialHeat, float turbulence, float doppler) {
@@ -102,10 +124,17 @@ void main() {
   bentUv.x += (0.012 + sin(motionTime * 0.15 + p.y * 8.0) * 0.002) * lensFalloff;
 
   float stars = 0.0;
-  stars += starSample(bentUv + vec2(motionTime * 0.0032, -motionTime * 0.0014), 92.0, 0.978);
-  stars += starSample(bentUv * vec2(1.35, 0.85) + vec2(31.1 + motionTime * 0.002, 9.7), 168.0, 0.991) * 0.65;
+  stars += starSample(bentUv + vec2(motionTime * 0.0032, -motionTime * 0.0014), 92.0, 0.970);
+  stars += starSample(bentUv * vec2(1.35, 0.85) + vec2(31.1 + motionTime * 0.002, 9.7), 168.0, 0.984) * 0.68;
+  stars += starSample(bentUv * vec2(0.9, 1.18) + vec2(18.4, 44.2 - motionTime * 0.0006), 132.0, 0.986) * 0.46;
   float arcBoost = exp(-abs(r - 0.28) * 14.0) * (0.32 + 0.68 * abs(dot(tangent, vec2(1.0, 0.0))));
-  stars *= (0.35 + lensFalloff * 1.2 + arcBoost * rightFade);
+  float streaks = 0.0;
+  streaks += orbitalStreakSample(bentUv + vec2(motionTime * 0.00055, -motionTime * 0.00025), center, aspect, 124.0, 0.944);
+  streaks += orbitalStreakSample(bentUv * vec2(1.2, 0.92) + vec2(22.8 - motionTime * 0.00034, 7.6), center, aspect, 154.0, 0.962) * 0.62;
+  float streakFocus = lensFalloff * 1.05 + exp(-abs(r - 0.32) * 8.5) * 0.88 + exp(-abs(r - 0.52) * 5.8) * 0.22;
+  streaks *= streakFocus * rightFade * edgeFade;
+  stars *= (0.34 + lensFalloff * 1.32 + arcBoost * rightFade * 1.2);
+  stars += streaks * 0.64;
   vec3 starColor = mix(vec3(0.46, 0.60, 0.66), vec3(0.84, 0.90, 0.91), clamp(stars * 2.3, 0.0, 1.0));
 
   vec3 origin = vec3(0.0, 0.16, 3.05);
