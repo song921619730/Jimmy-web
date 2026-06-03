@@ -108,9 +108,9 @@ export function ParticleBackground() {
     const layerMotion = gsap.matchMedia();
 
     const getLensCenter = () => {
-      if (width < 1040) return { x: 1.055, y: 0.6 };
-      if (width < 1320) return { x: 1.025, y: 0.62 };
-      return { x: 0.995, y: 0.63 };
+      if (width < 1040) return { x: 0.99, y: 0.59 };
+      if (width < 1320) return { x: 0.955, y: 0.61 };
+      return { x: 0.92, y: 0.62 };
     };
 
     const createBlackHoleRuntime = (): BlackHoleRuntime | null => {

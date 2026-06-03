@@ -31,7 +31,7 @@ function slugify(value) {
 }
 
 function publicPath(...parts) {
-  return `/${parts.join("/")}`.replace(/\\/g, "/");
+  return parts.join("/").replace(/\\/g, "/");
 }
 
 async function ensureOutputDirs() {
@@ -147,7 +147,9 @@ async function buildManifest() {
     }
   }
 
-  const content = `export type GeneratedMediaItem = {
+  const content = `import { assetUrl } from "../utils/assetUrl";
+
+export type GeneratedMediaItem = {
   id: string;
   project: string;
   type: "image" | "video";
@@ -159,7 +161,13 @@ async function buildManifest() {
   ratio: number;
 };
 
-export const generatedMedia = ${JSON.stringify(media, null, 2)} satisfies GeneratedMediaItem[];
+const generatedMediaData = ${JSON.stringify(media, null, 2)} satisfies GeneratedMediaItem[];
+
+export const generatedMedia = generatedMediaData.map((item) => ({
+  ...item,
+  thumb: assetUrl(item.thumb),
+  src: assetUrl(item.src),
+})) satisfies GeneratedMediaItem[];
 `;
 
   await writeFile(dataFile, content, "utf8");

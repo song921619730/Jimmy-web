@@ -1,11 +1,12 @@
 ﻿import type { Language } from "./i18n";
+import { assetUrl } from "../utils/assetUrl";
 
 export const profileLinks = {
   name: "GangJin Song",
   phone: "+86 17685309985",
   artstation: "https://www.artstation.com/jimmy_song",
   linkedin: "https://www.linkedin.com/in/jimmy-song-30592a1b7/",
-  resumePdf: "/resume/Jimmy_Song_AI_3D_Resume.pdf",
+  resumePdf: assetUrl("resume/Jimmy_Song_AI_3D_Resume.pdf"),
 };
 
 export const profileContent = {
