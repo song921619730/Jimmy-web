@@ -140,7 +140,7 @@ body.modal-open {
 
 .black-hole-webgl-canvas {
   z-index: 2;
-  opacity: 0.96;
+  opacity: 1;
 }
 
 .starfield-canvas {

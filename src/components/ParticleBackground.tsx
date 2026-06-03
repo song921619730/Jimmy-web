@@ -148,7 +148,7 @@ export function ParticleBackground() {
           uReducedMotion: { value: reduceMotion ? 1 : 0 },
           uLensCenter: { value: new THREE.Vector2(lensCenter.x, lensCenter.y) },
           uLensStrength: { value: reduceMotion ? 0.72 : 1 },
-          uDiskOpacity: { value: reduceMotion ? 0.42 : 0.82 },
+          uDiskOpacity: { value: reduceMotion ? 0.5 : 0.96 },
         },
         vertexShader: blackHoleVertexShader,
         fragmentShader: blackHoleFragmentShader,
@@ -171,7 +171,7 @@ export function ParticleBackground() {
           material.uniforms.uReducedMotion.value = reduceMotion ? 1 : 0;
           material.uniforms.uLensCenter.value.set(nextLensCenter.x, nextLensCenter.y);
           material.uniforms.uLensStrength.value = reduceMotion ? 0.72 : 1;
-          material.uniforms.uDiskOpacity.value = reduceMotion ? 0.42 : 0.82;
+          material.uniforms.uDiskOpacity.value = reduceMotion ? 0.5 : 0.96;
           renderer.render(scene, camera);
         },
         dispose: () => {

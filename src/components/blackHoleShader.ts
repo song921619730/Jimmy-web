@@ -172,6 +172,12 @@ void main() {
   screenDiskAlpha *= uDiskOpacity * 1.22 * diskRightFade * edgeFade;
   vec3 screenDiskColor = diskPalette(0.62 + thinDisk * 0.36, diskNoise, 0.96 + radial.x * 0.16 + sin(motionTime * 0.28 + p.x * 3.0) * 0.035);
   screenDiskColor = mix(screenDiskColor, vec3(0.58, 0.72, 0.78), upperDisk * 0.24);
+  float wideDiskGlow = exp(-abs(p.y - diskWave) * 22.0) * screenDiskSpan * (0.58 + diskNoise * 0.42);
+  float upperArcGlow = exp(-abs(p.y - arcLift) * 15.0) * screenDiskSpan * smoothstep(0.13, 0.46, abs(p.x));
+  float lowerArcGlow = exp(-abs(p.y + arcLift * 0.86) * 16.0) * screenDiskSpan * smoothstep(0.12, 0.42, abs(p.x));
+  float outerDiskGlow = (wideDiskGlow * 0.18 + upperArcGlow * 0.105 + lowerArcGlow * 0.12) * uDiskOpacity * diskRightFade * edgeFade;
+  vec3 outerGlowColor = mix(vec3(0.20, 0.36, 0.44), vec3(0.78, 0.84, 0.82), smoothstep(0.36, 0.86, diskNoise));
+  outerGlowColor = mix(outerGlowColor, vec3(0.86, 0.76, 0.45), thinDisk * 0.14);
   float screenRemaining = 1.0 - diskAlpha;
   diskColor += screenDiskColor * screenDiskAlpha * screenRemaining;
   diskAlpha += screenDiskAlpha * screenRemaining;
@@ -180,8 +186,9 @@ void main() {
   float photonRing = exp(-abs(minR - rs * 1.38) * 28.0) * rightFade * edgeFade * rimShimmer;
   float screenHorizon = (1.0 - smoothstep(0.125, 0.18, r)) * diskRightFade * edgeFade;
   float screenRim = exp(-abs(r - 0.18) * 42.0) * diskRightFade * edgeFade * rimShimmer;
+  float softRimGlow = exp(-abs(r - 0.205) * 15.0) * diskRightFade * edgeFade * (0.72 + rimShimmer * 0.28);
   float horizonSilhouette = captured * rightFade * edgeFade;
-  float lensHaze = lensFalloff * (0.13 + 0.05 * fbm(uv * 2.2 + vec2(motionTime * 0.045, -motionTime * 0.018)));
+  float lensHaze = lensFalloff * (0.16 + 0.07 * fbm(uv * 2.2 + vec2(motionTime * 0.045, -motionTime * 0.018)));
   float upperArc = exp(-abs(r - 0.36) * 11.0) * smoothstep(0.02, 0.16, abs(p.y)) * rightFade * (0.085 + sin(motionTime * 0.2) * 0.012);
 
   vec3 color = vec3(0.0);
@@ -196,14 +203,20 @@ void main() {
   color += vec3(0.62, 0.74, 0.78) * upperArc;
   alpha += upperArc;
 
+  color += outerGlowColor * outerDiskGlow;
+  alpha += outerDiskGlow * 0.18;
+
   color = mix(color, diskColor, clamp(diskAlpha, 0.0, 0.86));
   alpha = alpha + diskAlpha * rightFade * edgeFade * (1.0 - alpha);
 
-  color += vec3(0.82, 0.90, 0.90) * photonRing * 0.24;
-  alpha += photonRing * 0.16;
+  color += vec3(0.82, 0.90, 0.90) * photonRing * 0.34;
+  alpha += photonRing * 0.2;
 
-  color += vec3(0.82, 0.88, 0.86) * screenRim * 0.1;
-  alpha += screenRim * 0.06;
+  color += vec3(0.62, 0.78, 0.82) * softRimGlow * 0.2;
+  alpha += softRimGlow * 0.08;
+
+  color += vec3(0.86, 0.91, 0.88) * screenRim * 0.18;
+  alpha += screenRim * 0.08;
 
   color = mix(color, vec3(0.0), max(horizonSilhouette, screenHorizon) * 0.96);
   alpha = max(alpha, max(horizonSilhouette * 0.92, screenHorizon * 0.9));
