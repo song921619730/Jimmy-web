@@ -67,14 +67,18 @@ export function Hero({ language }: HeroProps) {
           <strong>{profile.currentCompany}</strong>
           <span>{profile.currentPeriod}</span>
         </article>
-        {profile.resumeHighlights.map((item) => (
-          <article className="resume-card" key={item.label}>
-            <p>{item.label}</p>
-            <h3>{item.title}</h3>
-            <strong>{item.meta}</strong>
-            <span>{item.detail}</span>
-          </article>
-        ))}
+        <div className="resume-highlights">
+          {profile.resumeHighlights.map((item) => (
+            <article className="resume-card resume-highlight-card" key={item.label}>
+              <div className="resume-highlight-heading">
+                <p>{item.label}</p>
+                <h3>{item.title}</h3>
+              </div>
+              <strong>{item.meta}</strong>
+              <span>{item.detail}</span>
+            </article>
+          ))}
+        </div>
       </div>
 
       <div className="hero-details-grid" aria-label={copy.hero.detailsLabel}>
