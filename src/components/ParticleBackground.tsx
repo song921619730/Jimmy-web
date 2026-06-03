@@ -15,6 +15,18 @@ type Star = {
   twinkle: number;
   drift: number;
   color: string;
+  cluster: number;
+  halo: number;
+};
+
+type StarCluster = {
+  x: number;
+  y: number;
+  radiusX: number;
+  radiusY: number;
+  density: number;
+  core: number;
+  tint: string;
 };
 
 type TrailPoint = {
@@ -78,6 +90,11 @@ function starColor() {
   return "112, 132, 144";
 }
 
+function clusterStarColor(tint: string) {
+  if (Math.random() > 0.18) return tint;
+  return starColor();
+}
+
 export function ParticleBackground() {
   const layerRef = useRef<HTMLDivElement | null>(null);
   const blackHoleCanvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -111,6 +128,56 @@ export function ParticleBackground() {
       if (width < 1040) return { x: 0.99, y: 0.59 };
       if (width < 1320) return { x: 0.955, y: 0.61 };
       return { x: 0.92, y: 0.62 };
+    };
+
+    const getStarClusters = (): StarCluster[] => {
+      const lensCenter = getLensCenter();
+      const mobileScale = width < MOBILE_BREAKPOINT ? 0.72 : 1;
+
+      return [
+        {
+          x: width * 0.13,
+          y: height * 0.18,
+          radiusX: width * 0.22 * mobileScale,
+          radiusY: height * 0.18 * mobileScale,
+          density: width < MOBILE_BREAKPOINT ? 0.14 : 0.18,
+          core: 0.42,
+          tint: "181, 211, 226",
+        },
+        {
+          x: width * lensCenter.x,
+          y: height * (1 - lensCenter.y),
+          radiusX: width * 0.2,
+          radiusY: height * 0.22,
+          density: width < MOBILE_BREAKPOINT ? 0 : 0.2,
+          core: 0.55,
+          tint: "224, 232, 235",
+        },
+        {
+          x: width * 0.82,
+          y: height * 0.82,
+          radiusX: width * 0.24 * mobileScale,
+          radiusY: height * 0.2 * mobileScale,
+          density: width < MOBILE_BREAKPOINT ? 0.12 : 0.14,
+          core: 0.36,
+          tint: "205, 194, 142",
+        },
+      ];
+    };
+
+    const pickStarCluster = () => {
+      const clusters = getStarClusters().filter((cluster) => cluster.density > 0);
+      const totalDensity = clusters.reduce((total, cluster) => total + cluster.density, 0);
+      let roll = Math.random();
+
+      if (roll > totalDensity) return undefined;
+
+      for (const cluster of clusters) {
+        roll -= cluster.density;
+        if (roll <= 0) return cluster;
+      }
+
+      return undefined;
     };
 
     const createBlackHoleRuntime = (): BlackHoleRuntime | null => {
@@ -184,10 +251,24 @@ export function ParticleBackground() {
     };
 
     const createStar = (): Star => {
-      const edgeBias = Math.random() > 0.48;
+      const cluster = pickStarCluster();
+      const edgeBias = !cluster && Math.random() > 0.48;
       const edgeSide = Math.floor(Math.random() * 4);
       let homeX = Math.random() * width;
       let homeY = Math.random() * height;
+      let clusterStrength = 0;
+      let clusterTint = "";
+
+      if (cluster) {
+        const angle = Math.random() * Math.PI * 2;
+        const radius = Math.pow(Math.random(), 1.85);
+        homeX = cluster.x + Math.cos(angle) * cluster.radiusX * radius;
+        homeY = cluster.y + Math.sin(angle) * cluster.radiusY * radius;
+        homeX = clamp(homeX, 0, width);
+        homeY = clamp(homeY, 0, height);
+        clusterStrength = cluster.core + (1 - radius) * (1 - cluster.core);
+        clusterTint = cluster.tint;
+      }
 
       if (edgeBias) {
         if (edgeSide === 0) homeX = Math.random() * width * 0.22;
@@ -202,18 +283,21 @@ export function ParticleBackground() {
       }
 
       const depth = Math.random();
+      const clusterLift = clusterStrength * (0.28 + depth * 0.34);
       return {
         homeX,
         homeY,
-        x: homeX + (Math.random() - 0.5) * 18,
-        y: homeY + (Math.random() - 0.5) * 18,
+        x: homeX + (Math.random() - 0.5) * (cluster ? 10 : 18),
+        y: homeY + (Math.random() - 0.5) * (cluster ? 10 : 18),
         vx: (Math.random() - 0.5) * 0.1,
         vy: (Math.random() - 0.5) * 0.1,
-        radius: 0.38 + depth * 1.55,
-        alpha: 0.07 + depth * 0.24,
-        twinkle: 0.7 + Math.random() * 2.4,
-        drift: 0.45 + Math.random() * 1.35,
-        color: starColor(),
+        radius: 0.34 + depth * 1.46 + clusterStrength * 0.28,
+        alpha: 0.065 + depth * 0.22 + clusterLift * 0.12,
+        twinkle: 0.7 + Math.random() * 2.4 + clusterStrength * 0.55,
+        drift: 0.45 + Math.random() * 1.35 + clusterStrength * 0.28,
+        color: cluster ? clusterStarColor(clusterTint) : starColor(),
+        cluster: clusterStrength,
+        halo: Math.random() > 0.74 ? clusterStrength : 0,
       };
     };
 
@@ -308,6 +392,36 @@ export function ParticleBackground() {
       blackHole = createBlackHoleRuntime();
     };
 
+    const drawClusterHaze = (time: number) => {
+      const clusters = getStarClusters();
+      context.save();
+      context.globalCompositeOperation = "lighter";
+
+      for (const cluster of clusters) {
+        if (cluster.density <= 0) continue;
+
+        const drift = reduceMotion ? 0 : Math.sin(time * 0.00008 + cluster.x * 0.01) * 7;
+        const alpha = width < MOBILE_BREAKPOINT ? 0.025 : 0.038;
+        const glow = context.createRadialGradient(
+          cluster.x + drift,
+          cluster.y - drift * 0.6,
+          0,
+          cluster.x,
+          cluster.y,
+          Math.max(cluster.radiusX, cluster.radiusY),
+        );
+        glow.addColorStop(0, `rgba(${cluster.tint}, ${alpha})`);
+        glow.addColorStop(0.44, `rgba(${cluster.tint}, ${alpha * 0.36})`);
+        glow.addColorStop(1, `rgba(${cluster.tint}, 0)`);
+        context.fillStyle = glow;
+        context.beginPath();
+        context.ellipse(cluster.x, cluster.y, cluster.radiusX, cluster.radiusY, -0.18, 0, Math.PI * 2);
+        context.fill();
+      }
+
+      context.restore();
+    };
+
     const drawStars = (time: number) => {
       context.save();
       context.globalCompositeOperation = "lighter";
@@ -322,15 +436,26 @@ export function ParticleBackground() {
         context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
         context.fill();
 
-        if (star.radius > 1.38 && alpha > 0.06) {
-          const glowRadius = star.radius * 3.4;
+        if ((star.radius > 1.38 || star.halo > 0.2) && alpha > 0.045) {
+          const glowRadius = star.radius * (3.2 + star.halo * 4.8);
           const glow = context.createRadialGradient(star.x, star.y, 0, star.x, star.y, glowRadius);
-          glow.addColorStop(0, `rgba(${star.color}, ${alpha * 0.16})`);
+          glow.addColorStop(0, `rgba(${star.color}, ${alpha * (0.14 + star.halo * 0.08)})`);
           glow.addColorStop(1, `rgba(${star.color}, 0)`);
           context.fillStyle = glow;
           context.beginPath();
           context.arc(star.x, star.y, glowRadius, 0, Math.PI * 2);
           context.fill();
+        }
+
+        if (star.cluster > 0.7 && star.radius > 1.25 && alpha > 0.055) {
+          context.strokeStyle = `rgba(${star.color}, ${alpha * 0.14})`;
+          context.lineWidth = 0.5;
+          context.beginPath();
+          context.moveTo(star.x - star.radius * 3.8, star.y);
+          context.lineTo(star.x + star.radius * 3.8, star.y);
+          context.moveTo(star.x, star.y - star.radius * 2.2);
+          context.lineTo(star.x, star.y + star.radius * 2.2);
+          context.stroke();
         }
       }
 
@@ -412,6 +537,7 @@ export function ParticleBackground() {
         updateTrail();
       }
 
+      drawClusterHaze(time);
       drawStars(time);
       drawTrail();
       blackHole?.render(time);
@@ -508,10 +634,22 @@ export function ParticleBackground() {
     };
 
     layerMotion.add("(prefers-reduced-motion: no-preference)", () => {
+      const nebulas = gsap.utils.toArray<HTMLElement>(".background-nebula", layer);
       gsap.fromTo(layer, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.25, ease: "power2.out" });
+      gsap.to(nebulas, {
+        x: (index) => [18, -14, 10][index] ?? 12,
+        y: (index) => [-10, 16, -18][index] ?? 10,
+        scale: (index) => [1.035, 1.045, 1.025][index] ?? 1.03,
+        duration: (index) => [18, 22, 26][index] ?? 20,
+        ease: "sine.inOut",
+        stagger: 1.6,
+        repeat: -1,
+        yoyo: true,
+      });
     });
     layerMotion.add("(prefers-reduced-motion: reduce)", () => {
       gsap.set(layer, { autoAlpha: 0.72 });
+      gsap.set(".background-nebula", { clearProps: "transform" });
     });
 
     rebuildScene();
@@ -548,6 +686,7 @@ export function ParticleBackground() {
     <div className="particle-background" ref={layerRef} aria-hidden="true">
       <div className="background-nebula background-nebula-a" />
       <div className="background-nebula background-nebula-b" />
+      <div className="background-nebula background-nebula-c" />
       <canvas className="black-hole-webgl-canvas" ref={blackHoleCanvasRef} />
       <canvas className="starfield-canvas" ref={starCanvasRef} />
     </div>

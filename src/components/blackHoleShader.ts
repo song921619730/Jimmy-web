@@ -64,24 +64,6 @@ float starSample(vec2 uv, float scale, float threshold) {
   return star * step(threshold, seed) * mix(0.45, 1.0, hash12(cell + 8.8));
 }
 
-float starStreakSample(vec2 uv, float scale, float threshold, vec2 flow, float lengthBoost) {
-  vec2 grid = uv * scale;
-  vec2 cell = floor(grid);
-  vec2 local = fract(grid) - 0.5;
-  float seed = hash12(cell);
-  vec2 offset = vec2(hash12(cell + 17.13), hash12(cell + 41.71)) - 0.5;
-  vec2 delta = local - offset * 0.58;
-  vec2 direction = normalize(flow);
-  vec2 normal = vec2(-direction.y, direction.x);
-  float along = abs(dot(delta, direction));
-  float across = abs(dot(delta, normal));
-  float length = mix(0.24, 0.46, hash12(cell + 3.19)) * lengthBoost;
-  float width = mix(0.018, 0.036, hash12(cell + 8.8));
-  float body = smoothstep(width, 0.0, across) * (1.0 - smoothstep(length * 0.72, length, along));
-  float core = smoothstep(width * 0.46, 0.0, across) * (1.0 - smoothstep(length * 0.18, length * 0.82, along));
-  return (body * 0.62 + core * 0.38) * step(threshold, seed) * mix(0.46, 1.0, hash12(cell + 14.8));
-}
-
 vec3 diskPalette(float radialHeat, float turbulence, float doppler) {
   vec3 cold = vec3(0.28, 0.43, 0.50);
   vec3 silver = vec3(0.74, 0.82, 0.84);
@@ -120,16 +102,10 @@ void main() {
   bentUv.x += (0.012 + sin(motionTime * 0.15 + p.y * 8.0) * 0.002) * lensFalloff;
 
   float stars = 0.0;
-  vec2 orbitalFlow = normalize(vec2(tangent.x / max(aspect, 0.0001), tangent.y));
-  vec2 primaryStarsUv = bentUv + orbitalFlow * motionTime * 0.0028;
-  vec2 secondaryScale = vec2(1.35, 0.85);
-  vec2 secondaryFlow = orbitalFlow * secondaryScale;
-  vec2 secondaryStarsUv = bentUv * secondaryScale + vec2(31.1, 9.7) + secondaryFlow * motionTime * 0.00175;
-  stars += starStreakSample(primaryStarsUv, 64.0, 0.952, orbitalFlow, 1.32);
-  stars += starStreakSample(secondaryStarsUv, 96.0, 0.968, secondaryFlow, 1.24) * 0.72;
+  stars += starSample(bentUv + vec2(motionTime * 0.0032, -motionTime * 0.0014), 92.0, 0.978);
+  stars += starSample(bentUv * vec2(1.35, 0.85) + vec2(31.1 + motionTime * 0.002, 9.7), 168.0, 0.991) * 0.65;
   float arcBoost = exp(-abs(r - 0.28) * 14.0) * (0.32 + 0.68 * abs(dot(tangent, vec2(1.0, 0.0))));
   stars *= (0.35 + lensFalloff * 1.2 + arcBoost * rightFade);
-
   vec3 starColor = mix(vec3(0.46, 0.60, 0.66), vec3(0.84, 0.90, 0.91), clamp(stars * 2.3, 0.0, 1.0));
 
   vec3 origin = vec3(0.0, 0.16, 3.05);

@@ -56,10 +56,11 @@ body.modal-open {
   isolation: isolate;
   contain: layout paint style;
   background:
-    radial-gradient(circle at 9% 13%, rgba(138, 174, 190, 0.14), transparent 32%),
-    radial-gradient(circle at 95% 24%, rgba(205, 194, 142, 0.055), transparent 30%),
-    radial-gradient(circle at 78% 80%, rgba(178, 190, 128, 0.045), transparent 34%),
-    linear-gradient(145deg, #000 0%, #040607 42%, #090b0d 70%, #000 100%);
+    radial-gradient(circle at 9% 13%, rgba(138, 174, 190, 0.13), transparent 31%),
+    radial-gradient(circle at 95% 24%, rgba(205, 194, 142, 0.05), transparent 28%),
+    radial-gradient(circle at 82% 78%, rgba(178, 190, 128, 0.04), transparent 32%),
+    radial-gradient(ellipse at 45% 110%, rgba(62, 91, 105, 0.09), transparent 46%),
+    linear-gradient(145deg, #000 0%, #030506 38%, #080b0d 72%, #000 100%);
 }
 
 .particle-background::before,
@@ -104,27 +105,67 @@ body.modal-open {
   filter: blur(36px) saturate(0.76);
 }
 
-.background-nebula-a {
-  left: -18vw;
-  top: 2vh;
-  width: min(700px, 62vw);
-  height: min(560px, 54vw);
+.background-nebula::before,
+.background-nebula::after {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.background-nebula::before {
   background:
-    radial-gradient(ellipse at 34% 48%, rgba(135, 185, 205, 0.17), transparent 54%),
-    radial-gradient(ellipse at 68% 24%, rgba(74, 104, 120, 0.12), transparent 46%),
-    radial-gradient(ellipse at 52% 72%, rgba(191, 200, 203, 0.06), transparent 48%);
+    radial-gradient(circle at 28% 34%, rgba(255, 255, 255, 0.055), transparent 5%),
+    radial-gradient(circle at 66% 26%, rgba(255, 255, 255, 0.04), transparent 4%),
+    radial-gradient(circle at 48% 68%, rgba(205, 214, 216, 0.035), transparent 6%);
+  filter: blur(7px);
+}
+
+.background-nebula::after {
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 38% 50%, transparent 18%, rgba(0, 0, 0, 0.18) 58%, transparent 82%),
+    linear-gradient(115deg, transparent 18%, rgba(255, 255, 255, 0.022) 42%, transparent 68%);
+  mix-blend-mode: overlay;
+}
+
+.background-nebula-a {
+  left: -20vw;
+  top: -1vh;
+  width: min(760px, 66vw);
+  height: min(590px, 56vw);
+  background:
+    radial-gradient(ellipse at 34% 48%, rgba(135, 185, 205, 0.18), transparent 54%),
+    radial-gradient(ellipse at 68% 24%, rgba(74, 104, 120, 0.13), transparent 46%),
+    radial-gradient(ellipse at 52% 72%, rgba(191, 200, 203, 0.07), transparent 48%),
+    radial-gradient(ellipse at 24% 24%, rgba(235, 241, 239, 0.04), transparent 32%);
 }
 
 .background-nebula-b {
-  right: -12vw;
-  bottom: -4vh;
-  width: min(760px, 68vw);
-  height: min(620px, 58vw);
-  opacity: 0.3;
+  right: -14vw;
+  bottom: -5vh;
+  width: min(820px, 70vw);
+  height: min(660px, 60vw);
+  opacity: 0.32;
   background:
-    radial-gradient(ellipse at 56% 42%, rgba(96, 146, 168, 0.14), transparent 56%),
-    radial-gradient(ellipse at 24% 70%, rgba(178, 190, 128, 0.055), transparent 42%),
-    radial-gradient(ellipse at 78% 64%, rgba(205, 194, 142, 0.045), transparent 44%);
+    radial-gradient(ellipse at 56% 42%, rgba(96, 146, 168, 0.145), transparent 56%),
+    radial-gradient(ellipse at 24% 70%, rgba(178, 190, 128, 0.06), transparent 42%),
+    radial-gradient(ellipse at 78% 64%, rgba(205, 194, 142, 0.048), transparent 44%),
+    radial-gradient(ellipse at 52% 18%, rgba(216, 226, 224, 0.035), transparent 34%);
+}
+
+.background-nebula-c {
+  right: -6vw;
+  top: 18vh;
+  width: min(620px, 52vw);
+  height: min(520px, 44vw);
+  opacity: 0.24;
+  filter: blur(32px) saturate(0.68);
+  background:
+    radial-gradient(ellipse at 42% 48%, rgba(180, 199, 205, 0.13), transparent 54%),
+    radial-gradient(ellipse at 72% 50%, rgba(226, 218, 168, 0.052), transparent 42%),
+    radial-gradient(ellipse at 38% 72%, rgba(74, 104, 120, 0.105), transparent 50%);
 }
 
 .black-hole-webgl-canvas,
@@ -170,6 +211,14 @@ body.modal-open {
     right: -44vw;
     width: 96vw;
     height: 84vw;
+  }
+
+  .background-nebula-c {
+    right: -42vw;
+    top: 32vh;
+    width: 88vw;
+    height: 72vw;
+    opacity: 0.14;
   }
 
   .black-hole-webgl-canvas {
