@@ -1,6 +1,6 @@
 import { ArrowUpRight, Images } from "lucide-react";
 import type { CSSProperties } from "react";
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { Language } from "../data/i18n";
@@ -25,6 +25,8 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
   const activeIndexRef = useRef(0);
   const suppressActivationRef = useRef(false);
   const previousLanguageRef = useRef(language);
+  const [activeVisualIndex, setActiveVisualIndex] = useState(0);
+  const [showcaseReady, setShowcaseReady] = useState(false);
   const copy = uiCopy[language].selectedWorks;
   const preparedProjects = projects.map((project) => {
     const projectMedia = mediaByProject[project.slug] ?? [];
@@ -40,6 +42,30 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
     const support = [...hintedSupport, ...fallbackSupport].slice(0, 3);
     return { project, cover, support, count: projectMedia.length };
   });
+
+  useEffect(() => {
+    const showcase = showcaseRef.current;
+    if (!showcase || showcaseReady) return undefined;
+
+    if (!("IntersectionObserver" in window)) {
+      setShowcaseReady(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShowcaseReady(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "900px 0px" },
+    );
+
+    observer.observe(showcase);
+
+    return () => observer.disconnect();
+  }, [showcaseReady]);
 
   useEffect(() => {
     const showcase = showcaseRef.current;
@@ -67,6 +93,7 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
         const currentIndex = activeIndexRef.current;
         const direction = nextIndex > currentIndex ? 1 : -1;
         activeIndexRef.current = nextIndex;
+        setActiveVisualIndex(nextIndex);
         showcase.dataset.active = String(nextIndex);
 
         gsap.killTweensOf([...visualPanels, ...copyPanels, ...progressBars]);
@@ -159,6 +186,7 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
 
       gsap.set(progressBars, { backgroundColor: "rgba(255, 255, 255, 0.18)", scaleX: 1 });
       gsap.set(progressBars[activeIndex], { backgroundColor: "#fff" });
+      setActiveVisualIndex(activeIndex);
       ScrollTrigger.refresh();
 
       window.setTimeout(() => {
@@ -212,6 +240,7 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
           <div className="switch-visual-stack">
             {preparedProjects.map(({ project, cover, support }, projectIndex) => {
               const visualItems = [cover, ...support].filter((item): item is GeneratedMediaItem => Boolean(item));
+              const renderPanelMedia = showcaseReady && Math.abs(projectIndex - activeVisualIndex) <= 1;
 
               return (
                 <div
@@ -227,7 +256,9 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
                       key={item.id}
                       onClick={() => onOpenProject(project, item.id)}
                     >
-                      {item.type === "video" ? (
+                      {!renderPanelMedia ? (
+                        <span className="switch-media-placeholder" aria-hidden="true" />
+                      ) : item.type === "video" ? (
                         <video src={item.src} muted playsInline loop preload="metadata" autoPlay={itemIndex === 0} />
                       ) : (
                         <OptimizedImage
