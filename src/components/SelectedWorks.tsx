@@ -28,7 +28,15 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
   const preparedProjects = projects.map((project) => {
     const projectMedia = mediaByProject[project.slug] ?? [];
     const cover = projectMedia.find((item) => item.id === project.coverHint) ?? projectMedia[0];
-    const support = projectMedia.filter((item) => item.id !== cover?.id).slice(0, 3);
+    const usedIds = new Set(cover ? [cover.id] : []);
+    const hintedSupport = (project.previewHints ?? []).flatMap((id) => {
+      const item = projectMedia.find((candidate) => candidate.id === id);
+      if (!item || usedIds.has(item.id)) return [];
+      usedIds.add(item.id);
+      return [item];
+    });
+    const fallbackSupport = projectMedia.filter((item) => !usedIds.has(item.id));
+    const support = [...hintedSupport, ...fallbackSupport].slice(0, 3);
     return { project, cover, support, count: projectMedia.length };
   });
 

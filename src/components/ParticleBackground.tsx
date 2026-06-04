@@ -43,6 +43,12 @@ type TrailPoint = {
   swirl: number;
 };
 
+type PointerSample = {
+  x: number;
+  y: number;
+  time: number;
+};
+
 type Meteor = {
   x: number;
   y: number;
@@ -61,6 +67,12 @@ type Meteor = {
   wave: number;
 };
 
+type DelayedMeteorBurst = {
+  previous: PointerSample;
+  current: PointerSample;
+  spawnAt: number;
+};
+
 type SafeZone = {
   left: number;
   top: number;
@@ -74,7 +86,11 @@ type BlackHoleRuntime = {
 };
 
 const MOBILE_BREAKPOINT = 760;
-const MAX_METEORS = 56;
+const MAX_METEORS = 28;
+const MAX_PENDING_METEOR_BURSTS = 36;
+const METEOR_DELAY_MIN = 450;
+const METEOR_DELAY_MAX = 1050;
+const IMMEDIATE_METEOR_COOLDOWN = 220;
 const SAFE_ZONE_SELECTOR = [
   ".hero-copy-block",
   ".hero-resume-grid",
@@ -153,13 +169,15 @@ export function ParticleBackground() {
     let stars: Star[] = [];
     let trail: TrailPoint[] = [];
     let meteors: Meteor[] = [];
+    let delayedMeteorBursts: DelayedMeteorBurst[] = [];
     let safeZones: SafeZone[] = [];
     let frameId = 0;
     let safeZoneFrameId = 0;
     let resizeTimer: number | undefined;
     let running = false;
     let blackHole: BlackHoleRuntime | null = null;
-    let lastPointer: { x: number; y: number; time: number } | null = null;
+    let lastPointer: PointerSample | null = null;
+    let lastImmediateMeteorTime = -Infinity;
     let pointerUniform = new THREE.Vector2(-1, -1);
     const layerMotion = gsap.matchMedia();
 
@@ -422,9 +440,11 @@ export function ParticleBackground() {
       context.setTransform(dpr, 0, 0, dpr, 0, 0);
 
       lastPointer = null;
+      lastImmediateMeteorTime = -Infinity;
       pointerUniform = new THREE.Vector2(-1, -1);
       trail = [];
       meteors = [];
+      delayedMeteorBursts = [];
       stars = createStars();
       collectSafeZones();
 
@@ -543,8 +563,9 @@ export function ParticleBackground() {
     };
 
     const spawnMeteors = (
-      previous: { x: number; y: number; time: number },
-      current: { x: number; y: number; time: number },
+      previous: PointerSample,
+      current: PointerSample,
+      options: { immediate?: boolean; limit?: number } = {},
     ) => {
       const dx = current.x - previous.x;
       const dy = current.y - previous.y;
@@ -564,21 +585,22 @@ export function ParticleBackground() {
       const perpendicularX = -showerDirection.y;
       const perpendicularY = showerDirection.x;
       const count = clamp(
-        Math.floor(distance / (isMobile ? 58 : 38)) + (pointerSpeed > 1.1 ? 1 : 0),
+        Math.floor(distance / (isMobile ? 130 : 112)) + (pointerSpeed > 1.55 && Math.random() > 0.45 ? 1 : 0),
         1,
-        isMobile ? 3 : 5,
+        isMobile ? 1 : 2,
       );
+      const meteorCount = options.limit ? Math.min(count, options.limit) : count;
 
-      for (let index = 0; index < count; index += 1) {
-        const progress = (index + Math.random()) / count;
+      for (let index = 0; index < meteorCount; index += 1) {
+        const progress = options.immediate ? randomBetween(0.72, 1) : (index + Math.random()) / meteorCount;
         const baseX = previous.x + dx * progress;
         const baseY = previous.y + dy * progress;
         const rawReadability = pointReadabilityMultiplier(baseX, baseY);
         const readability = Math.max(rawReadability, 0.28);
         if (rawReadability < 0.1 && Math.random() < 0.55) continue;
 
-        const scatter = randomBetween(isMobile ? -38 : -74, isMobile ? 38 : 74);
-        const lag = randomBetween(isMobile ? 18 : 28, isMobile ? 76 : 118);
+        const scatter = options.immediate ? randomBetween(isMobile ? -14 : -24, isMobile ? 14 : 24) : randomBetween(isMobile ? -38 : -74, isMobile ? 38 : 74);
+        const lag = options.immediate ? randomBetween(isMobile ? 8 : 12, isMobile ? 26 : 34) : randomBetween(isMobile ? 18 : 28, isMobile ? 76 : 118);
         const speed =
           randomBetween(isMobile ? 7.2 : 9.6, isMobile ? 13.8 : 19.5) +
           clamp(pointerSpeed * 5.8, 0, isMobile ? 6.2 : 10.5);
@@ -586,6 +608,27 @@ export function ParticleBackground() {
         const startY = baseY + perpendicularY * scatter - showerDirection.y * lag;
         const jitterX = randomBetween(-0.26, 0.26);
         const jitterY = randomBetween(-0.2, 0.2);
+        const lengthRoll = Math.random();
+        const meteorLength =
+          lengthRoll > 0.84
+            ? randomBetween(isMobile ? 210 : 360, isMobile ? 320 : 560)
+            : lengthRoll < 0.38
+              ? randomBetween(isMobile ? 72 : 130, isMobile ? 128 : 190)
+              : randomBetween(isMobile ? 132 : 220, isMobile ? 210 : 330);
+        const widthRoll = Math.random();
+        const meteorWidth =
+          widthRoll > 0.78
+            ? randomBetween(isMobile ? 1.35 : 1.75, isMobile ? 2.45 : 3.15)
+            : widthRoll < 0.36
+              ? randomBetween(isMobile ? 0.55 : 0.68, isMobile ? 0.98 : 1.16)
+              : randomBetween(isMobile ? 0.92 : 1.05, isMobile ? 1.58 : 2.08);
+        const brightnessRoll = Math.random();
+        const baseAlpha =
+          brightnessRoll > 0.82
+            ? randomBetween(0.48, 0.78)
+            : brightnessRoll < 0.42
+              ? randomBetween(0.1, 0.24)
+              : randomBetween(0.25, 0.46);
 
         meteors.push({
           x: startX,
@@ -597,16 +640,48 @@ export function ParticleBackground() {
           ax: showerDirection.x * randomBetween(0.012, 0.032),
           ay: showerDirection.y * randomBetween(0.012, 0.032) + randomBetween(0.002, 0.009),
           age: Math.floor(randomBetween(0, 3)),
-          life: Math.floor(randomBetween(isMobile ? 26 : 34, isMobile ? 40 : 56)),
-          length: randomBetween(isMobile ? 92 : 138, isMobile ? 164 : 268),
-          width: randomBetween(isMobile ? 0.95 : 1.18, isMobile ? 2.1 : 3.25),
-          alpha: clamp((0.24 + pointerSpeed * 0.26 + Math.random() * 0.22) * readability, 0.08, 0.72),
+          life: Math.floor(randomBetween(isMobile ? 24 : 30, isMobile ? 42 : 58)),
+          length: meteorLength,
+          width: meteorWidth,
+          alpha: clamp((baseAlpha + pointerSpeed * 0.11) * readability, 0.04, 0.78),
           color: meteorColor(),
           wave: Math.random() * Math.PI * 2,
         });
       }
 
       meteors = meteors.slice(-MAX_METEORS);
+    };
+
+    const queueMeteorBurst = (previous: PointerSample, current: PointerSample) => {
+      const dx = current.x - previous.x;
+      const dy = current.y - previous.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance < 18) return;
+
+      const isMobile = width < MOBILE_BREAKPOINT;
+      const queueChance = clamp(distance / (isMobile ? 190 : 160), isMobile ? 0.12 : 0.24, isMobile ? 0.28 : 0.52);
+      if (Math.random() > queueChance) return;
+
+      delayedMeteorBursts.push({
+        previous,
+        current,
+        spawnAt: current.time + randomBetween(METEOR_DELAY_MIN, METEOR_DELAY_MAX),
+      });
+      delayedMeteorBursts = delayedMeteorBursts.slice(-MAX_PENDING_METEOR_BURSTS);
+    };
+
+    const releaseDelayedMeteors = (time: number) => {
+      if (delayedMeteorBursts.length === 0) return;
+
+      const pending: DelayedMeteorBurst[] = [];
+      for (const burst of delayedMeteorBursts) {
+        if (time >= burst.spawnAt) {
+          spawnMeteors(burst.previous, burst.current);
+        } else {
+          pending.push(burst);
+        }
+      }
+      delayedMeteorBursts = pending;
     };
 
     const updateMeteors = () => {
@@ -651,7 +726,7 @@ export function ParticleBackground() {
         const speed = Math.sqrt(meteor.vx * meteor.vx + meteor.vy * meteor.vy);
         const direction = normalizeVector(meteor.vx, meteor.vy, 0.78, 0.62);
         const shimmer = 0.88 + Math.sin(time * 0.012 + meteor.wave) * 0.12;
-        const tailLength = meteor.length * (0.78 + speed * 0.015) * (0.82 + progress * 0.22);
+        const tailLength = meteor.length * (0.86 + speed * 0.016) * (1 - smoothstep(0.78, 1, progress) * 0.26);
         const tailX = meteor.x - direction.x * tailLength;
         const tailY = meteor.y - direction.y * tailLength;
         const bend = Math.sin(time * 0.004 + meteor.wave) * meteor.width * 3.8;
@@ -727,6 +802,7 @@ export function ParticleBackground() {
       if (!reduceMotion) {
         updateStars(time);
         updateTrail();
+        releaseDelayedMeteors(time);
         updateMeteors();
       }
 
@@ -770,10 +846,11 @@ export function ParticleBackground() {
     const handlePointerMove = (event: PointerEvent) => {
       if (width <= 0 || height <= 0) return;
       pointerUniform.set(event.clientX / width, 1 - event.clientY / height);
+      const now = performance.now();
       const currentPointer = {
         x: event.clientX,
         y: event.clientY,
-        time: event.timeStamp || performance.now(),
+        time: event.timeStamp > now + 5000 ? now : event.timeStamp || now,
       };
       if (reduceMotion) return;
 
@@ -792,7 +869,12 @@ export function ParticleBackground() {
 
       const isMobile = width < MOBILE_BREAKPOINT;
       const readability = pointReadabilityMultiplier(currentPointer.x, currentPointer.y);
-      spawnMeteors(previous, currentPointer);
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance >= (isMobile ? 38 : 46) && currentPointer.time - lastImmediateMeteorTime > IMMEDIATE_METEOR_COOLDOWN) {
+        spawnMeteors(previous, currentPointer, { immediate: true, limit: 1 });
+        lastImmediateMeteorTime = currentPointer.time;
+      }
+      queueMeteorBurst(previous, currentPointer);
       trail.push({
         x: currentPointer.x,
         y: currentPointer.y,
@@ -813,6 +895,7 @@ export function ParticleBackground() {
     const handlePointerLeave = () => {
       pointerUniform.set(-1, -1);
       lastPointer = null;
+      lastImmediateMeteorTime = -Infinity;
     };
 
     const handleMotionChange = () => {

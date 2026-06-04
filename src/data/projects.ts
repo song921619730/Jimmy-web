@@ -10,12 +10,19 @@ export type Project = {
   detail: string;
   accent: string;
   coverHint: string;
+  previewHints?: readonly string[];
   tags: string[];
 };
 
 const projectMeta = [
   { slug: "spacesuit", year: "2024", accent: "#6f8c9a", coverHint: "spacesuit-000" },
-  { slug: "cloth", year: "2020-2026", accent: "#b54848", coverHint: "cloth-002" },
+  {
+    slug: "cloth",
+    year: "2020-2026",
+    accent: "#b54848",
+    coverHint: "cloth-116",
+    previewHints: ["cloth-028", "cloth-007", "cloth-006"],
+  },
   { slug: "nba2k", year: "2022-2026", accent: "#d93226", coverHint: "nba2k-000" },
   { slug: "pubg-mobile", year: "2020-2024", accent: "#997247", coverHint: "pubg-mobile-000" },
   { slug: "substance-designer", year: "2024", accent: "#788f2f", coverHint: "substance-designer-000" },

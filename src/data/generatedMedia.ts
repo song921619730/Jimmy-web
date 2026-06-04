@@ -388,28 +388,6 @@ const generatedMediaData = [
     "ratio": 1.7777777777777777
   },
   {
-    "id": "cloth-000",
-    "project": "cloth",
-    "type": "image",
-    "alt": "cloth 0.1.jpg",
-    "thumb": "media/thumbs/cloth-000.webp",
-    "src": "media/originals/cloth-000.jpg",
-    "width": 2008,
-    "height": 10000,
-    "ratio": 0.2008
-  },
-  {
-    "id": "cloth-001",
-    "project": "cloth",
-    "type": "image",
-    "alt": "cloth 0.jpg",
-    "thumb": "media/thumbs/cloth-001.webp",
-    "src": "media/originals/cloth-001.jpg",
-    "width": 2008,
-    "height": 10000,
-    "ratio": 0.2008
-  },
-  {
     "id": "cloth-002",
     "project": "cloth",
     "type": "image",
@@ -2278,17 +2256,6 @@ const generatedMediaData = [
     "width": 3633,
     "height": 1034,
     "ratio": 3.513539651837524
-  },
-  {
-    "id": "props-006",
-    "project": "props",
-    "type": "image",
-    "alt": "props 7.png",
-    "thumb": "media/thumbs/props-006.webp",
-    "src": "media/originals/props-006.png",
-    "width": 3412,
-    "height": 797,
-    "ratio": 4.281053952321204
   },
   {
     "id": "props-007",
