@@ -7,6 +7,7 @@ import type { GeneratedMediaItem } from "../data/generatedMedia";
 import type { Language } from "../data/i18n";
 import { uiCopy } from "../data/i18n";
 import type { Project } from "../data/projects";
+import { OptimizedImage } from "./OptimizedImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -218,10 +219,19 @@ export function WorkModal({ language, project, media, initialMediaId, onClose }:
                   key={`${item.id}-${index}`}
                   data-active={index === activeIndex ? "true" : "false"}
                 >
-                  {item.type === "video" ? (
-                    <video src={item.src} controls playsInline preload="metadata" />
+                  {index >= Math.max(activeIndex - 1, 0) && index <= activeIndex + 2 ? (
+                    item.type === "video" ? (
+                      <video src={item.src} controls playsInline preload="metadata" />
+                    ) : (
+                      <OptimizedImage
+                        item={item}
+                        sizes="(max-width: 760px) calc(100vw - 24px), min(100vw - 48px, 1920px)"
+                        alt={item.alt}
+                        loading={index <= activeIndex + 1 ? "eager" : "lazy"}
+                      />
+                    )
                   ) : (
-                    <img src={item.src} alt={item.alt} loading={index <= activeIndex + 1 ? "eager" : "lazy"} />
+                    <span className="stack-media-placeholder" aria-hidden="true" />
                   )}
                 </figure>
               ))}

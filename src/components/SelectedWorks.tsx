@@ -8,6 +8,7 @@ import { uiCopy } from "../data/i18n";
 import type { Project } from "../data/projects";
 import type { GeneratedMediaItem } from "../data/generatedMedia";
 import { useGsapReveal } from "../hooks/useGsapReveal";
+import { OptimizedImage } from "./OptimizedImage";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -209,7 +210,7 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
           </div>
 
           <div className="switch-visual-stack">
-            {preparedProjects.map(({ project, cover, support }) => {
+            {preparedProjects.map(({ project, cover, support }, projectIndex) => {
               const visualItems = [cover, ...support].filter((item): item is GeneratedMediaItem => Boolean(item));
 
               return (
@@ -227,9 +228,19 @@ export function SelectedWorks({ language, projects, mediaByProject, onOpenProjec
                       onClick={() => onOpenProject(project, item.id)}
                     >
                       {item.type === "video" ? (
-                        <video src={item.src} muted playsInline loop autoPlay={itemIndex === 0} />
+                        <video src={item.src} muted playsInline loop preload="metadata" autoPlay={itemIndex === 0} />
                       ) : (
-                        <img src={itemIndex === 0 ? item.src : item.thumb || item.src} alt={item.alt} loading="lazy" />
+                        <OptimizedImage
+                          item={item}
+                          includeLarge={itemIndex === 0}
+                          sizes={
+                            itemIndex === 0
+                              ? "(max-width: 760px) calc(100vw - 68px), min(58vw, 860px)"
+                              : "(max-width: 760px) 1px, min(19vw, 280px)"
+                          }
+                          alt={item.alt}
+                          loading={projectIndex === 0 && itemIndex === 0 ? "eager" : "lazy"}
+                        />
                       )}
                     </button>
                   ))}

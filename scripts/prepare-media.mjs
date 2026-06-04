@@ -1,4 +1,4 @@
-import { copyFile, mkdir, readdir, writeFile } from "node:fs/promises";
+import { copyFile, mkdir, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
@@ -34,15 +34,80 @@ function publicPath(...parts) {
   return parts.join("/").replace(/\\/g, "/");
 }
 
-async function ensureOutputDirs() {
+function stableMediaIndex(projectSlug, index) {
+  if (projectSlug === "cloth") return index + 2;
+  if (projectSlug === "props" && index >= 6) return index + 1;
+  return index;
+}
+
+const imageVariants = {
+  thumb: {
+    dir: "thumbs",
+    width: 720,
+    height: 720,
+    webpQuality: 78,
+    avifQuality: 62,
+  },
+  large: {
+    dir: "large",
+    width: 1920,
+    height: 1920,
+    webpQuality: 88,
+    avifQuality: 74,
+  },
+};
+
+async function resetOutputDirs() {
+  await Promise.all([
+    rm(path.join(mediaDir, "thumbs"), { recursive: true, force: true }),
+    rm(path.join(mediaDir, "large"), { recursive: true, force: true }),
+    rm(path.join(mediaDir, "posters"), { recursive: true, force: true }),
+    rm(path.join(mediaDir, "videos"), { recursive: true, force: true }),
+    rm(path.join(mediaDir, "originals"), { recursive: true, force: true }),
+  ]);
+
   await Promise.all([
     mkdir(path.join(mediaDir, "thumbs"), { recursive: true }),
     mkdir(path.join(mediaDir, "large"), { recursive: true }),
-    mkdir(path.join(mediaDir, "originals"), { recursive: true }),
     mkdir(path.join(mediaDir, "posters"), { recursive: true }),
     mkdir(path.join(mediaDir, "videos"), { recursive: true }),
     mkdir(path.dirname(dataFile), { recursive: true }),
   ]);
+}
+
+async function writeImageVariant(source, stem, variant) {
+  const webpName = `${stem}.webp`;
+  const avifName = `${stem}.avif`;
+  const webpFile = path.join(mediaDir, variant.dir, webpName);
+  const avifFile = path.join(mediaDir, variant.dir, avifName);
+  const resizeOptions = {
+    width: variant.width,
+    height: variant.height,
+    fit: "inside",
+    withoutEnlargement: true,
+  };
+
+  await Promise.all([
+    sharp(source)
+      .rotate()
+      .resize(resizeOptions)
+      .webp({ quality: variant.webpQuality, effort: 5, smartSubsample: true })
+      .toFile(webpFile),
+    sharp(source)
+      .rotate()
+      .resize(resizeOptions)
+      .avif({ quality: variant.avifQuality, effort: 5, chromaSubsampling: "4:4:4" })
+      .toFile(avifFile),
+  ]);
+
+  const metadata = await sharp(webpFile).metadata();
+
+  return {
+    webp: publicPath("media", variant.dir, webpName),
+    avif: publicPath("media", variant.dir, avifName),
+    width: metadata.width ?? variant.width,
+    height: metadata.height ?? variant.height,
+  };
 }
 
 async function listProjectFiles(projectName) {
@@ -59,11 +124,8 @@ async function makeImage(projectName, fileName, index) {
   if (!imageExtensions.has(ext)) return null;
 
   const projectSlug = slugify(projectName);
-  const stem = `${projectSlug}-${String(index).padStart(3, "0")}`;
+  const stem = `${projectSlug}-${String(stableMediaIndex(projectSlug, index)).padStart(3, "0")}`;
   const source = path.join(resourceDir, projectName, fileName);
-  const thumbFile = path.join(mediaDir, "thumbs", `${stem}.webp`);
-  const originalName = `${stem}${ext}`;
-  const originalFile = path.join(mediaDir, "originals", originalName);
 
   const image = sharp(source).rotate();
   const metadata = await image.metadata();
@@ -71,13 +133,9 @@ async function makeImage(projectName, fileName, index) {
   const height = metadata.height ?? 0;
   const ratio = width && height ? width / height : 1;
 
-  await Promise.all([
-    sharp(source)
-      .rotate()
-      .resize({ width: 720, height: 720, fit: "inside", withoutEnlargement: true })
-      .webp({ quality: 76 })
-      .toFile(thumbFile),
-    copyFile(source, originalFile),
+  const [thumb, large] = await Promise.all([
+    writeImageVariant(source, stem, imageVariants.thumb),
+    writeImageVariant(source, stem, imageVariants.large),
   ]);
 
   return {
@@ -85,10 +143,16 @@ async function makeImage(projectName, fileName, index) {
     project: projectSlug,
     type: "image",
     alt: `${projectName} ${fileName}`,
-    thumb: publicPath("media", "thumbs", `${stem}.webp`),
-    src: publicPath("media", "originals", originalName),
+    thumb: thumb.webp,
+    thumbAvif: thumb.avif,
+    src: large.webp,
+    srcAvif: large.avif,
     width,
     height,
+    thumbWidth: thumb.width,
+    thumbHeight: thumb.height,
+    srcWidth: large.width,
+    srcHeight: large.height,
     ratio,
   };
 }
@@ -98,7 +162,7 @@ async function makeVideo(projectName, fileName, index) {
   if (!videoExtensions.has(ext)) return null;
 
   const projectSlug = slugify(projectName);
-  const stem = `${projectSlug}-${String(index).padStart(3, "0")}`;
+  const stem = `${projectSlug}-${String(stableMediaIndex(projectSlug, index)).padStart(3, "0")}`;
   const source = path.join(resourceDir, projectName, fileName);
   const videoName = `${stem}${ext}`;
   const target = path.join(mediaDir, "videos", videoName);
@@ -110,27 +174,28 @@ async function makeVideo(projectName, fileName, index) {
     type: "video",
     alt: `${projectName} ${fileName}`,
     thumb: "",
+    thumbAvif: "",
     src: publicPath("media", "videos", videoName),
+    srcAvif: "",
     width: 16,
     height: 9,
+    thumbWidth: 16,
+    thumbHeight: 9,
+    srcWidth: 16,
+    srcHeight: 9,
     ratio: 16 / 9,
   };
 }
 
 async function buildManifest() {
-  await ensureOutputDirs();
+  await resetOutputDirs();
 
-  const projects = (await readdir(resourceDir, { withFileTypes: true }))
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .sort((a, b) => {
-      const ai = projectOrder.indexOf(a);
-      const bi = projectOrder.indexOf(b);
-      if (ai === -1 && bi === -1) return a.localeCompare(b, "zh-Hans-CN");
-      if (ai === -1) return 1;
-      if (bi === -1) return -1;
-      return ai - bi;
-    });
+  const availableProjects = new Set(
+    (await readdir(resourceDir, { withFileTypes: true }))
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name),
+  );
+  const projects = projectOrder.filter((projectName) => availableProjects.has(projectName));
 
   const media = [];
   for (const projectName of projects) {
@@ -155,9 +220,15 @@ export type GeneratedMediaItem = {
   type: "image" | "video";
   alt: string;
   thumb: string;
+  thumbAvif: string;
   src: string;
+  srcAvif: string;
   width: number;
   height: number;
+  thumbWidth: number;
+  thumbHeight: number;
+  srcWidth: number;
+  srcHeight: number;
   ratio: number;
 };
 
@@ -166,7 +237,9 @@ const generatedMediaData = ${JSON.stringify(media, null, 2)} satisfies Generated
 export const generatedMedia = generatedMediaData.map((item) => ({
   ...item,
   thumb: assetUrl(item.thumb),
+  thumbAvif: assetUrl(item.thumbAvif),
   src: assetUrl(item.src),
+  srcAvif: assetUrl(item.srcAvif),
 })) satisfies GeneratedMediaItem[];
 `;
 

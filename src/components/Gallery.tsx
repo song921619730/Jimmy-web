@@ -6,6 +6,7 @@ import { uiCopy } from "../data/i18n";
 import type { Project } from "../data/projects";
 import type { GeneratedMediaItem } from "../data/generatedMedia";
 import { useGsapReveal } from "../hooks/useGsapReveal";
+import { OptimizedImage } from "./OptimizedImage";
 
 type GalleryProps = {
   language: Language;
@@ -62,7 +63,13 @@ export function Gallery({ language, projects, media, onOpenProject }: GalleryPro
               onClick={() => project && onOpenProject(project, item.id)}
               aria-label={`${copy.open} ${project?.title ?? item.project}`}
             >
-              <img src={item.thumb || item.src} alt={item.alt} loading="lazy" />
+              <OptimizedImage
+                item={item}
+                includeLarge={false}
+                sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1040px) 46vw, 24vw"
+                alt={item.alt}
+                loading="lazy"
+              />
               <span>
                 <Maximize2 size={16} />
               </span>
