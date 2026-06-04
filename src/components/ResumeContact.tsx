@@ -13,6 +13,8 @@ export function ResumeContact({ language }: ResumeContactProps) {
   const contactRef = useGsapReveal<HTMLElement>();
   const copy = uiCopy[language];
   const profile = profileContent[language];
+  const resumePdf = profileLinks.resumePdfs[language];
+  const resumeDownloadName = language === "zh" ? "宋港进_中文简历.pdf" : "GangJin_Song_Resume_EN.pdf";
 
   return (
     <>
@@ -39,7 +41,7 @@ export function ResumeContact({ language }: ResumeContactProps) {
           <p>{profile.secondaryIntro}</p>
         </div>
         <div className="contact-panel" data-reveal>
-          <a className="contact-action primary" href={profileLinks.resumePdf} download>
+          <a className="contact-action primary" href={resumePdf} download={resumeDownloadName}>
             <Download size={20} /> <span>{copy.contact.download}</span>
           </a>
           <a className="contact-action" href={`mailto:${profile.email}`}>
