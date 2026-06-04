@@ -43,6 +43,24 @@ type TrailPoint = {
   swirl: number;
 };
 
+type Meteor = {
+  x: number;
+  y: number;
+  previousX: number;
+  previousY: number;
+  vx: number;
+  vy: number;
+  ax: number;
+  ay: number;
+  age: number;
+  life: number;
+  length: number;
+  width: number;
+  alpha: number;
+  color: string;
+  wave: number;
+};
+
 type SafeZone = {
   left: number;
   top: number;
@@ -56,6 +74,7 @@ type BlackHoleRuntime = {
 };
 
 const MOBILE_BREAKPOINT = 760;
+const MAX_METEORS = 56;
 const SAFE_ZONE_SELECTOR = [
   ".hero-copy-block",
   ".hero-resume-grid",
@@ -81,6 +100,17 @@ function smoothstep(edge0: number, edge1: number, value: number) {
   return progress * progress * (3 - 2 * progress);
 }
 
+function randomBetween(min: number, max: number) {
+  return min + Math.random() * (max - min);
+}
+
+function normalizeVector(x: number, y: number, fallbackX: number, fallbackY: number) {
+  const magnitude = Math.sqrt(x * x + y * y);
+  if (magnitude < 0.001) return { x: fallbackX, y: fallbackY };
+
+  return { x: x / magnitude, y: y / magnitude };
+}
+
 function starColor() {
   const roll = Math.random();
   if (roll > 0.955) return "205, 194, 142";
@@ -93,6 +123,14 @@ function starColor() {
 function clusterStarColor(tint: string) {
   if (Math.random() > 0.18) return tint;
   return starColor();
+}
+
+function meteorColor() {
+  const roll = Math.random();
+  if (roll > 0.82) return "205, 194, 142";
+  if (roll > 0.64) return "173, 184, 124";
+  if (roll > 0.24) return "181, 211, 226";
+  return "224, 232, 235";
 }
 
 export function ParticleBackground() {
@@ -114,13 +152,14 @@ export function ParticleBackground() {
     let dpr = Math.min(window.devicePixelRatio || 1, 2);
     let stars: Star[] = [];
     let trail: TrailPoint[] = [];
+    let meteors: Meteor[] = [];
     let safeZones: SafeZone[] = [];
     let frameId = 0;
     let safeZoneFrameId = 0;
     let resizeTimer: number | undefined;
     let running = false;
     let blackHole: BlackHoleRuntime | null = null;
-    let lastPointer: { x: number; y: number } | null = null;
+    let lastPointer: { x: number; y: number; time: number } | null = null;
     let pointerUniform = new THREE.Vector2(-1, -1);
     const layerMotion = gsap.matchMedia();
 
@@ -385,6 +424,7 @@ export function ParticleBackground() {
       lastPointer = null;
       pointerUniform = new THREE.Vector2(-1, -1);
       trail = [];
+      meteors = [];
       stars = createStars();
       collectSafeZones();
 
@@ -502,6 +542,158 @@ export function ParticleBackground() {
         .slice(-24);
     };
 
+    const spawnMeteors = (
+      previous: { x: number; y: number; time: number },
+      current: { x: number; y: number; time: number },
+    ) => {
+      const dx = current.x - previous.x;
+      const dy = current.y - previous.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      if (distance < 8) return;
+
+      const isMobile = width < MOBILE_BREAKPOINT;
+      const elapsed = Math.max(current.time - previous.time, 16);
+      const pointerSpeed = distance / elapsed;
+      const movement = normalizeVector(dx, dy, 0.78, 0.62);
+      const showerDirection = normalizeVector(
+        movement.x * 0.78 + 0.34,
+        movement.y * 0.78 + 0.42,
+        0.78,
+        0.62,
+      );
+      const perpendicularX = -showerDirection.y;
+      const perpendicularY = showerDirection.x;
+      const count = clamp(
+        Math.floor(distance / (isMobile ? 58 : 38)) + (pointerSpeed > 1.1 ? 1 : 0),
+        1,
+        isMobile ? 3 : 5,
+      );
+
+      for (let index = 0; index < count; index += 1) {
+        const progress = (index + Math.random()) / count;
+        const baseX = previous.x + dx * progress;
+        const baseY = previous.y + dy * progress;
+        const rawReadability = pointReadabilityMultiplier(baseX, baseY);
+        const readability = Math.max(rawReadability, 0.28);
+        if (rawReadability < 0.1 && Math.random() < 0.55) continue;
+
+        const scatter = randomBetween(isMobile ? -38 : -74, isMobile ? 38 : 74);
+        const lag = randomBetween(isMobile ? 18 : 28, isMobile ? 76 : 118);
+        const speed =
+          randomBetween(isMobile ? 7.2 : 9.6, isMobile ? 13.8 : 19.5) +
+          clamp(pointerSpeed * 5.8, 0, isMobile ? 6.2 : 10.5);
+        const startX = baseX + perpendicularX * scatter - showerDirection.x * lag;
+        const startY = baseY + perpendicularY * scatter - showerDirection.y * lag;
+        const jitterX = randomBetween(-0.26, 0.26);
+        const jitterY = randomBetween(-0.2, 0.2);
+
+        meteors.push({
+          x: startX,
+          y: startY,
+          previousX: startX - showerDirection.x * speed,
+          previousY: startY - showerDirection.y * speed,
+          vx: showerDirection.x * speed + perpendicularX * jitterX,
+          vy: showerDirection.y * speed + perpendicularY * jitterY,
+          ax: showerDirection.x * randomBetween(0.012, 0.032),
+          ay: showerDirection.y * randomBetween(0.012, 0.032) + randomBetween(0.002, 0.009),
+          age: Math.floor(randomBetween(0, 3)),
+          life: Math.floor(randomBetween(isMobile ? 26 : 34, isMobile ? 40 : 56)),
+          length: randomBetween(isMobile ? 92 : 138, isMobile ? 164 : 268),
+          width: randomBetween(isMobile ? 0.95 : 1.18, isMobile ? 2.1 : 3.25),
+          alpha: clamp((0.24 + pointerSpeed * 0.26 + Math.random() * 0.22) * readability, 0.08, 0.72),
+          color: meteorColor(),
+          wave: Math.random() * Math.PI * 2,
+        });
+      }
+
+      meteors = meteors.slice(-MAX_METEORS);
+    };
+
+    const updateMeteors = () => {
+      if (meteors.length === 0) return;
+
+      const margin = Math.max(width, height) * 0.22;
+      for (const meteor of meteors) {
+        meteor.previousX = meteor.x;
+        meteor.previousY = meteor.y;
+        meteor.vx += meteor.ax;
+        meteor.vy += meteor.ay;
+        meteor.vx *= 0.996;
+        meteor.vy *= 0.996;
+        meteor.x += meteor.vx;
+        meteor.y += meteor.vy;
+        meteor.age += 1;
+      }
+
+      meteors = meteors.filter(
+        (meteor) =>
+          meteor.age < meteor.life &&
+          meteor.x > -margin &&
+          meteor.x < width + margin &&
+          meteor.y > -margin &&
+          meteor.y < height + margin,
+      );
+    };
+
+    const drawMeteors = (time: number) => {
+      if (meteors.length === 0 || reduceMotion) return;
+
+      context.save();
+      context.globalCompositeOperation = "lighter";
+      context.lineCap = "round";
+      context.lineJoin = "round";
+
+      for (const meteor of meteors) {
+        const progress = meteor.age / meteor.life;
+        const alpha = meteor.alpha * smoothstep(0, 0.1, progress) * (1 - smoothstep(0.68, 1, progress));
+        if (alpha <= 0.01) continue;
+
+        const speed = Math.sqrt(meteor.vx * meteor.vx + meteor.vy * meteor.vy);
+        const direction = normalizeVector(meteor.vx, meteor.vy, 0.78, 0.62);
+        const shimmer = 0.88 + Math.sin(time * 0.012 + meteor.wave) * 0.12;
+        const tailLength = meteor.length * (0.78 + speed * 0.015) * (0.82 + progress * 0.22);
+        const tailX = meteor.x - direction.x * tailLength;
+        const tailY = meteor.y - direction.y * tailLength;
+        const bend = Math.sin(time * 0.004 + meteor.wave) * meteor.width * 3.8;
+        const bendX = -direction.y * bend;
+        const bendY = direction.x * bend;
+        const midX = meteor.x - direction.x * tailLength * 0.42 + bendX;
+        const midY = meteor.y - direction.y * tailLength * 0.42 + bendY;
+
+        const trailGradient = context.createLinearGradient(tailX, tailY, meteor.x, meteor.y);
+        trailGradient.addColorStop(0, `rgba(${meteor.color}, 0)`);
+        trailGradient.addColorStop(0.44, `rgba(${meteor.color}, ${0.18 * alpha})`);
+        trailGradient.addColorStop(0.82, `rgba(${meteor.color}, ${0.52 * alpha})`);
+        trailGradient.addColorStop(1, `rgba(247, 247, 242, ${0.96 * alpha})`);
+
+        context.strokeStyle = trailGradient;
+        context.lineWidth = Math.max(0.42, meteor.width * shimmer * (1 - progress * 0.28));
+        context.beginPath();
+        context.moveTo(tailX, tailY);
+        context.quadraticCurveTo(midX, midY, meteor.x, meteor.y);
+        context.stroke();
+
+        context.strokeStyle = `rgba(247, 247, 242, ${0.46 * alpha})`;
+        context.lineWidth = Math.max(0.46, meteor.width * 0.38);
+        context.beginPath();
+        context.moveTo(meteor.x - direction.x * tailLength * 0.18, meteor.y - direction.y * tailLength * 0.18);
+        context.lineTo(meteor.x, meteor.y);
+        context.stroke();
+
+        const glowRadius = meteor.width * (4.4 + speed * 0.2);
+        const glow = context.createRadialGradient(meteor.x, meteor.y, 0, meteor.x, meteor.y, glowRadius);
+        glow.addColorStop(0, `rgba(247, 247, 242, ${0.46 * alpha})`);
+        glow.addColorStop(0.42, `rgba(${meteor.color}, ${0.18 * alpha})`);
+        glow.addColorStop(1, `rgba(${meteor.color}, 0)`);
+        context.fillStyle = glow;
+        context.beginPath();
+        context.arc(meteor.x, meteor.y, glowRadius, 0, Math.PI * 2);
+        context.fill();
+      }
+
+      context.restore();
+    };
+
     const updateStars = (time: number) => {
       for (const star of stars) {
         star.vx += (star.homeX - star.x) * 0.0042 + Math.cos(time * 0.00009 * star.drift + star.homeY) * 0.0007;
@@ -535,11 +727,13 @@ export function ParticleBackground() {
       if (!reduceMotion) {
         updateStars(time);
         updateTrail();
+        updateMeteors();
       }
 
       drawClusterHaze(time);
       drawStars(time);
       drawTrail();
+      drawMeteors(time);
       blackHole?.render(time);
     };
 
@@ -576,26 +770,32 @@ export function ParticleBackground() {
     const handlePointerMove = (event: PointerEvent) => {
       if (width <= 0 || height <= 0) return;
       pointerUniform.set(event.clientX / width, 1 - event.clientY / height);
+      const currentPointer = {
+        x: event.clientX,
+        y: event.clientY,
+        time: event.timeStamp || performance.now(),
+      };
       if (reduceMotion) return;
 
       if (!lastPointer) {
-        lastPointer = { x: event.clientX, y: event.clientY };
+        lastPointer = currentPointer;
         return;
       }
 
       const previous = lastPointer;
-      const dx = event.clientX - previous.x;
-      const dy = event.clientY - previous.y;
+      const dx = currentPointer.x - previous.x;
+      const dy = currentPointer.y - previous.y;
       if (dx * dx + dy * dy < 9) {
-        lastPointer = { x: event.clientX, y: event.clientY };
+        lastPointer = currentPointer;
         return;
       }
 
       const isMobile = width < MOBILE_BREAKPOINT;
-      const readability = pointReadabilityMultiplier(event.clientX, event.clientY);
+      const readability = pointReadabilityMultiplier(currentPointer.x, currentPointer.y);
+      spawnMeteors(previous, currentPointer);
       trail.push({
-        x: event.clientX,
-        y: event.clientY,
+        x: currentPointer.x,
+        y: currentPointer.y,
         previousX: previous.x,
         previousY: previous.y,
         age: 0,
@@ -607,7 +807,7 @@ export function ParticleBackground() {
         swirl: Math.random() > 0.5 ? 0.18 : -0.18,
       });
       trail = trail.slice(-20);
-      lastPointer = { x: event.clientX, y: event.clientY };
+      lastPointer = currentPointer;
     };
 
     const handlePointerLeave = () => {
