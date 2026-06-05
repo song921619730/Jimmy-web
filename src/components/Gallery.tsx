@@ -1,6 +1,6 @@
 import { Maximize2 } from "lucide-react";
 import type { CSSProperties } from "react";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import type { Language } from "../data/i18n";
 import { uiCopy } from "../data/i18n";
 import type { Project } from "../data/projects";
@@ -16,7 +16,7 @@ type GalleryProps = {
 };
 
 const galleryImageSizes = "(max-width: 760px) calc(100vw - 36px), (max-width: 1040px) 46vw, 24vw";
-const immediateSwitchPreloadCount = 24;
+const categoryPreviewPreloadCount = 8;
 
 function preloadGalleryImages(items: GeneratedMediaItem[], limit = 48) {
   if (typeof window === "undefined") return Promise.resolve();
@@ -51,11 +51,28 @@ function preloadGalleryImages(items: GeneratedMediaItem[], limit = 48) {
   ).then(() => undefined);
 }
 
+function getCategoryPreviewImages(items: GeneratedMediaItem[], activeProject: string) {
+  const projectCounts = new Map<string, number>();
+  const previewItems: GeneratedMediaItem[] = [];
+
+  for (const item of items) {
+    if (item.type !== "image") continue;
+    if (activeProject !== "all" && item.project === activeProject) continue;
+
+    const count = projectCounts.get(item.project) ?? 0;
+    if (count >= categoryPreviewPreloadCount) continue;
+
+    projectCounts.set(item.project, count + 1);
+    previewItems.push(item);
+  }
+
+  return previewItems;
+}
+
 export function Gallery({ language, projects, media, onOpenProject }: GalleryProps) {
   const [activeProject, setActiveProject] = useState("all");
-  const [pendingProject, setPendingProject] = useState<string | null>(null);
   const [galleryReady, setGalleryReady] = useState(false);
-  const switchIdRef = useRef(0);
+  const [loadedImageIds, setLoadedImageIds] = useState<ReadonlySet<string>>(() => new Set());
   const scopeRef = useGsapReveal<HTMLElement>();
   const copy = uiCopy[language].gallery;
 
@@ -73,24 +90,22 @@ export function Gallery({ language, projects, media, onOpenProject }: GalleryPro
 
   const handleProjectChange = useCallback(
     (projectSlug: string) => {
-      if (projectSlug === activeProject) {
-        switchIdRef.current += 1;
-        setPendingProject(null);
-        return;
-      }
+      if (projectSlug === activeProject) return;
 
-      const switchId = switchIdRef.current + 1;
-      switchIdRef.current = switchId;
-      setPendingProject(projectSlug);
-
-      preloadGalleryImages(getFilteredImages(projectSlug), immediateSwitchPreloadCount).then(() => {
-        if (switchIdRef.current !== switchId) return;
-        setActiveProject(projectSlug);
-        setPendingProject(null);
-      });
+      setActiveProject(projectSlug);
     },
-    [activeProject, getFilteredImages],
+    [activeProject],
   );
+
+  const markImageLoaded = useCallback((imageId: string) => {
+    setLoadedImageIds((currentIds) => {
+      if (currentIds.has(imageId)) return currentIds;
+
+      const nextIds = new Set(currentIds);
+      nextIds.add(imageId);
+      return nextIds;
+    });
+  }, []);
 
   useEffect(() => {
     const scope = scopeRef.current;
@@ -118,12 +133,7 @@ export function Gallery({ language, projects, media, onOpenProject }: GalleryPro
     if (!galleryReady) return;
 
     const images = media.filter((item) => item.type === "image");
-    if (activeProject === "all") {
-      preloadGalleryImages(images.slice(48, 96));
-      return;
-    }
-
-    preloadGalleryImages(images.filter((item) => item.project !== activeProject).slice(0, 48));
+    preloadGalleryImages(getCategoryPreviewImages(images, activeProject));
   }, [activeProject, galleryReady, media]);
 
   useEffect(() => {
@@ -132,7 +142,6 @@ export function Gallery({ language, projects, media, onOpenProject }: GalleryPro
     const images = media.filter((item) => item.type === "image");
     if (activeProject !== "all" && !images.some((item) => item.project === activeProject)) {
       setActiveProject("all");
-      setPendingProject(null);
     }
   }, [activeProject, filtered.length, media]);
 
@@ -150,8 +159,6 @@ export function Gallery({ language, projects, media, onOpenProject }: GalleryPro
           className={activeProject === "all" ? "active" : ""}
           type="button"
           onClick={() => handleProjectChange("all")}
-          aria-busy={pendingProject === "all" ? "true" : undefined}
-          disabled={pendingProject === "all"}
         >
           {copy.all}
         </button>
@@ -161,8 +168,6 @@ export function Gallery({ language, projects, media, onOpenProject }: GalleryPro
             type="button"
             key={project.slug}
             onClick={() => handleProjectChange(project.slug)}
-            aria-busy={pendingProject === project.slug ? "true" : undefined}
-            disabled={pendingProject === project.slug}
           >
             {project.title}
           </button>
@@ -170,7 +175,7 @@ export function Gallery({ language, projects, media, onOpenProject }: GalleryPro
       </div>
 
       <div className="gallery-grid" data-reveal>
-        {filtered.map((item) => {
+        {filtered.map((item, itemIndex) => {
           const project = projects.find((candidate) => candidate.slug === item.project);
           return (
             <button
@@ -186,7 +191,11 @@ export function Gallery({ language, projects, media, onOpenProject }: GalleryPro
                 includeLarge={false}
                 sizes={galleryImageSizes}
                 alt={item.alt}
-                loading="lazy"
+                loading={itemIndex < 12 ? "eager" : "lazy"}
+                width={item.thumbWidth || item.width}
+                height={item.thumbHeight || item.height}
+                data-loaded={loadedImageIds.has(item.id) ? "true" : "false"}
+                onLoad={() => markImageLoaded(item.id)}
               />
               <span>
                 <Maximize2 size={16} />
