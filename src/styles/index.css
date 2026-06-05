@@ -1191,6 +1191,11 @@ picture {
   color: #000;
 }
 
+.project-filter button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
 .project-filter {
   margin-bottom: 22px;
 }
