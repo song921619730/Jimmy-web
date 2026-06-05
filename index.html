@@ -12,5 +12,37 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (() => {
+        const sendVisit = () => {
+          const payload = JSON.stringify({
+            url: window.location.pathname + window.location.search,
+            title: document.title,
+            referrer: document.referrer || "",
+            width: window.innerWidth,
+            height: window.innerHeight,
+            language: navigator.language || "",
+          });
+
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon("/api/track", new Blob([payload], { type: "application/json" }));
+            return;
+          }
+
+          fetch("/api/track", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: payload,
+            keepalive: true,
+          }).catch(() => {});
+        };
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", sendVisit, { once: true });
+        } else {
+          sendVisit();
+        }
+      })();
+    </script>
   </body>
 </html>

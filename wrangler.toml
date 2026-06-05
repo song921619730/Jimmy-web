@@ -1,0 +1,7 @@
+name = "jimmy-web"
+pages_build_output_dir = "./dist"
+compatibility_date = "2026-06-05"
+
+[[kv_namespaces]]
+binding = "ANALYTICS_KV"
+id = "ac05d4891ab04e81ab01c6fb5dbfc43a"
