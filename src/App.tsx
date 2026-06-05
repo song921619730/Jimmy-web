@@ -65,7 +65,7 @@ function restoreViewportAnchor(anchor: ReturnType<typeof captureViewportAnchor>)
 }
 
 export default function App() {
-  const [language, setLanguage] = useState<Language>("zh");
+  const [language, setLanguage] = useState<Language>("en");
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [activeMediaId, setActiveMediaId] = useState<string | null>(null);
   const mediaByProject = useMemo(() => groupMedia(generatedMedia), []);
