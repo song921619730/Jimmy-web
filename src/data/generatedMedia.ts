@@ -3394,13 +3394,13 @@ const generatedMediaData = [
     "thumbAvif": "media/thumbs/props-000.avif",
     "src": "media/large/props-000.webp",
     "srcAvif": "media/large/props-000.avif",
-    "width": 3099,
-    "height": 1837,
+    "width": 1628,
+    "height": 966,
     "thumbWidth": 720,
     "thumbHeight": 427,
-    "srcWidth": 1920,
-    "srcHeight": 1138,
-    "ratio": 1.6869896570495373
+    "srcWidth": 1628,
+    "srcHeight": 966,
+    "ratio": 1.6853002070393375
   },
   {
     "id": "props-001",
@@ -3411,13 +3411,13 @@ const generatedMediaData = [
     "thumbAvif": "media/thumbs/props-001.avif",
     "src": "media/large/props-001.webp",
     "srcAvif": "media/large/props-001.avif",
-    "width": 2741,
-    "height": 1589,
+    "width": 1626,
+    "height": 967,
     "thumbWidth": 720,
-    "thumbHeight": 417,
-    "srcWidth": 1920,
-    "srcHeight": 1113,
-    "ratio": 1.724984266834487
+    "thumbHeight": 428,
+    "srcWidth": 1626,
+    "srcHeight": 967,
+    "ratio": 1.6814891416752844
   },
   {
     "id": "props-002",
@@ -3428,13 +3428,13 @@ const generatedMediaData = [
     "thumbAvif": "media/thumbs/props-002.avif",
     "src": "media/large/props-002.webp",
     "srcAvif": "media/large/props-002.avif",
-    "width": 2340,
-    "height": 1710,
+    "width": 1622,
+    "height": 970,
     "thumbWidth": 720,
-    "thumbHeight": 526,
-    "srcWidth": 1920,
-    "srcHeight": 1403,
-    "ratio": 1.368421052631579
+    "thumbHeight": 431,
+    "srcWidth": 1622,
+    "srcHeight": 970,
+    "ratio": 1.6721649484536083
   },
   {
     "id": "props-003",
@@ -3445,13 +3445,13 @@ const generatedMediaData = [
     "thumbAvif": "media/thumbs/props-003.avif",
     "src": "media/large/props-003.webp",
     "srcAvif": "media/large/props-003.avif",
-    "width": 2415,
-    "height": 1797,
+    "width": 1536,
+    "height": 1024,
     "thumbWidth": 720,
-    "thumbHeight": 536,
-    "srcWidth": 1920,
-    "srcHeight": 1429,
-    "ratio": 1.343906510851419
+    "thumbHeight": 480,
+    "srcWidth": 1536,
+    "srcHeight": 1024,
+    "ratio": 1.5
   },
   {
     "id": "props-004",
@@ -3462,13 +3462,13 @@ const generatedMediaData = [
     "thumbAvif": "media/thumbs/props-004.avif",
     "src": "media/large/props-004.webp",
     "srcAvif": "media/large/props-004.avif",
-    "width": 2541,
-    "height": 1683,
+    "width": 1449,
+    "height": 1086,
     "thumbWidth": 720,
-    "thumbHeight": 477,
-    "srcWidth": 1920,
-    "srcHeight": 1272,
-    "ratio": 1.5098039215686274
+    "thumbHeight": 540,
+    "srcWidth": 1449,
+    "srcHeight": 1086,
+    "ratio": 1.3342541436464088
   },
   {
     "id": "props-005",
@@ -3479,13 +3479,13 @@ const generatedMediaData = [
     "thumbAvif": "media/thumbs/props-005.avif",
     "src": "media/large/props-005.webp",
     "srcAvif": "media/large/props-005.avif",
-    "width": 3633,
-    "height": 1034,
+    "width": 1913,
+    "height": 822,
     "thumbWidth": 720,
-    "thumbHeight": 205,
-    "srcWidth": 1920,
-    "srcHeight": 546,
-    "ratio": 3.513539651837524
+    "thumbHeight": 309,
+    "srcWidth": 1913,
+    "srcHeight": 822,
+    "ratio": 2.327250608272506
   },
   {
     "id": "props-007",
@@ -3496,13 +3496,13 @@ const generatedMediaData = [
     "thumbAvif": "media/thumbs/props-007.avif",
     "src": "media/large/props-007.webp",
     "srcAvif": "media/large/props-007.avif",
-    "width": 1180,
-    "height": 921,
+    "width": 1448,
+    "height": 1086,
     "thumbWidth": 720,
-    "thumbHeight": 562,
-    "srcWidth": 1180,
-    "srcHeight": 921,
-    "ratio": 1.281216069489685
+    "thumbHeight": 540,
+    "srcWidth": 1448,
+    "srcHeight": 1086,
+    "ratio": 1.3333333333333333
   },
   {
     "id": "soldier-000",
