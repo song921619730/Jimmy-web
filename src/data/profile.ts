@@ -135,7 +135,7 @@ export const profileContent = {
   },
   en: {
     brandMeta: "3D Artist",
-    chineseName: "GangJin Song",
+    chineseName: "宋港进",
     email: "song921619730@gmail.com",
     age: "28",
     role: "3D Artist / Character Clothing and Material Artist",
